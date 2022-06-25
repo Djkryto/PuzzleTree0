@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33000013586253870}
   - component: {fileID: 23000013581800010}
   - component: {fileID: 95000013116957404}
-  - component: {fileID: 574693120040101772}
+  - component: {fileID: 8279914128066036945}
   m_Layer: 0
   m_Name: MainTreeA_SRP
   m_TagString: Untagged
@@ -106,8 +106,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &574693120040101772
-BoxCollider:
+--- !u!136 &8279914128066036945
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,6 +116,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.0820594, y: 5.343275, z: 4.817791}
-  m_Center: {x: -0.15401554, y: 2.6421518, z: -0.11139333}
+  m_Radius: 0.66797626
+  m_Height: 5.7231865
+  m_Direction: 1
+  m_Center: {x: 0.12994838, y: 2.7436504, z: -0.07793176}

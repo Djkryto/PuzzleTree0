@@ -40,19 +40,13 @@ public class CameraRotate : MonoBehaviour
 
     private void Rotate()
     {
-        var mouseAxis = _input.Player.MouseLook.ReadValue<Vector2>();
-
-        _currentAngle.x -= mouseAxis.y * _verticalSensitivity;
-        _currentAngle.y += mouseAxis.x * _horizontalSensitivity;
-        _currentAngle.x = Mathf.Clamp(_currentAngle.x, -_verticalLimit, _verticalLimit);
-
         var parentRotation = _playerTransform.localEulerAngles;
         parentRotation.y = _mainCamera.transform.eulerAngles.y;
         _rigidbody.MoveRotation(Quaternion.Euler(parentRotation));
 
 
-        Ray desiredTargetRay = _mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
-        Vector3 desiredTargetPosition = desiredTargetRay.origin + desiredTargetRay.direction;
-        _aimTarget.position = desiredTargetPosition;
+        //Ray desiredTargetRay = _mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
+        //Vector3 desiredTargetPosition = desiredTargetRay.origin + desiredTargetRay.direction;
+        //_aimTarget.position = desiredTargetPosition;
     }
 }

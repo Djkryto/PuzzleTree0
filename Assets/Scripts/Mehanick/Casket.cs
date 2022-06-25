@@ -5,7 +5,7 @@ using UnityEngine;
 public class Casket : MonoBehaviour
 {
     public CameraRotate cameraRotate;
-    public Inventory inventory;
+    public PlayerInventory inventory;
     public Animator animator;
     public Move move;
     public Cursore cursore;

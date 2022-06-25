@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    public Inventory inventory;
+    public PlayerInventory inventory;
 
     public Animator blackout;
     public Animator FastEnd;

@@ -1,8 +1,10 @@
+using Cinemachine;
 using UnityEngine;
 
 public class InputObjectInspector : MonoBehaviour
 {
     [SerializeField] private Transform _inspectorRotatorTransform;
+    [SerializeField] private PlayerControl _playerControl;
     [SerializeField] private ObjectInspector _objectInspector;
     [SerializeField] private float _minZoom = 2.0f;
     [SerializeField] private float _maxZoom = 10.0f;
@@ -65,6 +67,7 @@ public class InputObjectInspector : MonoBehaviour
         if(_input.Player.Escape.IsPressed())
         {
             _objectInspector.TryCloseInspector();
+            _playerControl.ControlUnlock();
         }
     }
 }

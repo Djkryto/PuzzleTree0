@@ -317,7 +317,6 @@ GameObject:
   - component: {fileID: 364182108511001933}
   - component: {fileID: 364182108511001932}
   - component: {fileID: 364182108511001935}
-  - component: {fileID: 364182108511001934}
   - component: {fileID: 364182108511001937}
   - component: {fileID: 364182108511001936}
   - component: {fileID: 364182108511001930}
@@ -396,26 +395,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364182108511001939}
   m_Enabled: 1
---- !u!114 &364182108511001934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364182108511001939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f326f577d4b24f49af7036944c468a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _horizontalSensitivity: 0.05
-  _verticalSensitivity: 0.05
-  _verticalLimit: 60
-  _rigidbody: {fileID: 364182107546066902}
-  _aimTarget: {fileID: 9054197766548964051}
-  _playerTransform: {fileID: 182233948400863299}
-  _mainCamera: {fileID: 364182108511001932}
-  isRotate: 1
 --- !u!114 &364182108511001937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +402,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364182108511001939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16a77208c0fd7b4e9e98d7e03a52b17, type: 3}
   m_Name: 
@@ -432,7 +411,7 @@ MonoBehaviour:
   blackout: {fileID: 0}
   FastEnd: {fileID: 0}
   cursore: {fileID: 0}
-  CameraRotate: {fileID: 364182108511001934}
+  CameraRotate: {fileID: 0}
   move: {fileID: 0}
   BringBitObject: 0
   BringObject: 0
@@ -963,6 +942,33 @@ MonoBehaviour:
   _layerInteractiveObject:
     serializedVersion: 2
     m_Bits: 64
+  _inspectableEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ObjectInspector, Assembly-CSharp
+        m_MethodName: TryOpenInspector
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ObjectInspector, Assembly-CSharp
+        m_MethodName: CreateObjectInInspector
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &8859797541025093236
 MonoBehaviour:
   m_ObjectHideFlags: 0
