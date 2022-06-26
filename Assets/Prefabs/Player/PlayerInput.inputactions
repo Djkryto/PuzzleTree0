@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "82949a84-d64b-4224-b281-376d0aa70394",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -263,6 +272,17 @@
                     "processors": "NormalizeVector2",
                     "groups": "Mouse and Keyboard",
                     "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97e213cc-0d88-4b2a-8b8a-86ac9a3d25bf",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

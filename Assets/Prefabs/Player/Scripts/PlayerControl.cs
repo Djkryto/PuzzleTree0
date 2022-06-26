@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private LayerMask _layerInteractiveObject;
     [SerializeField] private  UnityEvent<IInspectable> _inspectableEvent;
     [SerializeField] private  float _useDistance = 5f;
+    [SerializeField] private  Inventory _inventory;
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     private PlayerInput _input;
     private bool _controlIsLock = false;
@@ -16,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     private void Awake()
     {
         _input = new PlayerInput();
+        _input.Player.Inventory.performed += context => OpenInventory();
     }
 
     private void OnEnable()
@@ -26,6 +28,11 @@ public class PlayerControl : MonoBehaviour
     private void OnDisable()
     {
         _input?.Disable();
+    }
+
+    private void OpenInventory()
+    {
+        _inventory.OpenCloseInventory();
     }
 
     private void Update()

@@ -98,6 +98,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""82949a84-d64b-4224-b281-376d0aa70394"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,6 +296,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97e213cc-0d88-4b2a-8b8a-86ac9a3d25bf"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -325,6 +345,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_RMB = m_Player.FindAction("RMB", throwIfNotFound: true);
         m_Player_LMB = m_Player.FindAction("LMB", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
+        m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -392,6 +413,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RMB;
     private readonly InputAction m_Player_LMB;
     private readonly InputAction m_Player_Escape;
+    private readonly InputAction m_Player_Inventory;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -404,6 +426,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @RMB => m_Wrapper.m_Player_RMB;
         public InputAction @LMB => m_Wrapper.m_Player_LMB;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
+        public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -437,6 +460,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Escape.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
                 @Escape.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
                 @Escape.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
+                @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -465,6 +491,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Escape.started += instance.OnEscape;
                 @Escape.performed += instance.OnEscape;
                 @Escape.canceled += instance.OnEscape;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
             }
         }
     }
@@ -488,5 +517,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnRMB(InputAction.CallbackContext context);
         void OnLMB(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
 }
