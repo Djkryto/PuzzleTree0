@@ -22,7 +22,7 @@ public class Crystal : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "PointLighteLaser" || collision.gameObject.name == "LaserPoint")
+        if(collision.gameObject.name == "PointLightLaser" || collision.gameObject.name == "LaserPoint")
         {
             allCrystal.CheckAllCrystals();
             isPoint = true; 
@@ -36,7 +36,7 @@ public class Crystal : MonoBehaviour
   
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name == "PointLighteLaser" || collision.gameObject.name == "LaserPoint")
+        if (collision.gameObject.name == "PointLightLaser" || collision.gameObject.name == "LaserPoint")
         {
             isPoint = false;
             direct.isActive = false;

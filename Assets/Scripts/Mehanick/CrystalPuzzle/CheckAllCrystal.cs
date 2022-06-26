@@ -22,7 +22,7 @@ public class CheckAllCrystal : MonoBehaviour
     public void CheckAllCrystals()
     {
         if (Crystals[0].isPoint && Crystals[1].isPoint && Crystals[2].isPoint && Crystals[3].isPoint && Crystals[4].isPoint
-            && Crystals[5].isPoint && Crystals[6].isPoint && Crystals[7].isPoint)
+            && Crystals[5].isPoint && Crystals[6].isPoint)
             isCheck = true;
 
         if (isCheck)

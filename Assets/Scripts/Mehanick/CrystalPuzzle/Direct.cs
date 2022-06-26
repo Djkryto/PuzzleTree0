@@ -37,7 +37,7 @@ public class Direct : MonoBehaviour
         }
         else
         {
-            //Vector3.MoveTowards(LaserPoint.transform.position, new Vector3(), 3* Time.deltaTime);
+            //Vector3.MoveTowards(LaserPoint.transform.position, new Vector3(), 3 * Time.deltaTime);
             LaserPoint.SetActive(false);
             lineRenderer.enabled = false;
         }

@@ -87,11 +87,15 @@ public class PuzzlePlate : MonoBehaviour
         {
             if(All[i] != gameObject.GetComponent<Plate>())
             {
-                if(!All[i].isRock && !All[i].isPlayer)
+                if (!All[i].isRock && !All[i].isPlayer && SpecialChange == null)
                 {
-                    All[i].isActive = false;
+                    All[i].isActive = true;
                     Special.isActive = true;
                     SpecialChange = All[i];
+                    break;
+                }
+                else
+                {
                     break;
                 }
             }
@@ -140,8 +144,9 @@ public class PuzzlePlate : MonoBehaviour
     {
         if(!SpecialChange.isRock && !SpecialChange.isPlayer)
         {
-            SpecialChange.isActive = true;
+            SpecialChange.isActive = false;
             Special.isActive = false;
+            SpecialChange = null;
         }
     }
 }

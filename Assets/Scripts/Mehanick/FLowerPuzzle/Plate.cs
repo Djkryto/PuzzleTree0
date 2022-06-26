@@ -10,6 +10,8 @@ public class Plate : MonoBehaviour
     public PuzzlePlate puzzlePlate;
     public Vector3 TargetPosition;
     private int count;
+    private float timerState;//Таймер проверки ухода объекта с блина.
+    public bool CloseTimer;
     public bool isPlayer;
     public bool isRock;
     public bool isActive;
@@ -62,6 +64,8 @@ public class Plate : MonoBehaviour
     {
         if(isActive)
         {
+            timerState = 0.5f;
+            CloseTimer = false;
             TargetPosition = new Vector3(transform.position.x, 4.875f, transform.position.z);
             if (TargetPosition.y < transform.position.y)
             {
@@ -70,10 +74,20 @@ public class Plate : MonoBehaviour
         }
         else
         {
-            TargetPosition = new Vector3(transform.position.x, 4.98f, transform.position.z);
-            if (TargetPosition.y > transform.localPosition.y)
+            if (!CloseTimer)
             {
-                transform.position += transform.up * Time.deltaTime;
+                timerState -= Time.deltaTime;
+            }
+            
+            if(timerState < 0)
+            {
+                TargetPosition = new Vector3(transform.position.x, 4.98f, transform.position.z);
+                if (TargetPosition.y > transform.localPosition.y)
+                {
+                    transform.position += transform.up * Time.deltaTime;
+                    CloseTimer = true;
+                }
+
             }
         }
     }
