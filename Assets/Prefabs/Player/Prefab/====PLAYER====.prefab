@@ -325,7 +325,7 @@ MonoBehaviour:
     FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.08
-    FarClipPlane: 300
+    FarClipPlane: 500
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -418,7 +418,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.08
-  far clip plane: 300
+  far clip plane: 500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -793,10 +793,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig9:RightHand'\n\tFrom animation clip
-    'FlashlightHold'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -975,9 +972,15 @@ MonoBehaviour:
   _playerRigidbody: {fileID: 364182107546066902}
   _aimTarget: {fileID: 9054197766548964051}
   _playerAnimator: {fileID: 6081900306580279865}
+  _visionDistance: 5
+  _layerOfVision:
+    serializedVersion: 2
+    m_Bits: 64
   _walkSpeed: 2
   _runSpeed: 5
   _accelerationTime: 0.3
+  _inventory: {fileID: 0}
+  _hand: {fileID: 364182109028129243}
 --- !u!114 &364182107546066896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,16 +995,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 615948504700081884}
   _playerCamera: {fileID: 364182108511001932}
-  _layerInteractiveObject:
-    serializedVersion: 2
-    m_Bits: 64
-  _inspectableEvent:
+  _inspectEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ObjectInspector, Assembly-CSharp
-        m_MethodName: TryOpenInspector
-        m_Mode: 1
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1020,11 +1020,26 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-  _useDistance: 5
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _takeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _inventory: {fileID: 0}
-  _cinemachineInputProvider: {fileID: 0}
+  _hotbar: {fileID: 0}
+  _cinemachineInputProvider: {fileID: 364182108491688054}
 --- !u!114 &8859797541025093236
 MonoBehaviour:
   m_ObjectHideFlags: 0
