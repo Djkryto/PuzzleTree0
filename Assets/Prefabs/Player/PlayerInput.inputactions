@@ -85,6 +85,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "One",
+                    "type": "Button",
+                    "id": "8ba35d3a-8473-412f-9d0c-75d690e35b37",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Two",
+                    "type": "Button",
+                    "id": "cfb46125-604e-4c40-b039-1202b3e0521d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Three",
+                    "type": "Button",
+                    "id": "6d4438e9-f408-4560-b262-6d6f39307409",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -200,9 +227,9 @@
                 },
                 {
                     "name": "",
-                    "id": "7bad3452-e025-45d0-8a02-7255b630b694",
+                    "id": "a93cdd4c-c13d-4eb8-a3f0-c3670fdf7d5b",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.4,pressPoint=0.5)",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Use",
@@ -283,6 +310,39 @@
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbcd03de-7976-4ab0-b19c-9a2bad02dd1d",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "One",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29f2f3f2-f3d0-4b0b-89d1-764e3ed17654",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Two",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45e83ff0-3796-48a9-9119-702423d7f57c",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

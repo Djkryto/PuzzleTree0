@@ -1,8 +1,11 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InputObjectInspector : MonoBehaviour
 {
+    public UnityEvent InspectorClosed;
+
     [SerializeField] private Transform _inspectorRotatorTransform;
     [SerializeField] private PlayerControl _playerControl;
     [SerializeField] private ObjectInspector _objectInspector;
@@ -66,8 +69,8 @@ public class InputObjectInspector : MonoBehaviour
     {
         if(_input.Player.Escape.IsPressed())
         {
+            InspectorClosed?.Invoke();
             _objectInspector.TryCloseInspector();
-            _playerControl.ControlUnlock();
         }
     }
 }

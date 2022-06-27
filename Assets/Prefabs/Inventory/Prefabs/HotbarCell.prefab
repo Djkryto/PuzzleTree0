@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2993324229869978726}
   - component: {fileID: 7072170424659416732}
   - component: {fileID: 8812889525334182927}
-  - component: {fileID: 3913295536023613708}
   - component: {fileID: 3444131149015338546}
   m_Layer: 5
   m_Name: HotbarCell
@@ -78,19 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3913295536023613708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809381859555240369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2425381fc828ab548b8e58d9d075e683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cellIndex: 0
 --- !u!114 &3444131149015338546
 MonoBehaviour:
   m_ObjectHideFlags: 0

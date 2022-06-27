@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,10 +7,10 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private Camera _playerCamera;
-    [SerializeField] private LayerMask _layerInteractiveObject;
-    [SerializeField] private  UnityEvent<IInspectable> _inspectableEvent;
-    [SerializeField] private  float _useDistance = 5f;
-    [SerializeField] private  Inventory _inventory;
+    [SerializeField] private UnityEvent<IInspectable> _inspectEvent;
+    [SerializeField] private UnityEvent<ITakeable> _takeEvent;
+    [SerializeField] private Inventory _inventory;
+    [SerializeField] private HotBar _hotbar;
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     private PlayerInput _input;
     private bool _controlIsLock = false;
@@ -18,6 +19,8 @@ public class PlayerControl : MonoBehaviour
     {
         _input = new PlayerInput();
         _input.Player.Inventory.performed += context => OpenInventory();
+        _input.Player.Use.canceled += context => _player.TakeObject();
+        _input.Player.Use.performed += context => InspectObject();
     }
 
     private void OnEnable()
@@ -41,7 +44,7 @@ public class PlayerControl : MonoBehaviour
         {
             var rayCenterCamera = GetRayFromCameraCenter();
             LookAt(rayCenterCamera);
-            Use(rayCenterCamera);
+            _player.ScanObjectInFront(rayCenterCamera);
         }
     }
 
@@ -60,22 +63,12 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void Use(Ray rayCenterCamera)
+    private void InspectObject()
     {
-        var usePressed = _input.Player.Use.IsPressed();
-        if(usePressed)
-        {
-            if (Physics.Raycast(rayCenterCamera, out RaycastHit hitInfo, _useDistance, _layerInteractiveObject))
-            {
-                if(hitInfo.transform.TryGetComponent(out IInspectable inspectableObject))
-                {
-                    _controlIsLock = true;
-                    _cinemachineInputProvider.enabled = false;
-                    _inspectableEvent.Invoke(inspectableObject);
-                }
-            }
-            
-        }
+        ControlLockUnlock();
+        IInspectable inspectableObject = _player.Vision.InspectableObject;
+        if(inspectableObject != null)
+            _inspectEvent?.Invoke(inspectableObject);
     }
 
     private void FixedUpdate()
@@ -84,6 +77,7 @@ public class PlayerControl : MonoBehaviour
         {
             PlayerMove();
         }
+
     }
 
     private void PlayerMove()
@@ -108,9 +102,9 @@ public class PlayerControl : MonoBehaviour
         _player.Rotate(_playerCamera.transform.eulerAngles.y);
     }
 
-    public void ControlUnlock()
+    public void ControlLockUnlock()
     {
-        _controlIsLock = false;
-        _cinemachineInputProvider.enabled = true;
+        _controlIsLock = !_controlIsLock;
+        _cinemachineInputProvider.enabled = !_controlIsLock;
     }
 }

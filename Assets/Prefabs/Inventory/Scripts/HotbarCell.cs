@@ -1,15 +1,21 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-
-public class HotbarCell : MonoBehaviour, IPointerUpHandler, IPointerClickHandler
+public class HotbarCell : BaseCell
 {
-    public void OnPointerClick(PointerEventData eventData)
+    private InventoryCell _sourceCell;
+
+    public InventoryCell SourceCell => _sourceCell;
+
+    public void SetItem(InventoryCell sourceCell)
     {
-        throw new System.NotImplementedException();
+        CellImage.sprite = sourceCell.Item.InventoryIcon;
+        _sourceCell = sourceCell;
+        SetColorAlpha(1f);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public override void Clear()
     {
-        print(eventData.pointerCurrentRaycast);
+        CellImage.sprite = default;
+        transform.SetParent(CellParent);
+        transform.position = CellParent.position;
+        SetColorAlpha(0f);
     }
 }

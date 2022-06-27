@@ -107,6 +107,33 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ba35d3a-8473-412f-9d0c-75d690e35b37"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""cfb46125-604e-4c40-b039-1202b3e0521d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d4438e9-f408-4560-b262-6d6f39307409"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -222,9 +249,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7bad3452-e025-45d0-8a02-7255b630b694"",
+                    ""id"": ""a93cdd4c-c13d-4eb8-a3f0-c3670fdf7d5b"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.4,pressPoint=0.5)"",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Use"",
@@ -307,6 +334,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbcd03de-7976-4ab0-b19c-9a2bad02dd1d"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29f2f3f2-f3d0-4b0b-89d1-764e3ed17654"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45e83ff0-3796-48a9-9119-702423d7f57c"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -346,6 +406,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_LMB = m_Player.FindAction("LMB", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_One = m_Player.FindAction("One", throwIfNotFound: true);
+        m_Player_Two = m_Player.FindAction("Two", throwIfNotFound: true);
+        m_Player_Three = m_Player.FindAction("Three", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -414,6 +477,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LMB;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_One;
+    private readonly InputAction m_Player_Two;
+    private readonly InputAction m_Player_Three;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -427,6 +493,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @LMB => m_Wrapper.m_Player_LMB;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        public InputAction @One => m_Wrapper.m_Player_One;
+        public InputAction @Two => m_Wrapper.m_Player_Two;
+        public InputAction @Three => m_Wrapper.m_Player_Three;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -463,6 +532,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                @One.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
+                @One.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
+                @One.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
+                @Two.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
+                @Two.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
+                @Two.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
+                @Three.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
+                @Three.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
+                @Three.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -494,6 +572,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
+                @One.started += instance.OnOne;
+                @One.performed += instance.OnOne;
+                @One.canceled += instance.OnOne;
+                @Two.started += instance.OnTwo;
+                @Two.performed += instance.OnTwo;
+                @Two.canceled += instance.OnTwo;
+                @Three.started += instance.OnThree;
+                @Three.performed += instance.OnThree;
+                @Three.canceled += instance.OnThree;
             }
         }
     }
@@ -518,5 +605,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnLMB(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnOne(InputAction.CallbackContext context);
+        void OnTwo(InputAction.CallbackContext context);
+        void OnThree(InputAction.CallbackContext context);
     }
 }
