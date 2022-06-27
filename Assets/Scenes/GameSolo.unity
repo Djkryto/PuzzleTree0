@@ -23894,6 +23894,21 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 3245321868897886319, guid: 15f1db91a576956499e41348713f35dc,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1507228804}
+    - target: {fileID: 3245321868897886319, guid: 15f1db91a576956499e41348713f35dc,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245321868897886319, guid: 15f1db91a576956499e41348713f35dc,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3245321868984095979, guid: 15f1db91a576956499e41348713f35dc,
         type: 3}
       propertyPath: m_IsActive
@@ -23962,7 +23977,7 @@ PrefabInstance:
     - target: {fileID: 3245321868984095991, guid: 15f1db91a576956499e41348713f35dc,
         type: 3}
       propertyPath: InventoryShowing.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ControlLockUnlock
+      value: ControlLock
       objectReference: {fileID: 0}
     - target: {fileID: 3245321868984095991, guid: 15f1db91a576956499e41348713f35dc,
         type: 3}
@@ -54094,6 +54109,12 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers: []
   m_Enabled: 1
+--- !u!20 &1507228804 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 364182108511001932, guid: 7b900ae42c1220042a16b42885d80c8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 364182108181795774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1510355367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69563,6 +69584,12 @@ Transform:
   m_Father: {fileID: 654408191}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1928144883 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 364182109028129243, guid: 7b900ae42c1220042a16b42885d80c8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 364182108181795774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1928731235
 GameObject:
   m_ObjectHideFlags: 0
@@ -77688,6 +77715,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 615948504700081884, guid: 7b900ae42c1220042a16b42885d80c8b,
+        type: 3}
+      propertyPath: _hand
+      value: 
+      objectReference: {fileID: 1928144883}
     - target: {fileID: 615948504700081884, guid: 7b900ae42c1220042a16b42885d80c8b,
         type: 3}
       propertyPath: _inventory

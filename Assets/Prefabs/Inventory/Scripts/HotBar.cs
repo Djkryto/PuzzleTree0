@@ -29,9 +29,17 @@ public class HotBar : BaseCellContainer
     {
         try
         {
-            InventoryCell inventoryCell = (InventoryCell)dropedCell;
-            var hotBarCell = CellPool.FirstOrDefault(cell => ((HotbarCell)cell).SourceCell == inventoryCell);
-            hotBarCell.Clear();
+            if(dropedCell is HotbarCell)
+            {
+                var hotBarCell = CellPool.FirstOrDefault(cell => cell == dropedCell);
+                hotBarCell.Clear();
+            }
+            else
+            {
+                InventoryCell inventoryCell = (InventoryCell)dropedCell;
+                var hotBarCell = CellPool.FirstOrDefault(cell => ((HotbarCell)cell).SourceCell == inventoryCell);
+                hotBarCell.Clear();
+            }
         }
         catch (Exception exc)
         {

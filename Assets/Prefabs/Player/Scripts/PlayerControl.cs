@@ -21,6 +21,9 @@ public class PlayerControl : MonoBehaviour
         _input.Player.Inventory.performed += context => OpenInventory();
         _input.Player.Use.canceled += context => _player.TakeObject();
         _input.Player.Use.performed += context => InspectObject();
+        _input.Player.One.performed += context => SetItemInHead(0);
+        _input.Player.Two.performed += context => SetItemInHead(1);
+        _input.Player.Three.performed += context => SetItemInHead(2);
     }
 
     private void OnEnable()
@@ -35,7 +38,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OpenInventory()
     {
-        _inventory.OpenCloseInventory();
+        _inventory.InventoryActive();
     }
 
     private void Update()
@@ -54,6 +57,19 @@ public class PlayerControl : MonoBehaviour
         return _playerCamera.ScreenPointToRay(cameraCenter);
     }
 
+    private void SetItemInHead(int index)
+    {
+        try
+        {
+            HotbarCell cellItem = (HotbarCell)_hotbar.CellPool[index];
+            _player.SetItemInHand(cellItem.SourceCell);
+        }
+        catch(Exception exception)
+        {
+            Debug.LogException(exception);
+        }
+    }
+
     private void LookAt(Ray rayCenterCamera)
     {
         var mouseMoved = _input.Player.MouseLook.ReadValue<Vector2>() != Vector2.zero;
@@ -65,7 +81,7 @@ public class PlayerControl : MonoBehaviour
 
     private void InspectObject()
     {
-        ControlLockUnlock();
+        ControlLock();
         IInspectable inspectableObject = _player.Vision.InspectableObject;
         if(inspectableObject != null)
             _inspectEvent?.Invoke(inspectableObject);
@@ -102,9 +118,10 @@ public class PlayerControl : MonoBehaviour
         _player.Rotate(_playerCamera.transform.eulerAngles.y);
     }
 
-    public void ControlLockUnlock()
+    public void ControlLock()
     {
         _controlIsLock = !_controlIsLock;
-        _cinemachineInputProvider.enabled = !_controlIsLock;
+        Cursor.lockState = (_controlIsLock) ? CursorLockMode.None : CursorLockMode.Locked;
+        _cinemachineInputProvider.enabled = !_cinemachineInputProvider.enabled;
     }
 }

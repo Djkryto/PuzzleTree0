@@ -13,11 +13,10 @@ public class Inventory : BaseCellContainer
 
     public bool IsOpen => _isOpen;
 
-    public void OpenCloseInventory()
+    public void InventoryActive()
     {
         gameObject.SetActive(!_isOpen);
         InventoryShowing.Invoke();
-        Cursor.visible = _isOpen;
         _isOpen = !_isOpen;
     }
 

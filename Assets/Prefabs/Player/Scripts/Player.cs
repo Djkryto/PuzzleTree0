@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,7 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _accelerationTime;
     [SerializeField] private Inventory _inventory;
-    private List<InventoryCell> _playerInventory;
+    [SerializeField] private Transform _hand;
+    private List<InventoryCell> _playerItems;
     private PlayerMovement _playerMovement;
     private PlayerVision _playerVision;
 
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _playerInventory = new List<InventoryCell>();
+        _playerItems = new List<InventoryCell>();
         _playerMovement = new PlayerMovement(_playerRigidbody, _walkSpeed, _runSpeed, _accelerationTime);
         _playerVision = new PlayerVision(_aimTarget, _visionDistance, _layerOfVision);
     }
@@ -33,10 +35,26 @@ public class Player : MonoBehaviour
         try
         {
             var objectTransform = takeableObject.Take();
+            objectTransform.SetParent(_hand);
             var inventoryCell = _inventory.AddItem(objectTransform, takeableObject.Item);
-            _playerInventory.Add(inventoryCell);
+            _playerItems.Add(inventoryCell);
         }
         catch(Exception exception)
+        {
+            Debug.LogException(exception);
+        }
+    }
+
+    public void SetItemInHand(InventoryCell currentCell)
+    {
+        try
+        {
+            var item = _playerItems.FirstOrDefault(cell => cell == currentCell && cell.CellImage != default);
+            item.ItemInWorld.gameObject.SetActive(true);
+            item.ItemInWorld.transform.rotation = _hand.rotation;
+            item.ItemInWorld.transform.position = _hand.position;
+        }
+        catch (Exception exception)
         {
             Debug.LogException(exception);
         }
