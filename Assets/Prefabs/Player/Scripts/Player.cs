@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _accelerationTime;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private Transform _hand;
+    private Transform _currentItemInHand;
     private List<InventoryCell> _playerItems;
     private PlayerMovement _playerMovement;
     private PlayerVision _playerVision;
@@ -50,13 +51,14 @@ public class Player : MonoBehaviour
         try
         {
             var item = _playerItems.FirstOrDefault(cell => cell == currentCell && cell.CellImage != default);
-            item.ItemInWorld.gameObject.SetActive(true);
-            item.ItemInWorld.transform.rotation = _hand.rotation;
-            item.ItemInWorld.transform.position = _hand.position;
+            _currentItemInHand = item.ItemInWorld.transform;
+            _currentItemInHand.gameObject.SetActive(true);
+            _currentItemInHand.transform.rotation = _hand.rotation;
+            _currentItemInHand.transform.position = _hand.position;
         }
         catch (Exception exception)
         {
-            Debug.LogException(exception);
+            _currentItemInHand.gameObject.SetActive(false);
         }
     }
 
