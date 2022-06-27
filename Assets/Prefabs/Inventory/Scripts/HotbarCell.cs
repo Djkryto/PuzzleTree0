@@ -14,6 +14,7 @@ public class HotbarCell : BaseCell
     public override void Clear()
     {
         CellImage.sprite = default;
+        _sourceCell = default;
         transform.SetParent(CellParent);
         transform.position = CellParent.position;
         SetColorAlpha(0f);

@@ -65,7 +65,6 @@ public class PlayerControl : MonoBehaviour
         {
             var rayCenterCamera = GetRayFromCameraCenter();
             LookAt(rayCenterCamera);
-            _player.ScanObjectInFront(rayCenterCamera);
             MoveItem();
         }
     }
@@ -124,6 +123,8 @@ public class PlayerControl : MonoBehaviour
         if (!_controlIsLock)
         {
             PlayerMove();
+            var rayCenterCamera = GetRayFromCameraCenter();
+            _player.ScanObjectInFront(rayCenterCamera);
         }
 
     }

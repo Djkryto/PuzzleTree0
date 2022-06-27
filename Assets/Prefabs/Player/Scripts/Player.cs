@@ -28,6 +28,22 @@ public class Player : MonoBehaviour
         _playerItems = new List<InventoryCell>();
         _playerMovement = new PlayerMovement(_playerRigidbody, _walkSpeed, _runSpeed, _accelerationTime);
         _playerVision = new PlayerVision(_aimTarget, _visionDistance, _layerOfVision);
+        _inventory.DeletedItem += DropItem;
+    }
+
+    private void DropItem(InventoryCell  inventoryItem)
+    {
+        if(_currentItemInHand == inventoryItem.ItemInWorld)
+        {
+            _currentItemInHand.SetParent(null);
+            _currentItemInHand.gameObject.SetActive(true);
+            _currentItemInHand = null;
+        }
+        else
+        {
+            inventoryItem.ItemInWorld.gameObject.SetActive(true);
+            inventoryItem.ItemInWorld.SetParent(null);
+        }
     }
 
     public void TakeObject()

@@ -20,6 +20,7 @@ public class InventoryCell : BaseCell
     public override void Clear()
     {
         _item = default;
+        _itemInWorld = default;
         CellImage.sprite = default;
         transform.SetParent(CellParent);
         transform.position = CellParent.position;
