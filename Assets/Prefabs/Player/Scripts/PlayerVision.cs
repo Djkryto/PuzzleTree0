@@ -10,9 +10,11 @@ public class PlayerVision
     private Transform _aimTarget;
     private ITakeable _visibleTakeableObject;
     private IInspectable _visibleInspectableObject;
+    private IPortable _visiblePortableItem;
 
     public ITakeable TakeableObject => _visibleTakeableObject;
     public IInspectable InspectableObject => _visibleInspectableObject;
+    public IPortable PortableItem => _visiblePortableItem;
 
     public PlayerVision(Transform aimTarget, float visionDistance, LayerMask layerOfVision)
     {
@@ -28,12 +30,14 @@ public class PlayerVision
         {
             _visibleInspectableObject = CheckComponent<IInspectable>(hitObject);
             _visibleTakeableObject = CheckComponent<ITakeable>(hitObject);
+            _visiblePortableItem = CheckComponent<IPortable>(hitObject);
             Detected?.Invoke();
         }
         else
         {
             _visibleInspectableObject = default;
             _visibleTakeableObject = default;
+            _visiblePortableItem = default;
             Undetected?.Invoke();
         }
         return hitObject;

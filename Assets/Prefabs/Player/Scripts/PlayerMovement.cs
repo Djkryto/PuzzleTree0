@@ -68,6 +68,7 @@ public class PlayerMovement
         var parentRotation = sourceEulerAngles;
         parentRotation.y = targetYEulerAngle;
         var newPlayerRotation = Quaternion.Euler(parentRotation);
-        _playerRigidbody.MoveRotation(newPlayerRotation);
+
+        _playerRigidbody.transform.rotation = Quaternion.Lerp(_playerRigidbody.transform.rotation, newPlayerRotation, 20f * Time.deltaTime);
     }
 }

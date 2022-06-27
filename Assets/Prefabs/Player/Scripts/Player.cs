@@ -46,10 +46,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void MoveItem(Transform itemTransform)
+    {
+        var newPosition = transform.position + transform.forward * 2f;
+        newPosition.y += 2f;
+        itemTransform.localPosition = Vector3.Lerp(itemTransform.localPosition, newPosition, 20f * Time.deltaTime);
+        itemTransform.localRotation = Quaternion.Lerp(itemTransform.localRotation, transform.rotation, 20f * Time.deltaTime);
+        print(itemTransform.position);
+    }
+
     public void SetItemInHand(InventoryCell currentCell)
     {
         try
         {
+            _currentItemInHand?.gameObject.SetActive(false);
             var item = _playerItems.FirstOrDefault(cell => cell == currentCell && cell.CellImage != default);
             _currentItemInHand = item.ItemInWorld.transform;
             _currentItemInHand.gameObject.SetActive(true);
@@ -58,7 +68,7 @@ public class Player : MonoBehaviour
         }
         catch (Exception exception)
         {
-            _currentItemInHand.gameObject.SetActive(false);
+            _currentItemInHand?.gameObject.SetActive(false);
         }
     }
 
