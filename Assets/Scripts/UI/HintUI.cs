@@ -8,7 +8,7 @@ public class HintUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _inspectObjectHintText;
     [SerializeField] private Player _player;
 
-    void Start()
+    private void Start()
     {
         _player.Vision.Detected += ShowHint;
         _player.Vision.Undetected += UnshowHint;
