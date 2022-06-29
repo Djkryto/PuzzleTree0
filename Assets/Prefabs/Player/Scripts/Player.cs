@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _layerOfVision;
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
+    [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _accelerationTime;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private Transform _hand;
     private Transform _currentItemInHand;
     private List<InventoryCell> _playerItems;
-    private PlayerMovement _playerMovement;
+    private CharacterMovement _playerMovement;
+    private CharacterRotator _playerRotator;
     private PlayerVision _playerVision;
 
     public PlayerVision Vision => _playerVision;
@@ -26,7 +28,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _playerItems = new List<InventoryCell>();
-        _playerMovement = new PlayerMovement(_playerRigidbody, _walkSpeed, _runSpeed, _accelerationTime);
+        _playerMovement = new CharacterMovement(_playerRigidbody, _walkSpeed, _runSpeed, _accelerationTime);
+        _playerRotator = new CharacterRotator(transform, _rotationSpeed);
         _playerVision = new PlayerVision(_aimTarget, _visionDistance, _layerOfVision);
         _inventory.DeletedItem += DropItem;
     }
@@ -100,7 +103,7 @@ public class Player : MonoBehaviour
 
     public void Rotate(float targetYEulerAngle)
     {
-        _playerMovement.Rotate(transform.localEulerAngles, targetYEulerAngle);
+        _playerRotator.Rotate(targetYEulerAngle, Time.deltaTime);
     }
 
     public void Walk(Vector2 direction)
