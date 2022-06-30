@@ -2,7 +2,6 @@ using Cinemachine;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 public class PlayerControl : MonoBehaviour
@@ -24,6 +23,12 @@ public class PlayerControl : MonoBehaviour
         _input.Player.Inventory.performed += context => OpenInventory();
         _input.Player.LMB.started += context => { _holdLMB = true; };
         _input.Player.LMB.canceled += context => { _holdLMB = false; };
+        _input.Player.LMB.performed += context => 
+        {
+            if (context.interaction is PressInteraction) 
+                UseItem();
+        };
+
         _input.Player.Use.performed += context =>
         {
             if (context.interaction is HoldInteraction)
@@ -69,6 +74,15 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    private void UseItem()
+    {
+        try
+        {
+            _player.CurrentItemInHand.Useable.Use();
+        }
+        catch { }
+    }
+
     private Ray GetRayFromCameraCenter()
     {
         var cameraCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
@@ -86,13 +100,17 @@ public class PlayerControl : MonoBehaviour
 
     private void MoveItem()
     {
-        if(_holdLMB)
+        try
         {
-            IPortable portableItem = _player.Vision.PortableItem;
-            print(portableItem);
-            if (portableItem != null)
-                _player.MoveItem(portableItem.ItemTransform);
+            if (_holdLMB)
+            {
+                IPortable portableItem = _player.Vision.InteractiveItem.Portable;
+                print(portableItem);
+                if (portableItem != null)
+                    _player.MoveItem(portableItem.ItemTransform);
+            }
         }
+        catch { }
     }
 
     private void SetItemInHead(int index)
@@ -110,7 +128,7 @@ public class PlayerControl : MonoBehaviour
 
     private void InspectObject()
     {
-        IInspectable inspectableObject = _player.Vision.InspectableObject;
+        IInspectable inspectableObject = _player.Vision.InteractiveItem.Inspectable;
         if(inspectableObject != null && !_controlIsLock)
         {
             ControlLock();

@@ -16,7 +16,6 @@ public class BushSound : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        print(_audioSource.isPlaying);
         if(other.gameObject.TryGetComponent(out Rigidbody rigidbody))
         {
             if(rigidbody.velocity == Vector3.zero)

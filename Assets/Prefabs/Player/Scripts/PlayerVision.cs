@@ -8,13 +8,9 @@ public class PlayerVision
     private float _visionDistance = 5f;
     private LayerMask _layerOfVision;
     private Transform _aimTarget;
-    private ITakeable _visibleTakeableObject;
-    private IInspectable _visibleInspectableObject;
-    private IPortable _visiblePortableItem;
+    private InteractiveItem _interactiveItem;
 
-    public ITakeable TakeableObject => _visibleTakeableObject;
-    public IInspectable InspectableObject => _visibleInspectableObject;
-    public IPortable PortableItem => _visiblePortableItem;
+    public InteractiveItem InteractiveItem => _interactiveItem;
 
     public PlayerVision(Transform aimTarget, float visionDistance, LayerMask layerOfVision)
     {
@@ -28,16 +24,12 @@ public class PlayerVision
         var detected = Physics.Raycast(rayCenterCamera, out RaycastHit hitObject, _visionDistance, _layerOfVision);
         if (detected)
         {
-            _visibleInspectableObject = CheckComponent<IInspectable>(hitObject);
-            _visibleTakeableObject = CheckComponent<ITakeable>(hitObject);
-            _visiblePortableItem = CheckComponent<IPortable>(hitObject);
+            _interactiveItem = CheckComponent<InteractiveItem>(hitObject);
             Detected?.Invoke();
         }
         else
         {
-            _visibleInspectableObject = default;
-            _visibleTakeableObject = default;
-            _visiblePortableItem = default;
+            _interactiveItem = default;
             Undetected?.Invoke();
         }
         return hitObject;

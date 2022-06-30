@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: eac211b78fb7d2345b396efe04ec119a, type: 2}
+  _lightTransform: {fileID: 458382}
 --- !u!1 &133260
 GameObject:
   m_ObjectHideFlags: 0

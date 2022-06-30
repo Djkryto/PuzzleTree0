@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _accelerationTime;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private Transform _hand;
-    private Transform _currentItemInHand;
+    private InteractiveItem _currentItemInHand;
     private List<InventoryCell> _playerItems;
     private CharacterMovement _playerMovement;
     private CharacterRotator _playerRotator;
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     public PlayerVision Vision => _playerVision;
     public Inventory Inventory => _inventory;
+    public InteractiveItem CurrentItemInHand => _currentItemInHand;
 
     private void Awake()
     {
@@ -38,25 +39,26 @@ public class Player : MonoBehaviour
     {
         if(_currentItemInHand == inventoryItem.ItemInWorld)
         {
-            _currentItemInHand.SetParent(null);
+            _currentItemInHand.transform.SetParent(null);
             _currentItemInHand.gameObject.SetActive(true);
             _currentItemInHand = null;
         }
         else
         {
             inventoryItem.ItemInWorld.gameObject.SetActive(true);
-            inventoryItem.ItemInWorld.SetParent(null);
+            inventoryItem.ItemInWorld.transform.SetParent(null);
         }
     }
 
     public void TakeObject()
     {
-        var takeableObject = _playerVision.TakeableObject;
         try
         {
-            var objectTransform = takeableObject.Take();
-            objectTransform.SetParent(_hand);
-            var inventoryCell = _inventory.AddItem(objectTransform, takeableObject.Item);
+            var takeableObject = _playerVision.InteractiveItem.Takeable;
+            var itemTransform = takeableObject.TakeItem();
+            itemTransform.SetParent(_hand);
+            var itemInWorld = itemTransform.GetComponent<InteractiveItem>();
+            var inventoryCell = _inventory.AddItem(itemInWorld, takeableObject.ItemData);
             _playerItems.Add(inventoryCell);
         }
         catch(Exception exception)
@@ -80,7 +82,7 @@ public class Player : MonoBehaviour
         {
             _currentItemInHand?.gameObject.SetActive(false);
             var item = _playerItems.FirstOrDefault(cell => cell == currentCell && cell.CellImage != default);
-            _currentItemInHand = item.ItemInWorld.transform;
+            _currentItemInHand = item.ItemInWorld;
             _currentItemInHand.gameObject.SetActive(true);
             _currentItemInHand.transform.rotation = _hand.rotation;
             _currentItemInHand.transform.position = _hand.position;

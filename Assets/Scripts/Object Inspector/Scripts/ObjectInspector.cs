@@ -12,7 +12,7 @@ public class ObjectInspector : MonoBehaviour
 
     public void CreateObjectInInspector(IInspectable inspectableObject)
     {
-        var copyInspectableObject = Instantiate(inspectableObject.ObjectTransform, _inspectorRotator.position, Quaternion.identity, _inspectorRotator);
+        var copyInspectableObject = Instantiate(inspectableObject.ItemTransform, _inspectorRotator.position, Quaternion.identity, _inspectorRotator);
         _currentInspectableObject = copyInspectableObject.GetComponent<IInspectable>();
         _inspectableObjectPool.Add(_currentInspectableObject);
     }
@@ -22,7 +22,7 @@ public class ObjectInspector : MonoBehaviour
         try
         {
             transform.gameObject.SetActive(true);
-            _currentInspectableObject.ObjectTransform.gameObject.SetActive(true);
+            _currentInspectableObject.ItemTransform.gameObject.SetActive(true);
         }
         catch (Exception exp)
         {
@@ -34,7 +34,7 @@ public class ObjectInspector : MonoBehaviour
     {
         try
         {
-            _currentInspectableObject.ObjectTransform.gameObject.SetActive(false);
+            _currentInspectableObject.ItemTransform.gameObject.SetActive(false);
             transform.gameObject.SetActive(false);
         }
         catch (Exception exp)

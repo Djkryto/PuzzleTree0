@@ -273,7 +273,7 @@
                     "name": "",
                     "id": "9f36947b-4888-4628-8a13-64619309bf1f",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold(duration=0.4,pressPoint=0.2)",
+                    "interactions": "Hold(duration=0.4,pressPoint=0.2),Press",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "LMB",

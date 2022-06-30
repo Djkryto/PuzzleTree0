@@ -20,12 +20,12 @@ public class Inventory : BaseCellContainer
         _isOpen = !_isOpen;
     }
 
-    public InventoryCell AddItem(Transform objectTransform, ItemSO item)
+    public InventoryCell AddItem(InteractiveItem itemInWorld, ItemSO item)
     {
         try
         {
             var cell = (InventoryCell)CellPool.FirstOrDefault(cell => ((InventoryCell)cell).Item == default);
-            cell.SetItem(objectTransform, item);
+            cell.SetItem(itemInWorld, item);
             AddedItem?.Invoke(cell);
             return cell;
         }

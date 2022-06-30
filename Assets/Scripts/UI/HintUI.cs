@@ -21,17 +21,16 @@ public class HintUI : MonoBehaviour
 
     private void ShowHint()
     {
-        var inspectableObject = _player.Vision.InspectableObject;
-        var takeableObject = _player.Vision.TakeableObject;
+        var interactiveItem = _player.Vision.InteractiveItem;
 
         _interactiveObjectHint.gameObject.SetActive(true);
 
-        if (inspectableObject != null)
+        if (interactiveItem.Inspectable != null)
             _inspectObjectHintText.gameObject.SetActive(true);
         else
             _inspectObjectHintText.gameObject.SetActive(false);
 
-        if (takeableObject != null)
+        if (interactiveItem.Takeable != null)
             _takeObjectHintText.gameObject.SetActive(true);
         else
             _takeObjectHintText.gameObject.SetActive(false);

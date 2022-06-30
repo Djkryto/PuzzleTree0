@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class InventoryCell : BaseCell
 {
-    private Transform _itemInWorld;
+    private InteractiveItem _itemInWorld;
     private ItemSO _item;
 
     public ItemSO Item => _item;
-    public Transform ItemInWorld => _itemInWorld;
+    public InteractiveItem ItemInWorld => _itemInWorld;
 
-    public InventoryCell SetItem(Transform itemInWorld, ItemSO item)
+    public InventoryCell SetItem(InteractiveItem itemInWorld, ItemSO item)
     {
         _itemInWorld = itemInWorld;
         _item = item;
