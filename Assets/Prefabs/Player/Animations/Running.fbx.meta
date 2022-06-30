@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: mixamo.com
+    second: Running
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Running
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
@@ -556,7 +556,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig9:LeftToeBase
       parentName: mixamorig9:LeftFoot
-      position: {x: 0.022, y: 0.125, z: 0.105}
+      position: {x: -0, y: 0.194173, z: 0}
       rotation: {x: 0.28718767, y: 0.0823781, z: 0.029095145, w: 0.95388186}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig9:LeftToe_End
