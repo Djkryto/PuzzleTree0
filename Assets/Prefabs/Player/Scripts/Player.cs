@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         if(_currentItemInHand == inventoryItem.ItemInWorld)
         {
             _currentItemInHand.transform.SetParent(null);
-            _currentItemInHand.gameObject.SetActive(true);
+            _currentItemInHand.Takeable.DropItem();
             _currentItemInHand = null;
         }
         else
@@ -67,13 +67,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void MoveItem(Transform itemTransform)
+    public void DragItem()
     {
-        var newPosition = transform.position + transform.forward * 2f;
-        newPosition.y += 2f;
-        itemTransform.localPosition = Vector3.Lerp(itemTransform.localPosition, newPosition, 20f * Time.deltaTime);
-        itemTransform.localRotation = Quaternion.Lerp(itemTransform.localRotation, transform.rotation, 20f * Time.deltaTime);
-        print(itemTransform.position);
+        var interactiveItem = _playerVision.InteractiveItem;
+        interactiveItem.Portable.DragItem(_hand);
+    }
+
+    public void DropPortableItem()
+    {
+        var interactiveItem = _playerVision.InteractiveItem;
+        interactiveItem.Portable.DropItem();
     }
 
     public void SetItemInHand(InventoryCell currentCell)

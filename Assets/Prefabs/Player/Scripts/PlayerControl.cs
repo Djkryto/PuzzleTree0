@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour
                 TakeItem();
 
         };
-        _input.Player.LMB.performed += context => MoveItem();
+        _input.Player.LMB.performed += context => DragItem();
         _input.Player.One.performed += context => SetItemInHead(0);
         _input.Player.Two.performed += context => SetItemInHead(1);
         _input.Player.Three.performed += context => SetItemInHead(2);
@@ -70,7 +70,7 @@ public class PlayerControl : MonoBehaviour
         {
             var rayCenterCamera = GetRayFromCameraCenter();
             LookAt(rayCenterCamera);
-            MoveItem();
+            DragItem();
         }
     }
 
@@ -98,16 +98,17 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void MoveItem()
+    private void DragItem()
     {
         try
         {
             if (_holdLMB)
             {
-                IPortable portableItem = _player.Vision.InteractiveItem.Portable;
-                print(portableItem);
-                if (portableItem != null)
-                    _player.MoveItem(portableItem.ItemTransform);
+                _player.DragItem();
+            }
+            else
+            {
+                _player.DropPortableItem();
             }
         }
         catch { }
