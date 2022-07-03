@@ -12,7 +12,7 @@ public class LaserLighte : MonoBehaviour
 
     public GameObject Crystal;
     public bool isLaser;
-    // Update is called once per frame
+
     void Update()
     {
         if (isLaser)

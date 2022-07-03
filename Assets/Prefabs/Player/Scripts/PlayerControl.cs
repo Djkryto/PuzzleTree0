@@ -6,6 +6,8 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerControl : MonoBehaviour
 {
+    public static PlayerInput Input;
+
     [SerializeField] private Player _player;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private UnityEvent<IInspectable> _inspectEvent;
@@ -13,23 +15,22 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Inventory _inventory;
     [SerializeField] private HotBar _hotbar;
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
-    private PlayerInput _input;
     private bool _controlIsLock = false;
     private bool _holdLMB = false;
 
     private void Awake()
     {
-        _input = new PlayerInput();
-        _input.Player.Inventory.performed += context => OpenInventory();
-        _input.Player.LMB.started += context => { _holdLMB = true; };
-        _input.Player.LMB.canceled += context => { _holdLMB = false; };
-        _input.Player.LMB.performed += context => 
+        Input = new PlayerInput();
+        Input.Player.Inventory.performed += context => OpenInventory();
+        Input.Player.LMB.started += context => { _holdLMB = true; };
+        Input.Player.LMB.canceled += context => { _holdLMB = false; };
+        Input.Player.LMB.performed += context => 
         {
             if (context.interaction is PressInteraction) 
                 UseItem();
         };
 
-        _input.Player.Use.performed += context =>
+        Input.Player.Use.performed += context =>
         {
             if (context.interaction is HoldInteraction)
                 InspectObject();
@@ -37,20 +38,20 @@ public class PlayerControl : MonoBehaviour
                 TakeItem();
 
         };
-        _input.Player.LMB.performed += context => DragItem();
-        _input.Player.One.performed += context => SetItemInHead(0);
-        _input.Player.Two.performed += context => SetItemInHead(1);
-        _input.Player.Three.performed += context => SetItemInHead(2);
+        Input.Player.LMB.performed += context => DragItem();
+        Input.Player.One.performed += context => SetItemInHead(0);
+        Input.Player.Two.performed += context => SetItemInHead(1);
+        Input.Player.Three.performed += context => SetItemInHead(2);
     }
 
     private void OnEnable()
     {
-        _input?.Enable();
+        Input?.Enable();
     }
 
     private void OnDisable()
     {
-        _input?.Disable();
+        Input?.Disable();
     }
 
     private void OpenInventory()
@@ -91,7 +92,7 @@ public class PlayerControl : MonoBehaviour
 
     private void LookAt(Ray rayCenterCamera)
     {
-        var mouseMoved = _input.Player.MouseLook.ReadValue<Vector2>() != Vector2.zero;
+        var mouseMoved = Input.Player.MouseLook.ReadValue<Vector2>() != Vector2.zero;
         if (mouseMoved)
         {
             _player.LookAt(rayCenterCamera);
@@ -150,10 +151,10 @@ public class PlayerControl : MonoBehaviour
 
     private void PlayerMove()
     {
-        var movementVector = _input.Player.Move.ReadValue<Vector2>();
+        var movementVector = Input.Player.Move.ReadValue<Vector2>();
         if (movementVector != Vector2.zero)
         {
-            if (_input.Player.Run.IsPressed())
+            if (Input.Player.Run.IsPressed())
             {
                 _player.Run(movementVector);
             }

@@ -104,7 +104,7 @@ public class Interaction : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     blackout.enabled = true;
-                    StartCoroutine(hit.collider.GetComponent<CarName>().Wheel.gameObject.GetComponent<Wheel>().ChangePosition());
+                    //StartCoroutine(hit.collider.GetComponent<CarName>().Wheel.gameObject.GetComponent<Wheel>().ChangePosition());
                 }
                 ButtonActive.SetActive(true);
                 Text.SetActive(true);
