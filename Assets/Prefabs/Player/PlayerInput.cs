@@ -134,6 +134,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""53eec0dd-8f81-496f-9a91-344e3a81510a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -272,7 +281,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bb4bdd31-6cb2-4246-8af2-7e561e146c62"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
@@ -367,6 +376,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Three"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bfa1117-3324-4ed0-b347-b5a379cf7129"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -409,6 +429,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_One = m_Player.FindAction("One", throwIfNotFound: true);
         m_Player_Two = m_Player.FindAction("Two", throwIfNotFound: true);
         m_Player_Three = m_Player.FindAction("Three", throwIfNotFound: true);
+        m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -480,6 +501,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_One;
     private readonly InputAction m_Player_Two;
     private readonly InputAction m_Player_Three;
+    private readonly InputAction m_Player_MousePosition;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -496,6 +518,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @One => m_Wrapper.m_Player_One;
         public InputAction @Two => m_Wrapper.m_Player_Two;
         public InputAction @Three => m_Wrapper.m_Player_Three;
+        public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -541,6 +564,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Three.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
                 @Three.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
                 @Three.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
+                @MousePosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -581,6 +607,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Three.started += instance.OnThree;
                 @Three.performed += instance.OnThree;
                 @Three.canceled += instance.OnThree;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -608,5 +637,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnOne(InputAction.CallbackContext context);
         void OnTwo(InputAction.CallbackContext context);
         void OnThree(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

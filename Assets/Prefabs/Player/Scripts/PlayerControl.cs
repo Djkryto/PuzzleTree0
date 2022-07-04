@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     private bool _holdLMB = false;
 
     private void Awake()
-    {
+    {   
         Input = new PlayerInput();
         Input.Player.Inventory.performed += context => OpenInventory();
         Input.Player.LMB.started += context => { _holdLMB = true; };
