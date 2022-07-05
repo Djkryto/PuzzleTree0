@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Casket : MonoBehaviour
 {
@@ -9,15 +10,13 @@ public class Casket : MonoBehaviour
     [SerializeField] private List<ButtonCasket> _buttons;
     [SerializeField] private List<int> _targetCombination;
     [SerializeField] private List<int> _currentCombination;
+    [SerializeField] private Text _textCodeNotepad;
     private Camera _camera;
     public Animator animator;
     public Cursore cursore;
-    public GameObject OneLine;
-    public GameObject TwoLine;
-    public GameObject TreeLine; 
 
    [SerializeField] private LayerMask layer;
-
+   [SerializeField] private bool _isTargetCombination;
     public bool One;
     public bool Two;
     public bool Three;
@@ -26,10 +25,15 @@ public class Casket : MonoBehaviour
     private void Awake()
     {
         _playerInput  = PlayerControl.Input;
-        _playerInput.Player.Escape.performed += contex => Cancle();
+        _playerInput.Player.Escape.performed += context => Cancle();
         _camera = Camera.main;
         _playerInput.Player.LMB.performed += context => ClickButton();
         _currentCombination = new List<int>();
+
+        SetRandomTargetCombination();
+
+        for (int i = 0; i < _targetCombination.Count; i++)
+            _textCodeNotepad.text += _targetCombination[i] + "\n";
 
         foreach (var button in _buttons)
         {
@@ -41,19 +45,32 @@ public class Casket : MonoBehaviour
     {
         _currentCombination.Add(buttonNomber);
         Debug.Log(_targetCombination == _currentCombination);
-        if (_targetCombination == _currentCombination)
-        {
-            animator.enabled = true;
-            gameObject.tag = "List";
-            _playerControl.ControlLock();
-            Destroy(GetComponent<Casket>());
-        }
-        else if (_currentCombination.Count == _targetCombination.Count)
-        {
-            _currentCombination.Clear(); 
-            _buttons.ForEach(button => button.ResetButton());
-        }
 
+        if (_currentCombination.Count == _targetCombination.Count)
+        {
+            for (int i = 0; i < _currentCombination.Count; i++)
+            {
+                if (_targetCombination[i] != _currentCombination[i])
+                {
+                    _isTargetCombination = false;
+                }
+            }
+
+            if (_isTargetCombination)
+            {
+                animator.enabled = true;
+                gameObject.layer = 10;
+                _playerControl.ControlLock();
+                Destroy(GetComponent<Casket>());
+                Destroy(GetComponent<SphereCollider>());
+            }
+            else
+            {
+                _currentCombination.Clear();
+                _buttons.ForEach(button => button.ResetButton());
+                _isTargetCombination = true;
+            }
+        }
         //if (One && Two && Three)
         //{
         //    animator.enabled = true;
@@ -99,6 +116,36 @@ public class Casket : MonoBehaviour
            {
                 button.Press();
            }
+        }
+    }
+
+    private void SetRandomTargetCombination()
+    {
+        for (int i = 0; i < _targetCombination.Count; i++)
+        {
+            if(_targetCombination[0] == 1 && _targetCombination[1] == 2)
+            {
+                i = 0;
+            }
+            for (int j = 0; j < _targetCombination.Count; j++)
+            {
+                if (_targetCombination[i] == _targetCombination[j] && i != j)
+                {
+                    _targetCombination[i] = Random.Range(1, 4);
+                }
+                else if (i == j)
+                {
+                    _targetCombination[i] = Random.Range(1, 4);
+                    for (int h = 0; h < _targetCombination.Count; h++)
+                    {
+                        if (_targetCombination[j] == _targetCombination[h] && h != j)
+                        {
+                            _targetCombination[i] = Random.Range(1, 4);
+                            j = 0;
+                        }
+                    }
+                }
+            }
         }
     }
 }
