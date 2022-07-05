@@ -11,10 +11,14 @@ public class Notepad : MonoBehaviour,IReading
     private Camera _camera;
     [SerializeField] private LayerMask _layerMask;
     private bool _isRead;
-    private void Awake()
+    [SerializeField] private bool isAddUseContext;
+    private void Start()
     {
-        _playerInput = PlayerControl.Input;
-       // _playerInput.Player.Use.performed += context => CheckNotepad();
+        if(isAddUseContext)
+        {
+            _playerInput = PlayerControl.Input;
+            _playerInput.Player.Use.performed += context => CheckNotepad();
+        }
         _camera = Camera.main;
     }
 
@@ -24,8 +28,9 @@ public class Notepad : MonoBehaviour,IReading
 
         if (Physics.Raycast(rayCamera, out RaycastHit hit, _layerMask))
         {
-            if (hit.collider.TryGetComponent(out Notepad notepad))
-                notepad.UseNotepad();
+            if (hit.collider.TryGetComponent(out Notepad notepad) )
+                if(notepad.enabled)
+                    notepad.UseNotepad();
         }
     }
 

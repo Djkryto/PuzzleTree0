@@ -11,6 +11,7 @@ public class Casket : MonoBehaviour
     [SerializeField] private List<int> _targetCombination;
     [SerializeField] private List<int> _currentCombination;
     [SerializeField] private Text _textCodeNotepad;
+    [SerializeField] private Notepad _notepad;
     private Camera _camera;
     public Animator animator;
     public Cursore cursore;
@@ -29,7 +30,7 @@ public class Casket : MonoBehaviour
         _camera = Camera.main;
         _playerInput.Player.LMB.performed += context => ClickButton();
         _currentCombination = new List<int>();
-
+        _notepad.enabled = false;
         SetRandomTargetCombination();
 
         for (int i = 0; i < _targetCombination.Count; i++)
@@ -62,6 +63,7 @@ public class Casket : MonoBehaviour
                 gameObject.layer = 10;
                 _playerControl.ControlLock();
                 Destroy(GetComponent<Casket>());
+                _notepad.enabled = true;
                 Destroy(GetComponent<SphereCollider>());
             }
             else
