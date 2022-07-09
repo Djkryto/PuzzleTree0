@@ -1,41 +1,48 @@
-using Cinemachine;
 using UnityEngine;
-using UnityEngine.Events;
+using static UnityEngine.InputSystem.InputAction;
 
 public class InputObjectInspector : MonoBehaviour
 {
-    public UnityEvent InspectorClosed;
-
     [SerializeField] private Transform _inspectorRotatorTransform;
-    [SerializeField] private PlayerControl _playerControl;
+    [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private ObjectInspector _objectInspector;
-    [SerializeField] private float _minZoom = 2.0f;
-    [SerializeField] private float _maxZoom = 10.0f;
-    [SerializeField] private float _zoomMultiplier = 0.2f;
-    [SerializeField] private float _rotateSpeedPerSecond = 100f;
-    private PlayerInput _input;
+    private UserInput _input;
 
     private void Awake()
     {
-        _input = new PlayerInput();
+        _input = new UserInput();
+        _playerInput.InspectEvent += OpenInspector;
+        _input.Player.Escape.performed += context => CloseInspector();
+        _input.Player.Scroll.performed += context => ObjectZoom(context);
     }
 
-    void OnEnable()
+    private void OpenInspector(IInspectable item)
     {
-        _inspectorRotatorTransform.rotation = Quaternion.identity;
+        _objectInspector.gameObject.SetActive(true);
+        _objectInspector.CreateObjectInInspector(item);
+        _objectInspector.TryOpenInspector();
+    }
+
+    private void CloseInspector()
+    {
+        _objectInspector.TryCloseInspector();
+        _playerInput.ControlLock();
+    }
+
+    private void ObjectZoom(CallbackContext context)
+    {
+        var scroll = context.ReadValue<Vector2>();
+        _objectInspector.ObjectZoom(scroll.y);
+    }
+
+    private void OnEnable()
+    {
         _input.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _input.Disable();
     }
 
     void Update()
     {
         ObjectRotate();
-        ObjectZoom();
-        Close();
     }
 
     private void ObjectRotate()
@@ -43,34 +50,12 @@ public class InputObjectInspector : MonoBehaviour
         if (_input.Player.LMB.IsPressed())
         {
             var mouseVector = _input.Player.MouseLook.ReadValue<Vector2>();
-            var rotationvector = new Vector3(mouseVector.y, -mouseVector.x, 0f);
-            _inspectorRotatorTransform.Rotate(rotationvector * _rotateSpeedPerSecond * Time.deltaTime, Space.World);
+            _objectInspector.RotateObject(mouseVector);
         }
     }
 
-    private void ObjectZoom()
+    private void OnDisable()
     {
-        var scroll = _input.Player.Scroll.ReadValue<Vector2>();
-        if (scroll.y > 0f)
-        {
-            var newPositionZ = _inspectorRotatorTransform.localPosition.z + _zoomMultiplier;
-            newPositionZ = Mathf.Clamp(newPositionZ, _minZoom, _maxZoom);
-            _inspectorRotatorTransform.localPosition = new Vector3(0f, 0f, newPositionZ);
-        }
-        else if (scroll.y < 0f)
-        {
-            var newPositionZ = _inspectorRotatorTransform.localPosition.z - _zoomMultiplier;
-            newPositionZ = Mathf.Clamp(newPositionZ, _minZoom, _maxZoom);
-            _inspectorRotatorTransform.localPosition = new Vector3(0f, 0f, newPositionZ);
-        }
-    }
-
-    private void Close()
-    {
-        if(_input.Player.Escape.IsPressed())
-        {
-            InspectorClosed?.Invoke();
-            _objectInspector.TryCloseInspector();
-        }
+        _input.Disable();
     }
 }

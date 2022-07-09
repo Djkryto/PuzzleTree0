@@ -6,8 +6,8 @@ using UnityEngine;
 public class Notepad : MonoBehaviour,IReading
 {
     [SerializeField] private GameObject _textCanvas;
-    [SerializeField] private PlayerControl _playerControl;
-    private PlayerInput _playerInput;
+    [SerializeField] private PlayerInput _playerControl;
+    private UserInput _playerInput;
     private Camera _camera;
     [SerializeField] private LayerMask _layerMask;
     private bool _isRead;
@@ -16,7 +16,7 @@ public class Notepad : MonoBehaviour,IReading
     {
         if(isAddUseContext)
         {
-            _playerInput = PlayerControl.Input;
+            _playerInput = PlayerInput.Input;
             _playerInput.Player.Use.performed += context => CheckNotepad();
         }
         _camera = Camera.main;

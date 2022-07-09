@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Casket : MonoBehaviour
 {
-    [SerializeField] private PlayerControl _playerControl;
-    private PlayerInput _playerInput;
+    [SerializeField] private PlayerInput _playerControl;
+    private UserInput _playerInput;
     [SerializeField] private List<ButtonCasket> _buttons;
     [SerializeField] private List<int> _targetCombination;
     [SerializeField] private List<int> _currentCombination;
@@ -25,7 +25,7 @@ public class Casket : MonoBehaviour
     public bool onStay;
     private void Awake()
     {
-        _playerInput  = PlayerControl.Input;
+        _playerInput  = PlayerInput.Input;
         _playerInput.Player.Escape.performed += context => Cancle();
         _camera = Camera.main;
         _playerInput.Player.LMB.performed += context => ClickButton();
@@ -88,7 +88,7 @@ public class Casket : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out PlayerControl playerControl))
+        if(other.TryGetComponent(out PlayerInput playerControl))
         {
             _playerInput.Player.Use.performed += context => _playerControl.ControlLock();
         }
@@ -96,7 +96,7 @@ public class Casket : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out PlayerControl playerControl))
+        if (other.TryGetComponent(out PlayerInput playerControl))
         {
             _playerInput.Player.Use.performed -= context => _playerControl.ControlLock();
         }

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class CharacterRotator
+public class PlayerRotator
 {
     private Transform _characterTransform;
     private float _rotationSpeed;
 
-    public CharacterRotator(Transform characterTransform, float rotationSpeed)
+    public PlayerRotator(Transform characterTransform, float rotationSpeed)
     {
         _characterTransform = characterTransform;
         _rotationSpeed = rotationSpeed;

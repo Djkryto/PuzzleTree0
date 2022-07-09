@@ -5,12 +5,12 @@ public class Car : MonoBehaviour
 {
     [SerializeField] private Animator _endingAnimator;
     [SerializeField] private List<GameObject> _disabledObjects;
-    private PlayerInput _input;
+    private UserInput _input;
     private bool _endingUnlock = false;
 
     private void Start()
     {
-        _input = PlayerControl.Input;
+        _input = PlayerInput.Input;
     }
 
     private void Ending()

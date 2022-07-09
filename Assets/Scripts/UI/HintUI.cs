@@ -34,7 +34,7 @@ public class HintUI : MonoBehaviour
             _interactiveObjectHint.gameObject.SetActive(false);
     }
 
-    private void TryShowTakeHint(InteractiveItem interactiveItem)
+    private void TryShowInspectHint(InteractiveItem interactiveItem)
     {
         try
         {
@@ -47,14 +47,12 @@ public class HintUI : MonoBehaviour
         }
     }
 
-    private void TryShowInspectHint(InteractiveItem interactiveItem)
+    private void TryShowTakeHint(InteractiveItem interactiveItem)
     {
         try
         {
             if (interactiveItem.Takeable != null)
                 _takeObjectHintText.gameObject.SetActive(true);
-            else
-                _takeObjectHintText.gameObject.SetActive(false);
         }
         catch
         {

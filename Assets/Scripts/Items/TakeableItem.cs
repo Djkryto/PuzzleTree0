@@ -24,8 +24,8 @@ public class TakeableItem : ITakeable
 
     public Transform DropItem()
     {
-        _rigidbody.isKinematic = false;
         _takeableItem.SetActive(true);
+        _rigidbody.isKinematic = false;
         return _takeableItem.transform;
     }
 }

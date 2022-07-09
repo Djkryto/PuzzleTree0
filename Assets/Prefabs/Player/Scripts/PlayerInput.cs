@@ -1,29 +1,28 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem.Interactions;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
-    public static PlayerInput Input;
+    public static UserInput Input;
+    public Action<IInspectable> InspectEvent;
 
     [SerializeField] private Player _player;
     [SerializeField] private Camera _playerCamera;
-    [SerializeField] private UnityEvent<IInspectable> _inspectEvent;
-    [SerializeField] private UnityEvent<ITakeable> _takeEvent;
-    [SerializeField] private Inventory _inventory;
+    [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private HotBar _hotbar;
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     private bool _controlIsLock = false;
-    private bool _holdLMB = false;
+    private bool _dragItem = false;
 
     private void Awake()
     {   
-        Input = new PlayerInput();
+        Input = new UserInput();
         Input.Player.Inventory.performed += context => OpenInventory();
-        Input.Player.LMB.started += context => { _holdLMB = true; };
-        Input.Player.LMB.canceled += context => { _holdLMB = false; };
+        Input.Player.LMB.started += context => { _dragItem = true; StartCoroutine(DragItem()); };
+        Input.Player.LMB.canceled += context => { _dragItem = false; };
         Input.Player.LMB.performed += context => 
         {
             if (context.interaction is PressInteraction) 
@@ -56,7 +55,8 @@ public class PlayerControl : MonoBehaviour
 
     private void OpenInventory()
     {
-        _inventory.InventoryActive();
+        _inventoryUI.InventoryActive();
+        ControlLock();
     }
 
     private void TakeItem()
@@ -71,7 +71,6 @@ public class PlayerControl : MonoBehaviour
         {
             var rayCenterCamera = GetRayFromCameraCenter();
             LookAt(rayCenterCamera);
-            DragItem();
         }
     }
 
@@ -99,20 +98,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void DragItem()
+    private IEnumerator DragItem()
     {
-        try
+        while (_dragItem)
         {
-            if (_holdLMB)
-            {
-                _player.DragItem();
-            }
-            else
-            {
-                _player.DropPortableItem();
-            }
+            _player.DragItem();
+            yield return null;
         }
-        catch { }
+        _player.DropPortableItem();
     }
 
     private void SetItemInHead(int index)
@@ -134,7 +127,7 @@ public class PlayerControl : MonoBehaviour
         if(inspectableObject != null && !_controlIsLock)
         {
             ControlLock();
-            _inspectEvent?.Invoke(inspectableObject);
+            InspectEvent?.Invoke(inspectableObject);
         }
     }
 
@@ -165,7 +158,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            _player.Decceleration(movementVector);
+            _player.Decceleration();
         }
 
         _player.Rotate(_playerCamera.transform.eulerAngles.y);
@@ -174,7 +167,6 @@ public class PlayerControl : MonoBehaviour
     public void ControlLock()
     {
         _controlIsLock = !_controlIsLock;
-        Cursor.lockState = (_controlIsLock) ? CursorLockMode.None : CursorLockMode.Locked;
         _cinemachineInputProvider.enabled = !_cinemachineInputProvider.enabled;
     }
 }
