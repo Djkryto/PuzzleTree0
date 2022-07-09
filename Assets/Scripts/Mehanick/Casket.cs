@@ -12,6 +12,7 @@ public class Casket : MonoBehaviour
     [SerializeField] private List<int> _currentCombination;
     [SerializeField] private Text _textCodeNotepad;
     [SerializeField] private Notepad _notepad;
+    [SerializeField] private LearnObject _learnObject;
     private Camera _camera;
     public Animator animator;
     public Cursore cursore;
@@ -60,10 +61,11 @@ public class Casket : MonoBehaviour
             if (_isTargetCombination)
             {
                 animator.enabled = true;
-                gameObject.layer = 10;
                 _playerControl.ControlLock();
                 Destroy(GetComponent<Casket>());
                 _notepad.enabled = true;
+                Destroy(_learnObject);
+                gameObject.AddComponent<ReadingObject>();
                 Destroy(GetComponent<SphereCollider>());
             }
             else

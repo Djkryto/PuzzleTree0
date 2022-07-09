@@ -6,6 +6,8 @@ public class HintUI : MonoBehaviour
     [SerializeField] private GameObject _interactiveObjectHint;
     [SerializeField] private TextMeshProUGUI _takeObjectHintText;
     [SerializeField] private TextMeshProUGUI _inspectObjectHintText;
+    [SerializeField] private TextMeshProUGUI _learnObjectHintText;
+    [SerializeField] private TextMeshProUGUI _readingObjectHintText;
     [SerializeField] private GameObject _portableObjectHint;
     [SerializeField] private Player _player;
 
@@ -24,11 +26,15 @@ public class HintUI : MonoBehaviour
     private void ShowHint()
     {
         var interactiveItem = _player.Vision.InteractiveItem;
+
         TryShowInspectHint(interactiveItem);
         TryShowTakeHint(interactiveItem);
         TryShowPortableHint(interactiveItem);
+        TryShowLearnHint(interactiveItem);
+        TryShowReadingHint(interactiveItem);
 
-        if(_inspectObjectHintText.gameObject.activeSelf || _takeObjectHintText.gameObject.activeSelf)
+        if(_inspectObjectHintText.gameObject.activeSelf || _takeObjectHintText.gameObject.activeSelf || _learnObjectHintText.gameObject.activeSelf
+            || _readingObjectHintText.gameObject.activeSelf)
             _interactiveObjectHint.gameObject.SetActive(true);
         else
             _interactiveObjectHint.gameObject.SetActive(false);
@@ -76,6 +82,33 @@ public class HintUI : MonoBehaviour
             _portableObjectHint.SetActive(false);
         }
     }
+    private void TryShowLearnHint(InteractiveItem interactiveItem)
+    {
+        try
+        {
+            if (interactiveItem.Learn != null)
+                _learnObjectHintText.gameObject.SetActive(true);
+            else
+                _learnObjectHintText.gameObject.SetActive(false);
+        }
+        catch
+        {
+            _learnObjectHintText.gameObject.SetActive(false);
+        }
+    }
 
-
+    private void TryShowReadingHint(InteractiveItem interactiveItem)
+    {
+        try
+        {
+            if (interactiveItem.Reading != null)
+                _readingObjectHintText.gameObject.SetActive(true);
+            else
+                _readingObjectHintText.gameObject.SetActive(false);
+        }
+        catch
+        {
+            _readingObjectHintText.gameObject.SetActive(false);
+        }
+    }
 }

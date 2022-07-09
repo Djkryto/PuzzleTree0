@@ -18,7 +18,8 @@ public class Laser : InteractiveItem, IUseable
     public override ITakeable Takeable => _takeable;
     public override IInspectable Inspectable => throw new System.NotImplementedException();
     public override IUseable Useable => this;
-
+    public override ILearn Learn => throw new System.NotImplementedException();
+    public override IReading Reading => throw new System.NotImplementedException();
     public ItemSO ItemData => _itemData;
 
     private void Awake()

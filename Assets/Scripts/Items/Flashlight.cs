@@ -8,6 +8,7 @@ public class Flashlight : InteractiveItem, IInspectable, IUseable
     [SerializeField] private Transform _lightTransform;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private AudioSource _audioSource;
+
     private ITakeable _takeable;
 
     public Transform ItemTransform => transform;
@@ -16,6 +17,8 @@ public class Flashlight : InteractiveItem, IInspectable, IUseable
     public override ITakeable Takeable => _takeable;
     public override IInspectable Inspectable => this;
     public override IUseable Useable => this;
+    public override ILearn Learn => throw new System.NotImplementedException();
+    public override IReading Reading => throw new System.NotImplementedException();
 
     private void Awake()
     {

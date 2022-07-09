@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         }
         catch(Exception exception)
         {
-            Debug.LogException(exception);
+           // Debug.LogException(exception);
         }
     }
 

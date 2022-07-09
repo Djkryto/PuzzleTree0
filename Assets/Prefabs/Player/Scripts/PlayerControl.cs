@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
         Input.Player.One.performed += context => SetItemInHead(0);
         Input.Player.Two.performed += context => SetItemInHead(1);
         Input.Player.Three.performed += context => SetItemInHead(2);
+        ControlLock();
     }
 
     private void OnEnable()

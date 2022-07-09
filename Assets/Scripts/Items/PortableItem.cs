@@ -9,8 +9,10 @@ public class PortableItem : InteractiveItem, IPortable
     public override ITakeable Takeable => throw new System.NotImplementedException();
     public override IInspectable Inspectable => throw new System.NotImplementedException();
     public override IUseable Useable => throw new System.NotImplementedException();
-
+    public override ILearn Learn => throw new System.NotImplementedException();
+    public override IReading Reading => throw new System.NotImplementedException();
     public Transform ItemTransform => throw new System.NotImplementedException();
+
 
     public Transform DragItem(Transform parent)
     {
