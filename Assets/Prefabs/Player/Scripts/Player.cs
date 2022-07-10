@@ -64,20 +64,34 @@ public class Player : MonoBehaviour
         }
         catch(Exception exception)
         {
-            Debug.LogException(exception);
+           // Debug.LogException(exception);
         }
     }
 
     public void DragItem()
     {
-        var interactiveItem = _playerVision.InteractiveItem;
-        interactiveItem.Portable.DragItem(_hand);
+        try
+        {
+            var interactiveItem = _playerVision.InteractiveItem;
+            interactiveItem.Portable.DragItem(_hand);
+        }
+        catch(Exception exception)
+        {
+            Debug.LogWarning(exception);
+        }
     }
 
     public void DropPortableItem()
     {
-        var interactiveItem = _playerVision.InteractiveItem;
-        interactiveItem.Portable.DropItem();
+        try
+        {
+            var interactiveItem = _playerVision.InteractiveItem;
+            interactiveItem.Portable.DropItem();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(exception);
+        }
     }
 
     public void SetItemInHand(InventoryCell currentCell)

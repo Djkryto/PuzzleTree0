@@ -1,4 +1,7 @@
-public class HotbarCell : BaseCell
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class HotbarCell : BaseCell, IPointerEnterHandler
 {
     private InventoryCell _sourceCell;
 
@@ -18,5 +21,11 @@ public class HotbarCell : BaseCell
         transform.SetParent(CellParent);
         transform.position = CellParent.position;
         SetColorAlpha(0f);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        var ray = eventData.pointerDrag;
+        Debug.Log(ray.gameObject.name);
     }
 }

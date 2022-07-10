@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 871443707135623197}
   - component: {fileID: 871443707135623194}
   - component: {fileID: 4167891962345796579}
+  - component: {fileID: 1862865034016650633}
   m_Layer: 6
   m_Name: Laser
   m_TagString: Laser
@@ -142,7 +143,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871443707135623192}
-  m_LocalRotation: {x: -0, y: 0.579158, z: -0, w: 0.81521535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -150,7 +151,7 @@ Transform:
   - {fileID: 836899951001220799}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 70.783005, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6177699404265734050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0bec7fcb895ad408bbdc09489ca2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemControl: {fileID: 1862865034016650633}
   _itemData: {fileID: 11400000, guid: b315d97ebae72ef41b3c3bab0aa739bc, type: 2}
   _laserLight: {fileID: 871443706921574996}
   _laserSourceTransform: {fileID: 836899951001220799}
@@ -393,6 +395,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1862865034016650633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871443707135623192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e4f1e1115d09342a2f2fd98dd2fa17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &871443707130630484
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class Notepad : MonoBehaviour,IReading
     {
         Ray rayCamera = new Ray(_camera.transform.position, _camera.transform.forward);
 
-        if (Physics.Raycast(rayCamera, out RaycastHit hit, _layerMask))
+        if (Physics.Raycast(rayCamera, out RaycastHit hit, 10))
         {
             if (hit.collider.TryGetComponent(out Notepad notepad) )
                 if(notepad.enabled)

@@ -1,13 +1,10 @@
 using Cinemachine;
 using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 
 public class PlayerInput : MonoBehaviour
 {
     public static UserInput Input;
-    public Action<IInspectable> InspectEvent;
 
     [SerializeField] private Player _player;
     [SerializeField] private Camera _playerCamera;
@@ -15,42 +12,16 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private HotBar _hotbar;
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     private bool _controlIsLock = false;
-    private bool _dragItem = false;
+
+    public bool ControlIsLock => _controlIsLock;
 
     private void Awake()
     {   
         Input = new UserInput();
         Input.Player.Inventory.performed += context => OpenInventory();
-        Input.Player.LMB.started += context => { _dragItem = true; StartCoroutine(DragItem()); };
-        Input.Player.LMB.canceled += context => { _dragItem = false; };
-        Input.Player.LMB.performed += context => 
-        {
-            if (context.interaction is PressInteraction) 
-                UseItem();
-        };
-
-        Input.Player.Use.performed += context =>
-        {
-            if (context.interaction is HoldInteraction)
-                InspectObject();
-            if (context.interaction is PressInteraction)
-                TakeItem();
-
-        };
-        Input.Player.LMB.performed += context => DragItem();
         Input.Player.One.performed += context => SetItemInHead(0);
         Input.Player.Two.performed += context => SetItemInHead(1);
         Input.Player.Three.performed += context => SetItemInHead(2);
-    }
-
-    private void OnEnable()
-    {
-        Input?.Enable();
-    }
-
-    private void OnDisable()
-    {
-        Input?.Disable();
     }
 
     private void OpenInventory()
@@ -59,10 +30,22 @@ public class PlayerInput : MonoBehaviour
         ControlLock();
     }
 
-    private void TakeItem()
+    private void SetItemInHead(int index)
     {
-        if (!_controlIsLock)
-            _player.TakeObject();
+        try
+        {
+            HotbarCell cellItem = (HotbarCell)_hotbar.CellPool[index];
+            _player.SetItemInHand(cellItem.SourceCell);
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception);
+        }
+    }
+
+    private void OnEnable()
+    {
+        Input?.Enable();
     }
 
     private void Update()
@@ -72,15 +55,6 @@ public class PlayerInput : MonoBehaviour
             var rayCenterCamera = GetRayFromCameraCenter();
             LookAt(rayCenterCamera);
         }
-    }
-
-    private void UseItem()
-    {
-        try
-        {
-            _player.CurrentItemInHand.Useable.Use();
-        }
-        catch { }
     }
 
     private Ray GetRayFromCameraCenter()
@@ -95,39 +69,6 @@ public class PlayerInput : MonoBehaviour
         if (mouseMoved)
         {
             _player.LookAt(rayCenterCamera);
-        }
-    }
-
-    private IEnumerator DragItem()
-    {
-        while (_dragItem)
-        {
-            _player.DragItem();
-            yield return null;
-        }
-        _player.DropPortableItem();
-    }
-
-    private void SetItemInHead(int index)
-    {
-        try
-        {
-            HotbarCell cellItem = (HotbarCell)_hotbar.CellPool[index];
-            _player.SetItemInHand(cellItem.SourceCell);
-        }
-        catch(Exception exception)
-        {
-            Debug.LogException(exception);
-        }
-    }
-
-    private void InspectObject()
-    {
-        IInspectable inspectableObject = _player.Vision.InteractiveItem.Inspectable;
-        if(inspectableObject != null && !_controlIsLock)
-        {
-            ControlLock();
-            InspectEvent?.Invoke(inspectableObject);
         }
     }
 
@@ -162,6 +103,11 @@ public class PlayerInput : MonoBehaviour
         }
 
         _player.Rotate(_playerCamera.transform.eulerAngles.y);
+    }
+
+    private void OnDisable()
+    {
+        Input?.Disable();
     }
 
     public void ControlLock()

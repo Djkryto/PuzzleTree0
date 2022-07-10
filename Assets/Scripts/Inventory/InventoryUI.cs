@@ -29,7 +29,7 @@ public class InventoryUI : MonoBehaviour
         _isOpen = !_isOpen;
         _inventory.gameObject.SetActive(_isOpen);
         Cursor.lockState = (_isOpen) ? CursorLockMode.None : CursorLockMode.Locked;
-        _hotbar.gameObject.SetActive(!_isOpen);
+        //_hotbar.gameObject.SetActive(!_isOpen);
         InventoryShowing.Invoke();
     }
 }
