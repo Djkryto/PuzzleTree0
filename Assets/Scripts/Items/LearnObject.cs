@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LearnObject : InteractiveItem, ILearn
 {
-    public override IPortable Portable => throw new System.NotImplementedException();
-    public override ITakeable Takeable => throw new System.NotImplementedException();
-    public override IInspectable Inspectable => throw new System.NotImplementedException();
+    public override IPortable Portable => null;
+    public override ITakeable Takeable => null;
+    public override IInspectable Inspectable => null;
     public override ILearn Learn => this;
-    public override IUseable Useable => throw new System.NotImplementedException();
-    public override IReading Reading => throw new System.NotImplementedException();
+    public override IUseable Useable => null;
+    public override IReading Reading => null;
 }

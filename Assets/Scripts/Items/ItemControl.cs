@@ -3,12 +3,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
-[RequireComponent(typeof(InteractiveItem))]
 public class ItemControl : MonoBehaviour
 {
     public Action<IInspectable> InspectEvent;
 
-    private InteractiveItem _item;
     private UserInput _input;
     private bool _dragItem = false;
     private Player _player;
@@ -19,7 +17,7 @@ public class ItemControl : MonoBehaviour
         _input = new UserInput();
         _player = FindObjectOfType<Player>();
         _playerInput = FindObjectOfType<PlayerInput>();
-        _item = GetComponent<InteractiveItem>();
+        Debug.Log(gameObject.name);
     }
 
     private void Start()
@@ -37,24 +35,17 @@ public class ItemControl : MonoBehaviour
 
     private void SetPortableControl()
     {
-        if (_item.Portable != null)
-        {
-            _input.Player.LMB.started += context => { _dragItem = true; StartCoroutine(DragItem()); };
-            _input.Player.LMB.canceled += context => { _dragItem = false; };
-        }
+        _input.Player.LMB.started += context => { _dragItem = true; StartCoroutine(DragItem()); };
+        _input.Player.LMB.canceled += context => { _dragItem = false; };
     }
 
     private void SetTakeControl()
     {
-        if (_item.Takeable != null)
+        _input.Player.Use.performed += context =>
         {
-            _input.Player.Use.performed += context =>
-            {
-                if (context.interaction is PressInteraction)
-                    TakeItem();
-
-            };
-        }
+            if (context.interaction is PressInteraction)
+                TakeItem();
+        };
     }
 
     private void TakeItem()
@@ -72,14 +63,11 @@ public class ItemControl : MonoBehaviour
 
     private void SetInspectControl()
     {
-        if (_item.Inspectable != null)
+        _input.Player.Use.performed += context =>
         {
-            _input.Player.Use.performed += context =>
-            {
-                if (context.interaction is HoldInteraction)
-                    InspectObject();
-            };
-        }
+            if (context.interaction is HoldInteraction)
+                InspectObject();
+        };
     }
 
     private void InspectObject()
@@ -101,32 +89,23 @@ public class ItemControl : MonoBehaviour
 
     private void SetLearnControl()
     {
-        if(_item.Learn != null)
-        {
-            //Здесь необходимо добавить описание привязки логики к клавишам
-            //Необходимо отлавливать ошибки try-catch-finally
-        }
+        //Здесь необходимо добавить описание привязки логики к клавишам
+        //Необходимо отлавливать ошибки try-catch-finally
     }
 
     private void SetReadControl()
     {
-        if (_item.Reading != null)
-        {
-            //Здесь необходимо добавить описание привязки логики к клавишам 
-            //Необходимо отлавливать ошибки try-catch-finally
-        }
+        //Здесь необходимо добавить описание привязки логики к клавишам 
+        //Необходимо отлавливать ошибки try-catch-finally
     }
 
     private void SetUseControl()
     {
-        if (_item.Useable != null)
+        _input.Player.LMB.performed += context =>
         {
-            _input.Player.LMB.performed += context =>
-            {
-                if (context.interaction is PressInteraction)
-                    UseItem();
-            };
-        }
+            if (context.interaction is PressInteraction)
+                UseItem();
+        };
     }
 
     private void UseItem()

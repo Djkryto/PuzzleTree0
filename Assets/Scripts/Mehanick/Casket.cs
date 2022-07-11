@@ -27,7 +27,7 @@ public class Casket : MonoBehaviour
     private void Awake()
     {
         _playerInput  = PlayerInput.Input;
-        _playerInput.Player.Escape.performed += context => Cancle();
+        _playerInput.Player.Escape.performed += context => Cancel();
         _camera = Camera.main;
         _playerInput.Player.LMB.performed += context => ClickButton();
         _currentCombination = new List<int>();
@@ -104,7 +104,7 @@ public class Casket : MonoBehaviour
         }
     }
 
-    public void Cancle()
+    public void Cancel()
     {
         _playerControl.ControlLock();
     }

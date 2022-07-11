@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8256544}
   - component: {fileID: 922568042}
   - component: {fileID: 9195872558492240233}
-  - component: {fileID: 8016382560616002086}
   - component: {fileID: 922568043}
   m_Layer: 6
   m_Name: Flashlight
@@ -145,8 +144,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.37549415, y: 0.078965396, z: 0.07858842}
-  m_Center: {x: -0.00033567846, y: 0.0004965365, z: 0.00041845813}
+  m_Size: {x: 0.55982375, y: 0.078965396, z: 0.07858842}
+  m_Center: {x: -0.0003362894, y: 0.0004965365, z: 0.00041845813}
 --- !u!54 &9195872558492240233
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,18 +162,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8016382560616002086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e4f1e1115d09342a2f2fd98dd2fa17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &922568043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fbbfda7eeae79499616d18e4fddb5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemControl: {fileID: 8016382560616002086}
   _itemData: {fileID: 11400000, guid: eac211b78fb7d2345b396efe04ec119a, type: 2}
   _lightTransform: {fileID: 458382}
   _rigidbody: {fileID: 9195872558492240233}

@@ -13,15 +13,9 @@ public class InventoryUI : MonoBehaviour
 
     public bool IsOpen => _isOpen;
 
-    private void Awake()
-    {
-        
-    }
-
     private void Start()
     {
         _inventory.gameObject.SetActive(false);
-        _hotbar.gameObject.SetActive(false);
     }
 
     public void InventoryActive()
