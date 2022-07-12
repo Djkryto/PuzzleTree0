@@ -17,7 +17,6 @@ public class ItemControl : MonoBehaviour
         _input = new UserInput();
         _player = FindObjectOfType<Player>();
         _playerInput = FindObjectOfType<PlayerInput>();
-        Debug.Log(gameObject.name);
     }
 
     private void Start()
