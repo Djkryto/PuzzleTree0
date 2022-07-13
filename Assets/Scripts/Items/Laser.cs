@@ -8,7 +8,7 @@ public class Laser : InteractiveItem, IUseable
     [SerializeField] private GameObject _laserLight;
     [SerializeField] private Transform _laserSourceTransform;
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private LineRenderer _laserLine;
+    [SerializeField] private GameObject _laserLine;
     [SerializeField] AudioSource _audioSource;
     private ITakeable _takeable;
     private bool _laserIsActive = false;
@@ -39,7 +39,7 @@ public class Laser : InteractiveItem, IUseable
             StopCoroutine(_laserWorking);
 
         _laserLight.SetActive(_laserIsActive);
-        _laserLine.enabled = _laserIsActive;
+        _laserLine.SetActive(_laserIsActive);
 
     }
 
@@ -52,9 +52,7 @@ public class Laser : InteractiveItem, IUseable
 
             if (Physics.Raycast(ray, out hit))
             {
-                _laserLine.SetPosition(0, _laserSourceTransform.position);
                 _laserLight.transform.position = hit.point;
-                _laserLine.SetPosition(1, hit.point);
             }
             yield return null;
         }

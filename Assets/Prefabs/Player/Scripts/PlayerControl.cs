@@ -44,7 +44,6 @@ public class PlayerControl : MonoBehaviour
         Input.Player.Three.performed += context => SetItemInHead(2);
         ControlLock();
     }
-
     private void OnEnable()
     {
         Input?.Enable();
