@@ -13,7 +13,7 @@ public class PlayerMovement
     private Transform _playerTransform;
 
     public float CurrentMovementSpeed => _currentSpeed;
-    public float MaxMovementSpeed => _currentSpeed;
+    public float MaxMovementSpeed => _currentMaxSpeed;
     public float WalkSpeed => _walkSpeed;
     public float RunSpeed => _runSpeed;
 

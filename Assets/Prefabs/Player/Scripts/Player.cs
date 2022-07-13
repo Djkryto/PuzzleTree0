@@ -141,6 +141,6 @@ public class Player : MonoBehaviour
     public void Decceleration()
     {
         _playerMovement.Decceleration(Time.deltaTime);
-        _playerAnimator.SetFloat("Speed", _playerMovement.CurrentMovementSpeed / _playerMovement.WalkSpeed);
+        _playerAnimator.SetFloat("Speed", _playerMovement.CurrentMovementSpeed / _playerMovement.RunSpeed);
     }
 }
