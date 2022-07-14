@@ -27,88 +27,24 @@ public class HintUI : MonoBehaviour
     {
         var interactiveItem = _player.Vision.InteractiveItem;
 
-        TryShowInspectHint(interactiveItem);
-        TryShowTakeHint(interactiveItem);
-        TryShowPortableHint(interactiveItem);
-        TryShowLearnHint(interactiveItem);
-        TryShowReadingHint(interactiveItem);
+        TryShowHint(interactiveItem.Takeable, _takeObjectHintText.gameObject);
+        TryShowHint(interactiveItem.Inspectable, _inspectObjectHintText.gameObject);
+        TryShowHint(interactiveItem.Portable, _portableObjectHint.gameObject);
+        TryShowHint(interactiveItem.Learn, _learnObjectHintText.gameObject);
+        TryShowHint(interactiveItem.Reading, _readingObjectHintText.gameObject);
 
-        if(_inspectObjectHintText.gameObject.activeSelf || _takeObjectHintText.gameObject.activeSelf || _learnObjectHintText.gameObject.activeSelf
+        if (_inspectObjectHintText.gameObject.activeSelf || _takeObjectHintText.gameObject.activeSelf || _learnObjectHintText.gameObject.activeSelf
             || _readingObjectHintText.gameObject.activeSelf)
             _interactiveObjectHint.gameObject.SetActive(true);
         else
             _interactiveObjectHint.gameObject.SetActive(false);
     }
 
-    private void TryShowTakeHint(InteractiveItem interactiveItem)
+    private void TryShowHint<T>(T item, GameObject hint)
     {
-        try
-        {
-            if (interactiveItem.Inspectable != null)
-                _inspectObjectHintText.gameObject.SetActive(true);
-        }
-        catch
-        {
-            _inspectObjectHintText.gameObject.SetActive(false);
-        }
-    }
-
-    private void TryShowInspectHint(InteractiveItem interactiveItem)
-    {
-        try
-        {
-            if (interactiveItem.Takeable != null)
-                _takeObjectHintText.gameObject.SetActive(true);
-            else
-                _takeObjectHintText.gameObject.SetActive(false);
-        }
-        catch
-        {
-            _takeObjectHintText.gameObject.SetActive(false);
-        }
-    }
-
-    private void TryShowPortableHint(InteractiveItem interactiveItem)
-    {
-        try
-        {
-            if (interactiveItem.Portable != null)
-                _portableObjectHint.SetActive(true);
-            else
-                _portableObjectHint.SetActive(false);
-        }
-        catch
-        {
-            _portableObjectHint.SetActive(false);
-        }
-    }
-    private void TryShowLearnHint(InteractiveItem interactiveItem)
-    {
-        try
-        {
-            if (interactiveItem.Learn != null)
-                _learnObjectHintText.gameObject.SetActive(true);
-            else
-                _learnObjectHintText.gameObject.SetActive(false);
-        }
-        catch
-        {
-            _learnObjectHintText.gameObject.SetActive(false);
-        }
-    }
-
-    private void TryShowReadingHint(InteractiveItem interactiveItem)
-    {
-        try
-        {
-            if (interactiveItem.Reading != null)
-                _readingObjectHintText.gameObject.SetActive(true);
-            else
-                _readingObjectHintText.gameObject.SetActive(false);
-        }
-        catch
-        {
-            _readingObjectHintText.gameObject.SetActive(false);
-        }
+        if (item != null)
+            hint.SetActive(true);
+        else
+            hint.SetActive(false);
     }
 }

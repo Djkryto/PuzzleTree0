@@ -8,13 +8,13 @@ public class Move : MonoBehaviour
     [SerializeField] private float FastSpeed;
     [SerializeField] private Rigidbody _playerRigidbody;
     public AudioManager audioManager;
-    private PlayerInput _playerInput;
+    private UserInput _playerInput;
     public bool isMove;
     private float DefaultSpeed = 3;
 
     private void Awake()
     {
-        _playerInput = new PlayerInput();
+        _playerInput = new UserInput();
         _playerRigidbody = GetComponent<Rigidbody>();
     }
 

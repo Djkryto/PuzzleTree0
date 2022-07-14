@@ -11,12 +11,12 @@ public class CameraRotate : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Camera _mainCamera;
     public bool isRotate;
-    private PlayerInput _input;
+    private UserInput _input;
     private Vector2 _currentAngle;
 
     private void Awake()
     {
-        _input = new PlayerInput();
+        _input = new UserInput();
         _mainCamera = Camera.main;
     }
 

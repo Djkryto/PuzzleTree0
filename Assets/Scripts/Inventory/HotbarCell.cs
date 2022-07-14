@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+
 public class HotbarCell : BaseCell
 {
     private InventoryCell _sourceCell;

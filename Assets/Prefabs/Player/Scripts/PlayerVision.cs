@@ -27,7 +27,7 @@ public class PlayerVision
             _interactiveItem = CheckComponent<InteractiveItem>(hitObject);
             Detected?.Invoke();
         }
-        else
+        else if(_interactiveItem != null)
         {
             _interactiveItem = default;
             Undetected?.Invoke();

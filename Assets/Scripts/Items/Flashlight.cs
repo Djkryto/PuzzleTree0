@@ -13,12 +13,12 @@ public class Flashlight : InteractiveItem, IInspectable, IUseable
 
     public Transform ItemTransform => transform;
     public ItemSO ItemData => _itemData;
-    public override IPortable Portable => throw new System.NotImplementedException();
+    public override IPortable Portable => null;
     public override ITakeable Takeable => _takeable;
     public override IInspectable Inspectable => this;
     public override IUseable Useable => this;
-    public override ILearn Learn => throw new System.NotImplementedException();
-    public override IReading Reading => throw new System.NotImplementedException();
+    public override ILearn Learn => null;
+    public override IReading Reading => null;
 
     private void Awake()
     {

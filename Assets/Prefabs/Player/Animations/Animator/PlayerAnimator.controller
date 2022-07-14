@@ -81,16 +81,16 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: Speed
-    m_EventTreshold: 0.001
+    m_EventTreshold: 0.01
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6470922375436676941}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.56996787
+  m_TransitionDuration: 0.25017273
   m_TransitionOffset: 0
-  m_ExitTime: 0.71153855
+  m_ExitTime: 0.8688148
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -170,7 +170,7 @@ BlendTree:
   m_Name: Move Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: e539a21e17909d242bb08a11f1b8ed1c, type: 2}
+    m_Motion: {fileID: 7400000, guid: b07a637ceb3545841a36cf5fc138577d, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 0.5
@@ -178,7 +178,7 @@ BlendTree:
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 68ed04843a841d744b8fdfd062b9c0a7, type: 2}
+    m_Motion: {fileID: 7400000, guid: d09244b71dfef8a40a540d3e242eeb1d, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1

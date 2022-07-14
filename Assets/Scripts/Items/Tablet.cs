@@ -9,15 +9,15 @@ public class Tablet : InteractiveItem,IUseable
     [SerializeField] private Camera _cameraMain;
     [SerializeField] private Camera _cameraTable;    
     private ITakeable _takeable;
-    public override IPortable Portable => throw new System.NotImplementedException();
+    public override IPortable Portable => null;
 
     public override ITakeable Takeable => _takeable;
 
-    public override IInspectable Inspectable => throw new System.NotImplementedException();
+    public override IInspectable Inspectable => null;
 
-    public override ILearn Learn => throw new System.NotImplementedException();
+    public override ILearn Learn => null;
 
-    public override IReading Reading => throw new System.NotImplementedException();
+    public override IReading Reading => null;
 
     public override IUseable Useable => this;
     public ItemSO ItemData => _itemData;

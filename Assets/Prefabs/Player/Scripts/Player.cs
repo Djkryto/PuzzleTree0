@@ -18,8 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _hand;
     private InteractiveItem _currentItemInHand;
     private List<InventoryCell> _playerItems;
-    private CharacterMovement _playerMovement;
-    private CharacterRotator _playerRotator;
+    private PlayerMovement _playerMovement;
+    private PlayerRotator _playerRotator;
     private PlayerVision _playerVision;
 
     public PlayerVision Vision => _playerVision;
@@ -29,8 +29,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _playerItems = new List<InventoryCell>();
-        _playerMovement = new CharacterMovement(_playerRigidbody, _walkSpeed, _runSpeed, _accelerationTime);
-        _playerRotator = new CharacterRotator(transform, _rotationSpeed);
+        _playerMovement = new PlayerMovement(_playerRigidbody, _walkSpeed, _runSpeed, _accelerationTime);
+        _playerRotator = new PlayerRotator(transform, _rotationSpeed);
         _playerVision = new PlayerVision(_aimTarget, _visionDistance, _layerOfVision);
         _inventory.DeletedItem += DropItem;
     }
@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         else
         {
             inventoryItem.ItemInWorld.gameObject.SetActive(true);
+            inventoryItem.ItemInWorld.Takeable.DropItem();
             inventoryItem.ItemInWorld.transform.SetParent(null);
         }
     }
@@ -69,14 +70,28 @@ public class Player : MonoBehaviour
 
     public void DragItem()
     {
-        var interactiveItem = _playerVision.InteractiveItem;
-        interactiveItem.Portable.DragItem(_hand);
+        try
+        {
+            var interactiveItem = _playerVision.InteractiveItem;
+            interactiveItem.Portable.DragItem(_hand);
+        }
+        catch(Exception exception)
+        {
+            Debug.LogWarning(exception);
+        }
     }
 
     public void DropPortableItem()
     {
-        var interactiveItem = _playerVision.InteractiveItem;
-        interactiveItem.Portable.DropItem();
+        try
+        {
+            var interactiveItem = _playerVision.InteractiveItem;
+            interactiveItem.Portable.DropItem();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(exception);
+        }
     }
 
     public void SetItemInHand(InventoryCell currentCell)
@@ -114,18 +129,18 @@ public class Player : MonoBehaviour
     public void Walk(Vector2 direction)
     {
         _playerMovement.Walk(direction, Time.deltaTime);
-        _playerAnimator.SetFloat("Speed", (_playerMovement.CurrentMovementSpeed / _playerMovement.WalkSpeed) * 0.5f);
+        _playerAnimator.SetFloat("Speed", (_playerMovement.CurrentMovementSpeed / _playerMovement.MaxMovementSpeed) * 0.5f);
     }
 
     public void Run(Vector2 direction)
     {
         _playerMovement.Run(direction, Time.deltaTime);
-        _playerAnimator.SetFloat("Speed", _playerMovement.CurrentMovementSpeed / _playerMovement.RunSpeed);
+        _playerAnimator.SetFloat("Speed", _playerMovement.CurrentMovementSpeed / _playerMovement.MaxMovementSpeed);
     }
 
-    public void Decceleration(Vector2 direction)
+    public void Decceleration()
     {
-        _playerMovement.Decceleration(direction, Time.deltaTime);
+        _playerMovement.Decceleration(Time.deltaTime);
         _playerAnimator.SetFloat("Speed", _playerMovement.CurrentMovementSpeed / _playerMovement.RunSpeed);
     }
 }
