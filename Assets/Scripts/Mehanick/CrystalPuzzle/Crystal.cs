@@ -14,12 +14,6 @@ public class Crystal : MonoBehaviour
         allCrystal = GameObject.Find("CrystalAll").GetComponent<CheckAllCrystal>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "PointLightLaser" || collision.gameObject.name == "LaserPoint")
@@ -33,7 +27,7 @@ public class Crystal : MonoBehaviour
             }
         }
     }
-  
+
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.name == "PointLightLaser" || collision.gameObject.name == "LaserPoint")
@@ -44,6 +38,14 @@ public class Crystal : MonoBehaviour
             {
                 directTwo.isActive = false;
             }
+        }
+    }
+    public void Clear()
+    {
+        direct.isActive = false;
+        if (directTwo != null)
+        {
+            directTwo.isActive = false;
         }
     }
 }

@@ -10,10 +10,10 @@ public class Laser : InteractiveItem, IUseable
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private LineRenderer _laserLine;
     [SerializeField] AudioSource _audioSource;
+    [SerializeField] private Crystal[] _crystals;
     private ITakeable _takeable;
     private bool _laserIsActive = false;
     private IEnumerator _laserWorking;
-
     public override IPortable Portable => null;
     public override ITakeable Takeable => _takeable;
     public override IInspectable Inspectable => null;
@@ -32,7 +32,7 @@ public class Laser : InteractiveItem, IUseable
     {
         _audioSource.Play();
         _laserIsActive = !_laserIsActive;
-
+        ActivatePointCrystal();
         if (_laserIsActive)
             StartCoroutine(_laserWorking);
         else
@@ -57,6 +57,14 @@ public class Laser : InteractiveItem, IUseable
                 _laserLine.SetPosition(1, hit.point);
             }
             yield return null;
+        }
+    }
+
+    private void ActivatePointCrystal()
+    {
+        for(int i = 0; i < _crystals.Length; i++)
+        {
+            _crystals[i].Clear();
         }
     }
 }
