@@ -29,6 +29,8 @@ public class PlayerInput : MonoBehaviour
         _inventoryUI.InventoryActive();
         ControlLock();
     }
+<<<<<<< HEAD:Assets/Prefabs/Player/Scripts/PlayerControl.cs
+=======
 
     private void SetItemInHead(int index)
     {
@@ -43,6 +45,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+>>>>>>> a979a60176e8f5ef8b38bdca0384de0cc18c65ed:Assets/Prefabs/Player/Scripts/PlayerInput.cs
     private void OnEnable()
     {
         Input?.Enable();
