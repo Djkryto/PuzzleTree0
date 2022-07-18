@@ -10,10 +10,13 @@ public class Casket : MonoBehaviour
     [SerializeField] private List<ButtonCasket> _buttons;
     [SerializeField] private List<int> _targetCombination;
     [SerializeField] private List<int> _currentCombination;
+    [SerializeField] private List<MeshRenderer> _indicators;
+    [SerializeField] private Material _materialRed;
+    [SerializeField] private Material _materialWhite;
     [SerializeField] private Text _textCodeNotepad;
     [SerializeField] private Notepad _notepad;
     [SerializeField] private LearnObject _learnObject;
-    private Camera _camera;
+    [SerializeField] private Camera _camera;
     public Animator animator;
     public Cursore cursore;
 
@@ -46,7 +49,9 @@ public class Casket : MonoBehaviour
     public void CheckCasket(int buttonNomber)
     {
         _currentCombination.Add(buttonNomber);
-        Debug.Log(_targetCombination == _currentCombination);
+
+        int j = 3 - _currentCombination.Count;
+        _indicators[j].material = _materialRed;
 
         if (_currentCombination.Count == _targetCombination.Count)
         {
@@ -61,7 +66,6 @@ public class Casket : MonoBehaviour
             if (_isTargetCombination)
             {
                 animator.enabled = true;
-                _playerControl.ControlLock();
                 Destroy(GetComponent<Casket>());
                 _notepad.enabled = true;
                 Destroy(_learnObject);
@@ -71,22 +75,10 @@ public class Casket : MonoBehaviour
             else
             {
                 _currentCombination.Clear();
-                _buttons.ForEach(button => button.ResetButton());
+                _indicators.ForEach(i => i.material = _materialWhite);
                 _isTargetCombination = true;
             }
         }
-        //if (One && Two && Three)
-        //{
-        //    animator.enabled = true;
-        //    gameObject.tag = "List";
-        //    _playerControl.ControlLock();
-        //    Destroy(GetComponent<Casket>());
-        //}
-
-        //OneLine.SetActive(One);
-        //TwoLine.SetActive(Two);
-        //TreeLine.SetActive(Three);
-
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -135,16 +127,16 @@ public class Casket : MonoBehaviour
             {
                 if (_targetCombination[i] == _targetCombination[j] && i != j)
                 {
-                    _targetCombination[i] = Random.Range(1, 4);
+                    _targetCombination[i] = Random.Range(1, 6);
                 }
                 else if (i == j)
                 {
-                    _targetCombination[i] = Random.Range(1, 4);
+                    _targetCombination[i] = Random.Range(1, 6);
                     for (int h = 0; h < _targetCombination.Count; h++)
                     {
                         if (_targetCombination[j] == _targetCombination[h] && h != j)
                         {
-                            _targetCombination[i] = Random.Range(1, 4);
+                            _targetCombination[i] = Random.Range(1, 6);
                             j = 0;
                         }
                     }

@@ -8,16 +8,9 @@ public class ButtonCasket : MonoBehaviour
 {
     public int Nomber;
     public Action<int> OnPress;
-    [SerializeField] private GameObject _pressIndicator;
     public void Press()
     {
         OnPress.Invoke(Nomber);
-        _pressIndicator.SetActive(false);
-    }
-
-    public void ResetButton()
-    {
-        _pressIndicator.SetActive(true);
     }
     //void OnMouseDown()
     //{
