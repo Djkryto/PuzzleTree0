@@ -86681,7 +86681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textCanvas: {fileID: 791018682}
-  _playerControl: {fileID: 0}
+  _playerControl: {fileID: 508529384}
   _layerMask:
     serializedVersion: 2
     m_Bits: 1024
