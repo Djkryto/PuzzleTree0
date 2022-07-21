@@ -8,7 +8,7 @@ public class ItemInspectorControl : MonoBehaviour
     public UnityEvent InspectorClosed;
 
     [SerializeField] private Transform _inspectorRotatorTransform;
-    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private PlayerControl _playerInput;
     [SerializeField] private ItemInspector _objectInspector;
     private UserInput _input;
 

@@ -10,13 +10,13 @@ public class ItemControl : MonoBehaviour
     private UserInput _input;
     private bool _dragItem = false;
     private Player _player;
-    private PlayerInput _playerInput;
+    private PlayerControl _playerInput;
 
     private void Awake()
     {
         _input = new UserInput();
         _player = FindObjectOfType<Player>();
-        _playerInput = FindObjectOfType<PlayerInput>();
+        _playerInput = FindObjectOfType<PlayerControl>();
     }
 
     private void Start()

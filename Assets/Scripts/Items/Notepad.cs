@@ -1,24 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Notepad : MonoBehaviour,IReading
 {
     [SerializeField] private GameObject _textCanvas;
-    [SerializeField] private PlayerInput _playerControl;
-    private UserInput _playerInput;
-    private Camera _camera;
+    [SerializeField] private PlayerControl _playerControl;
     [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private bool _isAddUseContext;
+    private Camera _camera;
+    private UserInput _userInput;
     private bool _isRead;
-    [SerializeField] private bool isAddUseContext;
+
+    private void Awake()
+    {
+        _userInput = new UserInput();
+        if (_playerControl == null)
+            _playerControl = FindObjectOfType<PlayerControl>();
+    }
+
+    private void OnEnable()
+    {
+        _userInput.Enable();
+    }
+
     private void Start()
     {
-        if(isAddUseContext)
-        {
-            _playerInput = PlayerInput.Input;
-            _playerInput.Player.Use.performed += context => CheckNotepad();
-        }
+        if(_isAddUseContext)
+            _userInput.Player.Use.performed += context => CheckNotepad();
         _camera = Camera.main;
     }
 
@@ -40,5 +47,9 @@ public class Notepad : MonoBehaviour,IReading
         _textCanvas.SetActive(_isRead);
         _playerControl.ControlLock();
     }
-   
+
+    private void OnDisable()
+    {
+        _userInput.Disable();
+    }
 }

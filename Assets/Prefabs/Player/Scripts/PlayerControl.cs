@@ -1,8 +1,9 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     public static UserInput Input;
 
@@ -114,5 +115,15 @@ public class PlayerInput : MonoBehaviour
     {
         _controlIsLock = !_controlIsLock;
         _cinemachineInputProvider.enabled = !_cinemachineInputProvider.enabled;
+        StartCoroutine(PlayerStoping());
+    }
+
+    private IEnumerator PlayerStoping()
+    {
+        while(_controlIsLock)
+        {
+            _player.Decceleration();
+            yield return null;
+        }
     }
 }

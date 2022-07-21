@@ -10,7 +10,7 @@ public class Car : MonoBehaviour
 
     private void Start()
     {
-        _input = PlayerInput.Input;
+        _input = PlayerControl.Input;
     }
 
     private void Ending()
