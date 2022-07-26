@@ -212,7 +212,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 1
-    lodBias: 2
+    lodBias: 1
     maximumLODLevel: 0
     streamingMipmapsActive: 0
     streamingMipmapsAddAllCameras: 1
@@ -225,7 +225,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 753cf5f944d112c44b523c76c6e37b22,
+    customRenderPipeline: {fileID: 11400000, guid: be3e73a99faaabd46b16cbdfe3dc40f7,
       type: 2}
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
