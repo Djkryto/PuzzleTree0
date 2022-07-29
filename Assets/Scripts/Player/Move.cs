@@ -84,40 +84,4 @@ public class Move : MonoBehaviour
     {
         Speed = DefaultSpeed;
     }
-    public void OnTriggerEnter(Collider collider)
-    {
-        if (collider.name == "SandZone")
-        {
-            audioManager.ClearAll();
-            audioManager.Sand = true;
-        }
-        if (collider.name == "RockZone")
-        {
-            
-            audioManager.Rock = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider collider)
-    {
-        if (collider.name == "SandZone")
-        {
-            audioManager.Sand = false;
-            audioManager.Check();
-        }
-        if (collider.name == "RockZone")
-        {
-            audioManager.Rock = false;
-            audioManager.Check();
-        }
-    }
-
-    public void OnCollisionStay(Collision collider)
-    {
-        if (collider.gameObject.name == "Wood")
-        {
-            audioManager.ClearAll();
-            audioManager.Wood = true;
-        }
-    }
 }

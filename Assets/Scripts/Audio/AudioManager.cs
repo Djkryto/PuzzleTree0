@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource audioMovePlayer;
-
-    public AudioClip[] clipWalkGrass;
-    public AudioClip[] clipWalkRock;
-    public AudioClip[] clipWalkWood;
-    public AudioClip[] clipWalkSand;
-    public bool Rock;
-    public bool Wood;
-    public bool Grass;
-    public bool Sand;
-    public bool Change;
+    public AudioClip[] _soundAll;
+    public AudioClip[] _soundForest;
+    public AudioClip[] _soundEffects;
+    public AudioClip[] _soundMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -170,20 +163,5 @@ public class AudioManager : MonoBehaviour
         //        }
         //    }
         //}
-    }
-
-    public void Check()
-    {
-        if(!Sand && !Rock && !Wood && Grass || !Sand && !Rock && !Wood)
-        {
-            Grass = true;
-        }
-    }
-    public void ClearAll()
-    {
-        Grass = false;
-        Wood = false;
-        Rock = false;
-        Sand = false;
     }
 }

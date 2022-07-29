@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stove : MonoBehaviour
 {
     [SerializeField] private List<Stove> _stoves;
+    [SerializeField] private AudioSource _audioSource;
     public PuzzleStove puzzleStove;
     public Vector3 TargetPosition;
     private float timerState;//Таймер проверки ухода объекта с блина.
@@ -17,6 +18,7 @@ public class Stove : MonoBehaviour
     public void Start()
     {
         puzzleStove = transform.parent.GetComponent<PuzzleStove>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -55,6 +57,7 @@ public class Stove : MonoBehaviour
         if(collision.collider.tag == "RockBig" || collision.collider.tag == "Player")
         {
             puzzleStove.Check(true);
+            _audioSource.Play();
             isStay = true;
             if (!isActive)
             {
@@ -75,6 +78,7 @@ public class Stove : MonoBehaviour
             isStay = false;
             if (isActive)
             {
+                _audioSource.Play();
                 for (int i = 0; i < _stoves.Count; i++)
                 {
                     if(!_stoves[i].isStay)
