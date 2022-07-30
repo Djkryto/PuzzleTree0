@@ -21,7 +21,10 @@ public class PuzzleStove : MonoBehaviour
             {
                 if (AllStoves[i].isActive)
                 {
-                    checkIsActive = true;
+                    if (AllStoves[6].isActive)
+                    {
+                        checkIsActive = true;
+                    }
                 }
                 else
                 {
