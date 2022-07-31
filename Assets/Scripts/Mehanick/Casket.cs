@@ -16,6 +16,7 @@ public class Casket : MonoBehaviour
     [SerializeField] private Notepad _notepad;
     [SerializeField] private LearnObject _learnObject;
     [SerializeField] private Camera _camera;
+    [SerializeField] private AudioSource _signSound;
     private UserInput _playerInput;
     public Animator animator;
     public Cursore cursore;
@@ -65,6 +66,7 @@ public class Casket : MonoBehaviour
 
             if (_isTargetCombination)
             {
+                _signSound.enabled = true;
                 animator.enabled = true;
                 Destroy(GetComponent<Casket>());
                 _notepad.enabled = true;
