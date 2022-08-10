@@ -17,6 +17,7 @@ public class Casket : MonoBehaviour
     [SerializeField] private LearnObject _learnObject;
     [SerializeField] private Camera _camera;
     [SerializeField] private AudioSource _signSound;
+    [SerializeField] private AudioSource _buttonSound;
     private UserInput _playerInput;
     public Animator animator;
     public Cursore cursore;
@@ -50,7 +51,7 @@ public class Casket : MonoBehaviour
     public void CheckCasket(int buttonNomber)
     {
         _currentCombination.Add(buttonNomber);
-
+        _buttonSound.Play();
         int j = 3 - _currentCombination.Count;
         _indicators[j].material = _materialRed;
 
