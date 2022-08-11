@@ -6,6 +6,7 @@ public class Notepad : MonoBehaviour,IReading
     [SerializeField] private PlayerControl _playerControl;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private bool _isAddUseContext;
+    [SerializeField] private AudioSource _soundList;
     private Camera _camera;
     private UserInput _userInput;
     private bool _isRead;
@@ -13,8 +14,18 @@ public class Notepad : MonoBehaviour,IReading
     private void Awake()
     {
         _userInput = new UserInput();
+        _soundList = GameObject.Find("SoundList").GetComponent<AudioSource>();
         if (_playerControl == null)
             _playerControl = FindObjectOfType<PlayerControl>();
+
+        if (_isAddUseContext)
+        {
+            GameObject[] notes = GameObject.FindGameObjectsWithTag("List");
+            foreach( var note in notes)
+            {
+                _userInput.Player.Use.performed += context => note.GetComponent<Notepad>().CheckNotepad();
+            }
+        }
     }
 
     private void OnEnable()
@@ -24,8 +35,6 @@ public class Notepad : MonoBehaviour,IReading
 
     private void Start()
     {
-        if(_isAddUseContext)
-            _userInput.Player.Use.performed += context => CheckNotepad();
         _camera = Camera.main;
     }
 
@@ -46,6 +55,7 @@ public class Notepad : MonoBehaviour,IReading
         _isRead = !_isRead;
         _textCanvas.SetActive(_isRead);
         _playerControl.ControlLock();
+        _soundList.Play();
     }
 
     private void OnDisable()

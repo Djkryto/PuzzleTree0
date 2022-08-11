@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _accelerationTime;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private Transform _hand;
+    [SerializeField] private AudioSource _takeSound;
     private InteractiveItem _currentItemInHand;
     private List<InventoryCell> _playerItems;
     private PlayerMovement _playerMovement;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
             var itemInWorld = itemTransform.GetComponent<InteractiveItem>();
             var inventoryCell = _inventory.AddItem(itemInWorld, takeableObject.ItemData);
             _playerItems.Add(inventoryCell);
+            _takeSound.Play();
         }
         catch(Exception exception)
         {
