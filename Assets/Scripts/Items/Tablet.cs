@@ -8,6 +8,7 @@ public class Tablet : InteractiveItem,IUseable
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Camera _cameraMain;
     [SerializeField] private Camera _cameraTable;    
+    [SerializeField] private Light _lightGreen;
     private ITakeable _takeable;
     public override IPortable Portable => null;
 
@@ -30,5 +31,6 @@ public class Tablet : InteractiveItem,IUseable
     {
         _cameraMain.enabled = !_cameraMain.enabled;
         _cameraTable.enabled = !_cameraTable.enabled;
+        _lightGreen.enabled = !_lightGreen.enabled;
     }
 }
