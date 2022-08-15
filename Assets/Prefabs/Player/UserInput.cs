@@ -33,7 +33,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""id"": ""a1774249-3051-4f5c-bc1e-dee1c038f5f9"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": true
                 },
                 {
@@ -389,6 +389,62 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Item"",
+            ""id"": ""9417057a-c0b0-44ae-83b5-506682eb0e06"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""b51cb42f-37dd-4b5c-9e18-da6ead54c9b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8a4f0917-0f6f-4684-b782-2270d14ff375"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Riddle"",
+            ""id"": ""2d824508-c73e-4913-82c1-2491c39490fc"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""a6006c04-c57e-454c-841c-94cbba1c3d44"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a8d1ac26-a2f5-410f-804c-3b04e606be60"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -430,6 +486,12 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         m_Player_Two = m_Player.FindAction("Two", throwIfNotFound: true);
         m_Player_Three = m_Player.FindAction("Three", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
+        // Item
+        m_Item = asset.FindActionMap("Item", throwIfNotFound: true);
+        m_Item_Newaction = m_Item.FindAction("New action", throwIfNotFound: true);
+        // Riddle
+        m_Riddle = asset.FindActionMap("Riddle", throwIfNotFound: true);
+        m_Riddle_Newaction = m_Riddle.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -614,6 +676,72 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Item
+    private readonly InputActionMap m_Item;
+    private IItemActions m_ItemActionsCallbackInterface;
+    private readonly InputAction m_Item_Newaction;
+    public struct ItemActions
+    {
+        private @UserInput m_Wrapper;
+        public ItemActions(@UserInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Item_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Item; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ItemActions set) { return set.Get(); }
+        public void SetCallbacks(IItemActions instance)
+        {
+            if (m_Wrapper.m_ItemActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_ItemActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_ItemActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_ItemActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_ItemActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public ItemActions @Item => new ItemActions(this);
+
+    // Riddle
+    private readonly InputActionMap m_Riddle;
+    private IRiddleActions m_RiddleActionsCallbackInterface;
+    private readonly InputAction m_Riddle_Newaction;
+    public struct RiddleActions
+    {
+        private @UserInput m_Wrapper;
+        public RiddleActions(@UserInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Riddle_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Riddle; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(RiddleActions set) { return set.Get(); }
+        public void SetCallbacks(IRiddleActions instance)
+        {
+            if (m_Wrapper.m_RiddleActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_RiddleActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_RiddleActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_RiddleActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_RiddleActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public RiddleActions @Riddle => new RiddleActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -638,5 +766,13 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         void OnTwo(InputAction.CallbackContext context);
         void OnThree(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+    }
+    public interface IItemActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+    }
+    public interface IRiddleActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

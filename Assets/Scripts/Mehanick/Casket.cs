@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +21,7 @@ public class Casket : MonoBehaviour
     public Animator animator;
     public Cursore cursore;
 
-   [SerializeField] private LayerMask layer;
+   [SerializeField] private LayerMask _layer;
    [SerializeField] private bool _isTargetCombination;
     public bool One;
     public bool Two;
@@ -31,10 +30,8 @@ public class Casket : MonoBehaviour
     public bool onStay;
     private void Awake()
     {
-        _playerInput  = PlayerControl.Input;
-        _playerInput.Player.Escape.performed += context => Cancel();
         _camera = Camera.main;
-        _playerInput.Player.LMB.performed += context => ClickButton();
+        _playerInput = new UserInput();
         _currentCombination = new List<int>();
         _notepad.enabled = false;
         SetRandomTargetCombination();
@@ -85,36 +82,19 @@ public class Casket : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out PlayerControl playerControl))
+        if(other.TryGetComponent(out Player player))
         {
-            _playerInput.Player.Use.performed += context => _playerControl.ControlLock();
+            _playerInput.Enable();
+            _playerInput.Player.Use.performed += context => _playerControl.SetCasketControlState(_layer);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out PlayerControl playerControl))
+        if (other.TryGetComponent(out Player player))
         {
-            _playerInput.Player.Use.performed -= context => _playerControl.ControlLock();
-        }
-    }
-
-    public void Cancel()
-    {
-        _playerControl.ControlLock();
-    }
-
-    private void ClickButton()
-    {
-        var mousePosition = _playerInput.Player.MousePosition.ReadValue<Vector2>();
-        var mouseRay = _camera.ScreenPointToRay(mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(mouseRay, out hit,layer))
-        {
-           if(hit.collider.TryGetComponent(out ButtonCasket button))
-           {
-                button.Press();
-           }
+            _playerInput.Player.Use.performed -= context => _playerControl.SetCasketControlState(_layer);
+            _playerInput.Disable();
         }
     }
 

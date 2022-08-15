@@ -1,0 +1,107 @@
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
+
+public class StandardControlState : ControlState
+{
+    private Camera _playerCamera;
+    private InventoryUI _inventoryUI;
+    private HotBar _hotbar;
+
+    public StandardControlState(Player player, Camera playerCamera, InventoryUI inventoryUI, HotBar hotbar) : base(player)
+    {
+        _playerCamera = playerCamera;
+        _inventoryUI = inventoryUI;
+        _hotbar = hotbar;
+        Input.Player.Escape.performed += context => OpenMenu();
+        Input.Player.Inventory.performed += context => OpenInventory();
+        Input.Player.One.performed += context => SetItemInHead(0);
+        Input.Player.Two.performed += context => SetItemInHead(1);
+        Input.Player.Three.performed += context => SetItemInHead(2);
+        Input.Player.LMB.performed += context =>
+        {
+            if (context.interaction is PressInteraction)
+                UseItem();
+        };
+    }
+
+    private void OpenInventory()
+    {
+        _inventoryUI.InventoryActive();
+        OnChangeState?.Invoke();
+    }
+
+    private void OpenMenu()
+    {
+        OnChangeState?.Invoke();
+    }
+
+    private void SetItemInHead(int index)
+    {
+        try
+        {
+            HotbarCell cellItem = (HotbarCell)_hotbar.CellPool[index];
+            Player.SetItemInHand(cellItem.SourceCell);
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception);
+        }
+    }
+
+    public void ScanObjectInFront()
+    {
+        var rayCenterCamera = GetRayFromCameraCenter();
+        Player.ScanObjectInFront(rayCenterCamera);
+    }
+
+    private Ray GetRayFromCameraCenter()
+    {
+        var cameraCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        return _playerCamera.ScreenPointToRay(cameraCenter);
+    }
+
+    public void TiltPlayerTorso()
+    {
+        var rayCenterCamera = GetRayFromCameraCenter();
+        var mouseMoved = Input.Player.MouseLook.ReadValue<Vector2>() != Vector2.zero;
+        if (mouseMoved)
+        {
+            Player.LookAt(rayCenterCamera);
+        }
+    }
+
+    public void PlayerMove()
+    {
+        var movementVector = Input.Player.Move.ReadValue<Vector2>();
+        if (movementVector != Vector2.zero)
+        {
+            if (Input.Player.Run.IsPressed())
+            {
+                Player.Run(movementVector);
+            }
+            else
+            {
+                Player.Walk(movementVector);
+            }
+        }
+        else
+        {
+            Player.Decceleration();
+        }
+
+        Player.Rotate(_playerCamera.transform.eulerAngles.y);
+    }
+
+    private void UseItem()
+    {
+        try
+        {
+            Player.CurrentItemInHand.Useable.Use();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(exception);
+        }
+    }
+}

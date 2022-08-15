@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "UserInput",
     "maps": [
         {
             "name": "Player",
@@ -11,7 +11,7 @@
                     "id": "a1774249-3051-4f5c-bc1e-dee1c038f5f9",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": true
                 },
                 {
@@ -363,6 +363,62 @@
                     "processors": "",
                     "groups": "",
                     "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Item",
+            "id": "9417057a-c0b0-44ae-83b5-506682eb0e06",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "b51cb42f-37dd-4b5c-9e18-da6ead54c9b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8a4f0917-0f6f-4684-b782-2270d14ff375",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Riddle",
+            "id": "2d824508-c73e-4913-82c1-2491c39490fc",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "a6006c04-c57e-454c-841c-94cbba1c3d44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a8d1ac26-a2f5-410f-804c-3b04e606be60",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

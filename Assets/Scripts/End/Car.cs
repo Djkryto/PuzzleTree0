@@ -8,11 +8,6 @@ public class Car : MonoBehaviour
     private UserInput _input;
     private bool _endingUnlock = false;
 
-    private void Start()
-    {
-        _input = PlayerControl.Input;
-    }
-
     private void Ending()
     {
         if (_endingUnlock)

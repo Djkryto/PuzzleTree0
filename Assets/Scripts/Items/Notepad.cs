@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Notepad : MonoBehaviour,IReading
+public class Notepad : MonoBehaviour, IReading
 {
     [SerializeField] private GameObject _textCanvas;
     [SerializeField] private PlayerControl _playerControl;
@@ -54,7 +54,15 @@ public class Notepad : MonoBehaviour,IReading
     {
         _isRead = !_isRead;
         _textCanvas.SetActive(_isRead);
-        _playerControl.ControlLock();
+        _playerControl.SetControlLockState();
+        _playerControl.ControlState.OnChangeState += CloseNotepad;
+        _soundList.Play();
+    }
+
+    private void CloseNotepad()
+    {
+        _isRead = false;
+        _textCanvas.SetActive(_isRead);
         _soundList.Play();
     }
 

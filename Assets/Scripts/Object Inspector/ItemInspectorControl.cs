@@ -9,7 +9,7 @@ public class ItemInspectorControl : MonoBehaviour
 
     [SerializeField] private Transform _inspectorRotatorTransform;
     [SerializeField] private PlayerControl _playerInput;
-    [SerializeField] private ItemInspector _objectInspector;
+    [SerializeField] private ObjectInspector _objectInspector;
     private UserInput _input;
 
     private void Awake()
@@ -30,7 +30,7 @@ public class ItemInspectorControl : MonoBehaviour
     private void CloseInspector()
     {
         _objectInspector.TryCloseInspector();
-        _playerInput.ControlLock();
+        //_playerInput.ControlLock();
         InspectorClosed?.Invoke();
     }
 
