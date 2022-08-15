@@ -4,6 +4,8 @@ using UnityEngine;
 public class PortableItem : InteractiveItem, IPortable
 {
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Vector3 _rotateAxis;
+    [SerializeField] private float _rotateSpeed;
 
     public override IPortable Portable => this;
     public override ITakeable Takeable => null;
@@ -13,6 +15,11 @@ public class PortableItem : InteractiveItem, IPortable
     public override IReading Reading => null;
     public Transform ItemTransform => null;
 
+
+    public void Rotate(float scrollValue)
+    {
+        transform.Rotate(scrollValue * _rotateAxis * _rotateSpeed, Space.World);
+    }
 
     public Transform DragItem(Transform parent)
     {

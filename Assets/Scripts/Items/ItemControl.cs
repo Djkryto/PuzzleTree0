@@ -25,11 +25,33 @@ public class ItemControl : MonoBehaviour
         SetTakeControl();
         SetInspectControl();
         SetUseControl();
+        SetRotateObject();
     }
 
     private void OnEnable()
     {
         _input.Enable();
+    }
+
+    private void SetRotateObject()
+    {
+        _input.Player.Scroll.performed += context => RotateObject();
+    }
+
+    private void RotateObject()
+    {
+        try
+        {
+            if (!_playerInput.ControlIsLock)
+            {
+                var scrollValue = _input.Player.Scroll.ReadValue<Vector2>();
+                _player.RotateObject(scrollValue.y);
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(exception);
+        }
     }
 
     private void SetPortableControl()

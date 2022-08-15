@@ -66,7 +66,20 @@ public class Player : MonoBehaviour
         }
         catch(Exception exception)
         {
-           // Debug.LogException(exception);
+           Debug.LogWarning(exception);
+        }
+    }
+
+    public void RotateObject(float scrollValue)
+    {
+        try
+        {
+            var interactiveItem = _playerVision.InteractiveItem;
+            interactiveItem.Portable.Rotate(scrollValue);
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(exception);
         }
     }
 
