@@ -56,7 +56,6 @@ public class Stove : MonoBehaviour
     {
         if(collision.collider.tag == "RockBig" || collision.collider.tag == "Player")
         {
-            puzzleStove.Check(true);
             _audioSource.Play();
             isStay = true;
             if (!isActive)
@@ -68,6 +67,7 @@ public class Stove : MonoBehaviour
                 }
             }
             isActive = true;
+            puzzleStove.Check(true);
         }
     }
 

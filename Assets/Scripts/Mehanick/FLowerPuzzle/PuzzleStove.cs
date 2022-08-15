@@ -11,29 +11,28 @@ public class PuzzleStove : MonoBehaviour
     private bool checkEnd;
     private bool checkIsActive;
     private bool end;
-    private float Timer;
+    [SerializeField]private bool _startValue;
     public void Check(bool value)
     {
         checkEnd = value;
-        if (value)
+        if (checkEnd)
         {
             for (int i = 0; i < AllStoves.Length; i++)
             {
                 if (AllStoves[i].isActive)
                 {
-                    if (AllStoves[6].isActive)
-                    {
-                        checkIsActive = true;
-                    }
+                    _startValue = true;
                 }
                 else
                 {
+                    _startValue = false;
                     checkEnd = false;
-                    checkIsActive = false;
                 }
+                if (!_startValue)
+                    break;
             }
 
-            if (checkIsActive)
+            if (_startValue)
             {
                
                 end = true;
@@ -44,12 +43,7 @@ public class PuzzleStove : MonoBehaviour
             {
                 checkEnd = false;
                 checkIsActive = false;
-                Timer = 0;
             }
-        }
-        else
-        {
-            Timer = 0;
         }
 
         if (end)

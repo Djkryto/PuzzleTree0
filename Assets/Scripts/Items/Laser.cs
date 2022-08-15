@@ -11,6 +11,8 @@ public class Laser : InteractiveItem, IUseable
     [SerializeField] private GameObject _laserLine;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] private Crystal[] _crystals;
+    [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private Camera _cameraNight;
     private ITakeable _takeable;
     private bool _laserIsActive = false;
     private IEnumerator _laserWorking;
@@ -40,7 +42,6 @@ public class Laser : InteractiveItem, IUseable
 
         _laserLight.SetActive(_laserIsActive);
         _laserLine.SetActive(_laserIsActive);
-
     }
 
     private IEnumerator ActivateLaser()
@@ -53,6 +54,11 @@ public class Laser : InteractiveItem, IUseable
             if (Physics.Raycast(ray, out hit))
             {
                 _laserLight.transform.position = hit.point;
+                if (_cameraNight.enabled)
+                {
+                    _lineRenderer.SetPosition(0, transform.position);
+                    _lineRenderer.SetPosition(1, _laserLight.transform.position);
+                }
             }
             yield return null;
         }
