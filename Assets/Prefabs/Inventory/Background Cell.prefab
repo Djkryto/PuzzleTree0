@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7697331038749262681}
   - component: {fileID: 4135336989795667928}
   - component: {fileID: 8514156199976675747}
-  - component: {fileID: 1248507603533806065}
   m_Layer: 5
   m_Name: Background Cell
   m_TagString: Untagged
@@ -77,15 +76,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1248507603533806065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2541773236601928458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a081337c6434a9f49a71edf82a3c4dd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

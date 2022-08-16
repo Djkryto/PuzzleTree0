@@ -121,7 +121,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3245321868897886318
 MonoBehaviour:
@@ -135,10 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -174,14 +174,14 @@ GameObject:
   - component: {fileID: 3245321868984095976}
   - component: {fileID: 3245321868984095990}
   - component: {fileID: 3245321868984095977}
-  - component: {fileID: 3245321868984095991}
+  - component: {fileID: 568099223}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3245321868984095976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3245321868984095991
+--- !u!114 &568099223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,20 +251,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3245321868984095979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e807980c8d4de046909a4f7953d4487, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d9ea6d8ce75c29479236c28dc24e0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventorySize: 9
-  _cellTemplate: {fileID: 3913295536023613708, guid: 264235894b24e094d89e151c702a048e,
+  _cellTemplate: {fileID: 3852967492426100104, guid: 264235894b24e094d89e151c702a048e,
     type: 3}
-  _inventoryContainer: {fileID: 3245321870202313472}
-  _draggingParent: {fileID: 3245321868984095976}
+  _itemContainer: {fileID: 3245321870202313472}
+  _backgroundContainer: {fileID: 3245321869818323675}
+  _draggingParent: {fileID: 3245321868897886316}
   _backgroundCellTemplate: {fileID: 7697331038749262681, guid: ff68f0bedfcad404d8480cfbdb88a85f,
     type: 3}
-  _inventoryBackgroundContainer: {fileID: 3245321869818323675}
+  _player: {fileID: 0}
   InventoryShowing:
     m_PersistentCalls:
       m_Calls: []
+  _hotbar: {fileID: 3245321870015532989}
 --- !u!1 &3245321869041990552
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,15 +497,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831dfd7b28df849478f2845e3163bbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventorySize: 3
-  _cellTemplate: {fileID: 3444131149015338546, guid: 39a563ee4f8b83f48abc058ef8ac2419,
+  _cellTemplate: {fileID: 3852967492426100104, guid: 264235894b24e094d89e151c702a048e,
     type: 3}
-  _inventoryContainer: {fileID: 3245321868799039629}
+  _itemContainer: {fileID: 3245321868799039629}
+  _backgroundContainer: {fileID: 3245321869041990553}
   _draggingParent: {fileID: 3245321870015532988}
   _backgroundCellTemplate: {fileID: 7697331038749262681, guid: ff68f0bedfcad404d8480cfbdb88a85f,
     type: 3}
-  _inventoryBackgroundContainer: {fileID: 3245321869041990553}
-  _inventory: {fileID: 3245321868984095991}
+  _player: {fileID: 0}
+  _hotbarSize: 3
 --- !u!1 &3245321870202313475
 GameObject:
   m_ObjectHideFlags: 0

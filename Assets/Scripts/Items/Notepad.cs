@@ -55,7 +55,7 @@ public class Notepad : MonoBehaviour, IReading
         _isRead = !_isRead;
         _textCanvas.SetActive(_isRead);
         _playerControl.SetControlLockState();
-        _playerControl.ControlState.OnChangeState += CloseNotepad;
+        _playerControl.ControlState.OnExitState += CloseNotepad;
         _soundList.Play();
     }
 

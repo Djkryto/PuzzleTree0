@@ -1,39 +1,53 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class Inventory : BaseCellContainer
+public class Inventory
 {
-    public Action<InventoryCell> AddedItem;
-    public Action<InventoryCell> DeletedItem;
+    public Action<InteractiveItem> OnAddingItem;
 
-    public InventoryCell AddItem(InteractiveItem itemInWorld, ItemSO item)
+    private List<InteractiveItem> _items;
+    private int _inventorySize;
+
+    public IReadOnlyList<InteractiveItem> Items => _items;
+    public int Size => _inventorySize;
+
+    public Inventory(int inventorySize)
     {
-        try
+        _inventorySize = inventorySize;
+        _items = new List<InteractiveItem>();
+    }
+
+    public Inventory(int inventorySize, List<InteractiveItem> items) : this(inventorySize)
+    {
+        if (items.Count > _items.Count)
+            throw new Exception("An incorrect list of items was passed!");
+
+        for(int i = 0; i < items.Count; i++)
         {
-            var cell = (InventoryCell)CellPool.FirstOrDefault(cell => ((InventoryCell)cell).Item == default);
-            cell.SetItem(itemInWorld, item);
-            AddedItem?.Invoke(cell);
-            return cell;
-        }
-        catch(Exception exc)
-        {
-            Debug.LogException(exc);
-            return null;
+            _items[i] = items[i];
         }
     }
 
-    public override void DropItem(BaseCell dropedCell)
+    public bool TryAddItem(InteractiveItem item)
     {
-        try
-        {
-            DeletedItem?.Invoke((InventoryCell)dropedCell);
-            var cell = CellPool.FirstOrDefault(cell => cell == dropedCell);
-            cell.Clear();
-        }
-        catch (Exception exc)
-        {
-            Debug.LogException(exc);
-        }
+        if(_items.Count >= _inventorySize)
+            return false;
+
+        _items.Add(item);
+        OnAddingItem?.Invoke(item);
+
+        return true;
+    }
+
+    public bool TryRemoveItem(InteractiveItem item)
+    {
+        int removeableItemIndex = _items.IndexOf(item);
+
+        if(removeableItemIndex == -1)
+            return false;
+
+        _items.RemoveAt(removeableItemIndex);
+        return true;
     }
 }

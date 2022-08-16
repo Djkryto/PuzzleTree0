@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -15,10 +13,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _accelerationTime;
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private int _inventorySize;
     [SerializeField] private Transform _hand;
     [SerializeField] private AudioSource _takeSound;
     private InteractiveItem _currentItemInHand;
-    private List<InventoryCell> _playerItems;
     private PlayerMovement _playerMovement;
     private PlayerRotator _playerRotator;
     private PlayerVision _playerVision;
@@ -29,39 +27,44 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _playerItems = new List<InventoryCell>();
+        _inventory = new Inventory(_inventorySize);
         _playerMovement = new PlayerMovement(_playerRigidbody, _walkSpeed, _runSpeed, _accelerationTime);
         _playerRotator = new PlayerRotator(transform, _rotationSpeed);
         _playerVision = new PlayerVision(_aimTarget, _visionDistance, _layerOfVision);
-        _inventory.DeletedItem += DropItem;
     }
 
-    private void DropItem(InventoryCell  inventoryItem)
+    public void DropItem(InteractiveItem itemInWorld)
     {
-        if(_currentItemInHand == inventoryItem.ItemInWorld)
-        {
-            _currentItemInHand.transform.SetParent(null);
-            _currentItemInHand.Takeable.DropItem();
-            _currentItemInHand = null;
-        }
-        else
-        {
-            inventoryItem.ItemInWorld.gameObject.SetActive(true);
-            inventoryItem.ItemInWorld.Takeable.DropItem();
-            inventoryItem.ItemInWorld.transform.SetParent(null);
-        }
+        if (_currentItemInHand == itemInWorld)
+            _currentItemInHand = default;
+
+        itemInWorld.transform.SetParent(null);
+        itemInWorld.gameObject.SetActive(true);
+        itemInWorld.Takeable.DropItem();
+        _inventory.TryRemoveItem(itemInWorld);
+        _takeSound.Play();
     }
 
     public void TakeObject()
     {
         try
         {
-            var takeableObject = _playerVision.InteractiveItem.Takeable;
-            var itemTransform = takeableObject.TakeItem();
+            var interactiveItem = _playerVision.InteractiveItem;
+            var itemTransform = interactiveItem.Takeable.TakeItem();
+
+            if (!_inventory.TryAddItem(interactiveItem))
+                throw new Exception("Failed to add an item!");
+
             itemTransform.SetParent(_hand);
-            var itemInWorld = itemTransform.GetComponent<InteractiveItem>();
-            var inventoryCell = _inventory.AddItem(itemInWorld, takeableObject.ItemData);
-            _playerItems.Add(inventoryCell);
+            itemTransform.rotation = _hand.rotation;
+            itemTransform.position = _hand.position;
+
+            if (_currentItemInHand == null)
+            {
+                _currentItemInHand = interactiveItem;
+                _currentItemInHand.gameObject.SetActive(true);
+            }
+
             _takeSound.Play();
         }
         catch(Exception exception)
@@ -109,13 +112,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetItemInHand(InventoryCell currentCell)
+    public void SetItemInHand(InteractiveItem itemInWorld)
     {
         try
         {
             _currentItemInHand?.gameObject.SetActive(false);
-            var item = _playerItems.FirstOrDefault(cell => cell == currentCell && cell.CellImage != default);
-            _currentItemInHand = item.ItemInWorld;
+            _currentItemInHand = itemInWorld;
             _currentItemInHand.gameObject.SetActive(true);
             _currentItemInHand.transform.rotation = _hand.rotation;
             _currentItemInHand.transform.position = _hand.position;
@@ -123,6 +125,7 @@ public class Player : MonoBehaviour
         catch (Exception exception)
         {
             _currentItemInHand?.gameObject.SetActive(false);
+            Debug.LogWarning(exception);
         }
     }
 
