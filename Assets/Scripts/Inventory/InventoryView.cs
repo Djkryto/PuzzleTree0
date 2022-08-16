@@ -17,6 +17,7 @@ public class InventoryView : BaseInventoryView
         _isOpen = !_isOpen;
         gameObject.SetActive(_isOpen);
         Cursor.lockState = (_isOpen) ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = _isOpen;
         InventoryShowing.Invoke();
     }
 

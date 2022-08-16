@@ -16,6 +16,7 @@ public class Opening : MonoBehaviour
     {
         _cinemachineInputProvider.enabled = false;
         _wheelExplosion.OnExplosion += () => { StartCoroutine(ScenarioEnd()); };
+        Cursor.visible = false;
     }
 
     private void Start()
@@ -60,6 +61,6 @@ public class Opening : MonoBehaviour
             ShowingScreenImage(1f);
             yield return null;
         }
-        SceneManager.LoadScene(_startSceneIndex);
+        SceneLoader.SwitchToScene(_startSceneIndex);
     }
 }

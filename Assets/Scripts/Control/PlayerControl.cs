@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
         _player.Vision.Undetected += ResetControl;
         _controlState.EnableControl();
         _deccelerationEnumerator = PlayerStoping();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void SetControlLockState()
