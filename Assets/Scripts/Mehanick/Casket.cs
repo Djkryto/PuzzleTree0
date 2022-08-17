@@ -27,7 +27,6 @@ public class Casket : MonoBehaviour
     public bool Two;
     public bool Three;
 
-    public bool onStay;
     private void Awake()
     {
         _camera = Camera.main;
@@ -71,6 +70,7 @@ public class Casket : MonoBehaviour
                 Destroy(_learnObject);
                 gameObject.AddComponent<ReadingObject>();
                 Destroy(GetComponent<SphereCollider>());
+                _playerInput.Disable();
             }
             else
             {
@@ -93,6 +93,7 @@ public class Casket : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player))
         {
+            print("Exit");
             _playerInput.Player.Use.performed -= context => _playerControl.SetCasketControlState(_layer);
             _playerInput.Disable();
         }
