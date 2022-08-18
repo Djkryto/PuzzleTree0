@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
 public class ObjectInspectorControlState : ControlState
@@ -12,13 +11,15 @@ public class ObjectInspectorControlState : ControlState
         Input.Player.Escape.performed += context => CloseInspector();
         Input.Player.Scroll.performed += context => ObjectZoom(context);
         Input.Player.MouseLook.performed += context => ObjectRotate();
+        var inspectableItem = player.Vision.InteractiveItem.Inspectable;
+        OpenInspector(inspectableItem);
     }
 
     public void OpenInspector(IInspectable item)
     {
         _objectInspector.gameObject.SetActive(true);
-        _objectInspector.CreateObjectInInspector(item);
         _objectInspector.TryOpenInspector();
+        _objectInspector.CreateObjectInInspector(item);
     }
 
     private void CloseInspector()

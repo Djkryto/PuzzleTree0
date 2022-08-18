@@ -65,9 +65,7 @@ public class PlayerControl : MonoBehaviour
     public void SetObjectInspectorState(IInspectable item)
     {
         _controlState.DisableControl();
-        var objectInspector = new ObjectInspectorControlState(_player, _objectInspector);
-        objectInspector.OpenInspector(item);
-        _controlState = objectInspector;
+        _controlState = new ObjectInspectorControlState(_player, _objectInspector);
         _controlState.EnableControl();
         _controlState.OnExitState += ResetControl;
         StartCoroutine(_deccelerationEnumerator);
