@@ -5,31 +5,35 @@ using UnityEngine.UI;
 public class Casket : MonoBehaviour
 {
     [SerializeField] private PlayerControl _playerControl;
-    [SerializeField] private List<ButtonCasket> _buttons;
+
+    
     [SerializeField] private List<int> _targetCombination;
     [SerializeField] private List<int> _currentCombination;
+    [SerializeField] private List<ButtonCasket> _buttons;
     [SerializeField] private List<MeshRenderer> _indicators;
+
     [SerializeField] private Material _materialRed;
     [SerializeField] private Material _materialWhite;
+
     [SerializeField] private Text _textCodeNotepad;
+
     [SerializeField] private Notepad _notepad;
+
     [SerializeField] private LearnObject _learnObject;
-    [SerializeField] private Camera _camera;
+
     [SerializeField] private AudioSource _signSound;
     [SerializeField] private AudioSource _buttonSound;
-    private UserInput _playerInput;
-    public Animator animator;
-    public Cursore cursore;
 
-   [SerializeField] private LayerMask _layer;
-   [SerializeField] private bool _isTargetCombination;
-    public bool One;
-    public bool Two;
-    public bool Three;
+    [SerializeField] private Animator animator;
+
+    [SerializeField] private LayerMask _layer;
+
+    [SerializeField] private bool _isTargetCombination;
+
+    private UserInput _playerInput;
 
     private void Awake()
     {
-        _camera = Camera.main;
         _playerInput = new UserInput();
         _currentCombination = new List<int>();
         _notepad.enabled = false;
