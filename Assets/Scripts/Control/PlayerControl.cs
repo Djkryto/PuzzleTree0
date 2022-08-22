@@ -11,9 +11,10 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private HotbarView _hotbar;
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     private ControlState _controlState;
-    private IEnumerator _deccelerationEnumerator;
+    private IEnumerator _decelerationEnumerator;
 
     public ControlState ControlState => _controlState;
+    public HotbarView HotbarView => _hotbar;
 
     private void Start()
     {
@@ -24,18 +25,26 @@ public class PlayerControl : MonoBehaviour
         _player.Vision.Detected += SetItemControlState;
         _player.Vision.Undetected += ResetControl;
         _controlState.EnableControl();
-        _deccelerationEnumerator = PlayerStoping();
+        _decelerationEnumerator = PlayerStoping();
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void SetCustomState(ControlState controlState)
+    {
+        if(_controlState != controlState)
+        {
+            _controlState.DisableControl();
+            _controlState = controlState;
+            _controlState.EnableControl();
+            _controlState.OnExitState += ResetControl;
+            StartCoroutine(_decelerationEnumerator);
+        }
     }
 
     public void SetControlLockState()
     {
         _cinemachineInputProvider.enabled = false;
-        _controlState.DisableControl();
-        _controlState = new ControlLockState(_player);
-        _controlState.EnableControl();
-        _controlState.OnExitState += ResetControl;
-        StartCoroutine(_deccelerationEnumerator);
+        SetCustomState(new ControlLockState(_player));
     }
 
     public void SetItemControlState()
@@ -58,34 +67,28 @@ public class PlayerControl : MonoBehaviour
             _controlState = new CasketControlState(_player, _playerCamera, controlObjectLayer);
             _controlState.EnableControl();
             _controlState.OnExitState += ResetControl; 
-            StartCoroutine(_deccelerationEnumerator);
+            StartCoroutine(_decelerationEnumerator);
         }
     }
 
     public void SetObjectInspectorState(IInspectable item)
     {
-        _controlState.DisableControl();
-        _controlState = new ObjectInspectorControlState(_player, _objectInspector);
-        _controlState.EnableControl();
-        _controlState.OnExitState += ResetControl;
-        StartCoroutine(_deccelerationEnumerator);
+        var inspectorControlState = new ObjectInspectorControlState(_player, _objectInspector);
+        SetCustomState(inspectorControlState);
     }
 
     public void SetInventoryControlState()
     {
         _cinemachineInputProvider.enabled = false;
-        _controlState.DisableControl();
-        _controlState = new InventoryControlState(_player, _inventoryView);
-        _controlState.EnableControl();
-        _controlState.OnExitState += ResetControl;
-        StartCoroutine(_deccelerationEnumerator);
+        var inventoryControlState = new InventoryControlState(_player, _inventoryView);
+        SetCustomState(inventoryControlState);
     }
 
     public void ResetControl()
     {
         _cinemachineInputProvider.enabled = true;
         _controlState.DisableControl();
-        StopCoroutine(_deccelerationEnumerator);
+        StopCoroutine(_decelerationEnumerator);
         var standardControl = new StandardControlState(_player, _playerCamera, _hotbar);
         standardControl.OnInventoryOpen += SetInventoryControlState;
         _controlState = standardControl;

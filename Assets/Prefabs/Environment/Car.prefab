@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4021487131132865208}
   - component: {fileID: 4010838467795660768}
   - component: {fileID: 4002753169855608100}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4021370112398349536}
   - component: {fileID: 4011506884915683124}
   - component: {fileID: 4002061481915773450}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeLights_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4021871092522373440}
   - component: {fileID: 4010471152543759342}
   - component: {fileID: 4002108182443629412}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 4022075698430352058}
   - component: {fileID: 4010857315456121172}
   - component: {fileID: 4002599301196770236}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeFrontRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021385156492384992}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 4021866118253027470}
   - component: {fileID: 4009981381541935062}
   - component: {fileID: 4003063575297427502}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeFrontLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 4021595913747561592}
   - component: {fileID: 4011534370632990108}
   - component: {fileID: 4003107565652610422}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeFrontRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 4022147753908204168}
   - component: {fileID: 4010984345936859958}
   - component: {fileID: 4002771186749464988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearSideLight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 4022123711008064590}
   - component: {fileID: 4010540959257684264}
   - component: {fileID: 4002833007667839094}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeRearLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 4021428934879817584}
   - component: {fileID: 4010996656349420220}
   - component: {fileID: 4002929692353561618}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FogLight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 4022054371942954248}
   - component: {fileID: 4010561352324972816}
   - component: {fileID: 4002603468019506648}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearLeft_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 4021212612815673406}
   - component: {fileID: 4010603024151460844}
   - component: {fileID: 4002257407894110008}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 4021939041639421446}
   - component: {fileID: 4010601141031714972}
   - component: {fileID: 4002949314545997834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1071,7 +1071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4021678786491594034}
   - component: {fileID: 3906770413904664240}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Civil01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 4021165799626487300}
   - component: {fileID: 4010748022344237604}
   - component: {fileID: 4002325545878863372}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainLight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1277,7 +1277,7 @@ GameObject:
   - component: {fileID: 4021625011800608894}
   - component: {fileID: 4011517073874637330}
   - component: {fileID: 4002834405868721606}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FogLight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 4021638551287341528}
   - component: {fileID: 4010951937948256534}
   - component: {fileID: 4002233693830747052}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Paint_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1443,7 @@ GameObject:
   - component: {fileID: 4021475428795333096}
   - component: {fileID: 4009944277936542038}
   - component: {fileID: 4002033639368472272}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeFrontLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1526,7 +1526,7 @@ GameObject:
   - component: {fileID: 4021580965382871028}
   - component: {fileID: 4011457291532880112}
   - component: {fileID: 4002083646887575384}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ReverseLight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1609,7 +1609,7 @@ GameObject:
   - component: {fileID: 4021876096397968616}
   - component: {fileID: 4010092448772333568}
   - component: {fileID: 4002705680762082460}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontLeft_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1691,7 +1691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4021826886229951116}
   - component: {fileID: 3906430234921993222}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Civil01_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1812,7 +1812,7 @@ GameObject:
   - component: {fileID: 4022217186125127554}
   - component: {fileID: 4011518160202840124}
   - component: {fileID: 4002015758122872670}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1896,7 +1896,7 @@ GameObject:
   - component: {fileID: 4021319193647535306}
   - component: {fileID: 4010964946847881742}
   - component: {fileID: 4002818081897094066}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1987,7 +1987,7 @@ GameObject:
   - component: {fileID: 4021537153084443528}
   - component: {fileID: 4011426244566994946}
   - component: {fileID: 4002577412543727074}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FogLight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2070,7 +2070,7 @@ GameObject:
   - component: {fileID: 4021336682348329176}
   - component: {fileID: 4011403421733276132}
   - component: {fileID: 4002314970398075094}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeRearRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2153,7 +2153,7 @@ GameObject:
   - component: {fileID: 4021365968800863200}
   - component: {fileID: 4009908373832218532}
   - component: {fileID: 4002663846293770626}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateBackTypeUSA_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2236,7 +2236,7 @@ GameObject:
   - component: {fileID: 4022035067643022042}
   - component: {fileID: 4010556515260688816}
   - component: {fileID: 4003669317530362770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Windows_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2319,7 +2319,7 @@ GameObject:
   - component: {fileID: 4021862152025246408}
   - component: {fileID: 4010008597635536346}
   - component: {fileID: 4002771103935245968}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2403,7 +2403,7 @@ GameObject:
   - component: {fileID: 4021438611331365986}
   - component: {fileID: 4010717364827131958}
   - component: {fileID: 4002055085424999070}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Windows_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2487,7 +2487,7 @@ GameObject:
   - component: {fileID: 4021332561526877444}
   - component: {fileID: 4011515364653469514}
   - component: {fileID: 4002960184196662674}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateFrontTypeUSA_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2570,7 +2570,7 @@ GameObject:
   - component: {fileID: 4021512488467611908}
   - component: {fileID: 4010993206528368520}
   - component: {fileID: 4002311871543529548}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2653,7 +2653,7 @@ GameObject:
   - component: {fileID: 4021522070935209280}
   - component: {fileID: 4010774974816547724}
   - component: {fileID: 4002053158317022316}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateBackTypeUSA_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2736,7 +2736,7 @@ GameObject:
   - component: {fileID: 4022049535087940528}
   - component: {fileID: 4010904322813884824}
   - component: {fileID: 4002104280784823782}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ReverseLight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2819,7 +2819,7 @@ GameObject:
   - component: {fileID: 4022191704424312862}
   - component: {fileID: 4011534647141388560}
   - component: {fileID: 4002346207224697100}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DayTimeLight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2902,7 +2902,7 @@ GameObject:
   - component: {fileID: 4021287449877926132}
   - component: {fileID: 4010829618117031812}
   - component: {fileID: 4002805888431834712}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2985,7 +2985,7 @@ GameObject:
   - component: {fileID: 4021403729269829006}
   - component: {fileID: 4011565268967355856}
   - component: {fileID: 4002275734026133072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearSideLight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3068,7 +3068,7 @@ GameObject:
   - component: {fileID: 4021523769308456974}
   - component: {fileID: 4010484018391811740}
   - component: {fileID: 4002134558971574128}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainLight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3151,7 +3151,7 @@ GameObject:
   - component: {fileID: 4021868327549292182}
   - component: {fileID: 4010919666954741698}
   - component: {fileID: 4002843894040790922}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Paint_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3234,7 +3234,7 @@ GameObject:
   - component: {fileID: 4021426161905876572}
   - component: {fileID: 4010853151178373986}
   - component: {fileID: 4003602519722797506}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SteeringWheel_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3315,7 +3315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4022049827148966026}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SteeringWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3348,7 +3348,7 @@ GameObject:
   - component: {fileID: 4021870911914188038}
   - component: {fileID: 4010845002728292280}
   - component: {fileID: 4002675616911128842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateFrontTypeEU_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3430,7 +3430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4022163475013095428}
   - component: {fileID: 3905775609436873228}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Civil01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3552,7 +3552,7 @@ GameObject:
   - component: {fileID: 4021190379621587912}
   - component: {fileID: 4010520370807564388}
   - component: {fileID: 4003095168820981022}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3636,7 +3636,7 @@ GameObject:
   - component: {fileID: 4021485911652131066}
   - component: {fileID: 4010685627970007776}
   - component: {fileID: 4002038704622621980}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeFrontLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3719,7 +3719,7 @@ GameObject:
   - component: {fileID: 4021245948030359070}
   - component: {fileID: 4009994302376364008}
   - component: {fileID: 4002094975237535866}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateFrontTypeUSA_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3802,7 +3802,7 @@ GameObject:
   - component: {fileID: 4022058907591350004}
   - component: {fileID: 4010810276270701826}
   - component: {fileID: 4002595423253904322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeLights_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3885,7 +3885,7 @@ GameObject:
   - component: {fileID: 4021297822744841706}
   - component: {fileID: 4011371591025164658}
   - component: {fileID: 4002908514001913124}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FogLight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3968,7 +3968,7 @@ GameObject:
   - component: {fileID: 4022259539701413974}
   - component: {fileID: 4010944261355474236}
   - component: {fileID: 4002862845965104328}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateFrontTypeEU_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4051,7 +4051,7 @@ GameObject:
   - component: {fileID: 4021840296180456206}
   - component: {fileID: 4011380351259627076}
   - component: {fileID: 4002608594244706072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SteeringWheel_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4136,7 +4136,7 @@ GameObject:
   - component: {fileID: 4025687665133176311}
   - component: {fileID: 4025687665133176264}
   - component: {fileID: 4025687665133176310}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4150,7 +4150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4024605954240374170}
-  m_LocalRotation: {x: -0.0056743356, y: -0.0004123801, z: -0.021294296, w: 0.9997571}
+  m_LocalRotation: {x: -0.0056736334, y: -0.00040888332, z: -0.021292653, w: 0.9997571}
   m_LocalPosition: {x: 54.885788, y: 1.6878793, z: 111.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4333,11 +4333,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8d7a1d23e9f2a48bfb9a655a2de918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerControl: {fileID: 0}
   _endingAnimator: {fileID: 0}
   _disabledObjects:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  _carLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &4024613176601110214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4349,7 +4352,7 @@ GameObject:
   - component: {fileID: 4021382465038673710}
   - component: {fileID: 4011372062438313060}
   - component: {fileID: 4002765138421452288}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeLights_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4432,7 +4435,7 @@ GameObject:
   - component: {fileID: 4021939061655944846}
   - component: {fileID: 4010825127860915554}
   - component: {fileID: 4002013595185217890}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateBackTypeEU_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4515,7 +4518,7 @@ GameObject:
   - component: {fileID: 4021433652976963996}
   - component: {fileID: 4010091854429125714}
   - component: {fileID: 4002051350868445216}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ReverseLight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4598,7 +4601,7 @@ GameObject:
   - component: {fileID: 4021632170402949892}
   - component: {fileID: 4009945254722808040}
   - component: {fileID: 4002270779076379310}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeRearLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4681,7 +4684,7 @@ GameObject:
   - component: {fileID: 4021931676666884194}
   - component: {fileID: 4010055725504908404}
   - component: {fileID: 4003009793833206658}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeLights_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4764,7 +4767,7 @@ GameObject:
   - component: {fileID: 4021965615633478634}
   - component: {fileID: 4011475352090951788}
   - component: {fileID: 4002395083910242882}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4848,7 +4851,7 @@ GameObject:
   - component: {fileID: 4021482155884743186}
   - component: {fileID: 4010906596156889126}
   - component: {fileID: 4002976702866949444}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4939,7 +4942,7 @@ GameObject:
   - component: {fileID: 4021543392051189574}
   - component: {fileID: 4010606075510204522}
   - component: {fileID: 4003036401607538480}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interior_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5022,7 +5025,7 @@ GameObject:
   - component: {fileID: 4022050627719894748}
   - component: {fileID: 4010623755732319904}
   - component: {fileID: 4003104847419887562}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontRight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5105,7 +5108,7 @@ GameObject:
   - component: {fileID: 4021446979045486820}
   - component: {fileID: 4011421016996003786}
   - component: {fileID: 4002237090521411206}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DayTimeLight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5188,7 +5191,7 @@ GameObject:
   - component: {fileID: 4021534952906750854}
   - component: {fileID: 4010921281827867326}
   - component: {fileID: 4002766133729585660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5272,7 +5275,7 @@ GameObject:
   - component: {fileID: 4022167762292837464}
   - component: {fileID: 4010818440987779690}
   - component: {fileID: 4003061450316938168}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WipersLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5355,7 +5358,7 @@ GameObject:
   - component: {fileID: 4021795280651987632}
   - component: {fileID: 4011570713803308304}
   - component: {fileID: 4002744096940518008}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateFrontTypeUSA_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5438,7 +5441,7 @@ GameObject:
   - component: {fileID: 4021754584593475152}
   - component: {fileID: 4011016473870659518}
   - component: {fileID: 4002735003875418040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DayTimeLight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5521,7 +5524,7 @@ GameObject:
   - component: {fileID: 4021535503975947400}
   - component: {fileID: 4011533964773425026}
   - component: {fileID: 4003045725642508506}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5605,7 +5608,7 @@ GameObject:
   - component: {fileID: 4021840573882846456}
   - component: {fileID: 4011477762736887264}
   - component: {fileID: 4002166227143542466}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainLight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5688,7 +5691,7 @@ GameObject:
   - component: {fileID: 4021217646929488274}
   - component: {fileID: 4010966576506698330}
   - component: {fileID: 4002663845131238588}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelFrontLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5772,7 +5775,7 @@ GameObject:
   - component: {fileID: 4021541607840440200}
   - component: {fileID: 4010667809346471990}
   - component: {fileID: 4002940075618134004}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5854,7 +5857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021863732003718294}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5908,7 +5911,7 @@ GameObject:
   - component: {fileID: 4021253327570967532}
   - component: {fileID: 4009924463055180654}
   - component: {fileID: 4002914098048180142}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearSideLight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5991,7 +5994,7 @@ GameObject:
   - component: {fileID: 4021785514101752818}
   - component: {fileID: 4010572847921002134}
   - component: {fileID: 4002656079128492322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WipersRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6074,7 +6077,7 @@ GameObject:
   - component: {fileID: 4021833720908113334}
   - component: {fileID: 4010720433258349200}
   - component: {fileID: 4002128635544375912}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalLeft_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6157,7 +6160,7 @@ GameObject:
   - component: {fileID: 4021590051301655006}
   - component: {fileID: 4010765272904740812}
   - component: {fileID: 4002657595798645062}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ReverseLight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6240,7 +6243,7 @@ GameObject:
   - component: {fileID: 4021615633778551492}
   - component: {fileID: 4010904940870673796}
   - component: {fileID: 4003107934230117058}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateFrontTypeEU_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6323,7 +6326,7 @@ GameObject:
   - component: {fileID: 4021223108397988730}
   - component: {fileID: 4010798787934808414}
   - component: {fileID: 4003676236767186488}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6406,7 +6409,7 @@ GameObject:
   - component: {fileID: 4022078296575564550}
   - component: {fileID: 4009928973968682412}
   - component: {fileID: 4002130036921117472}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6497,7 +6500,7 @@ GameObject:
   - component: {fileID: 4021225978657313122}
   - component: {fileID: 4009940507416311124}
   - component: {fileID: 4002115940045519492}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeRearRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6580,7 +6583,7 @@ GameObject:
   - component: {fileID: 4021190388622950184}
   - component: {fileID: 4010557368262485912}
   - component: {fileID: 4002646362974549734}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateBackTypeEU_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6663,7 +6666,7 @@ GameObject:
   - component: {fileID: 4021571782156182690}
   - component: {fileID: 4009926231730994148}
   - component: {fileID: 4002631246821146708}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Paint_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6744,7 +6747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021935401351353610}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6798,7 +6801,7 @@ GameObject:
   - component: {fileID: 4022145244150663580}
   - component: {fileID: 4010080300917476676}
   - component: {fileID: 4003122005634756212}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DayTimeLight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6881,7 +6884,7 @@ GameObject:
   - component: {fileID: 4022180491104226072}
   - component: {fileID: 4010859957758631736}
   - component: {fileID: 4002655333016308794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6967,7 +6970,7 @@ GameObject:
   - component: {fileID: 4021440283268372374}
   - component: {fileID: 4011006324373981722}
   - component: {fileID: 4003017634358162388}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7051,7 +7054,7 @@ GameObject:
   - component: {fileID: 4021823197842867360}
   - component: {fileID: 4010574127193982740}
   - component: {fileID: 4002345645577515270}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interior_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7134,7 +7137,7 @@ GameObject:
   - component: {fileID: 4021394065220875846}
   - component: {fileID: 4011556371887390412}
   - component: {fileID: 4002808394415190074}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WipersRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7217,7 +7220,7 @@ GameObject:
   - component: {fileID: 4021942034825753642}
   - component: {fileID: 4011566931707616472}
   - component: {fileID: 4002175501178108924}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeRearRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7300,7 +7303,7 @@ GameObject:
   - component: {fileID: 4022173384052165446}
   - component: {fileID: 4009933651067180238}
   - component: {fileID: 4002616644022556896}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7383,7 +7386,7 @@ GameObject:
   - component: {fileID: 4021861334055690998}
   - component: {fileID: 4011449463541655692}
   - component: {fileID: 4003033199570284124}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SteeringWheel_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7466,7 +7469,7 @@ GameObject:
   - component: {fileID: 4022236851536039244}
   - component: {fileID: 4010919317494666530}
   - component: {fileID: 4002636536289773860}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7549,7 +7552,7 @@ GameObject:
   - component: {fileID: 4021319975708588260}
   - component: {fileID: 4011460378821233736}
   - component: {fileID: 4002920808596334040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7632,7 +7635,7 @@ GameObject:
   - component: {fileID: 4021371032243436986}
   - component: {fileID: 4010642166333833846}
   - component: {fileID: 4002336285625608132}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalRight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7715,7 +7718,7 @@ GameObject:
   - component: {fileID: 4022174745596940070}
   - component: {fileID: 4011335576584232030}
   - component: {fileID: 4002120451919483284}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurnSignalLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7798,7 +7801,7 @@ GameObject:
   - component: {fileID: 4021235340690332434}
   - component: {fileID: 4011425533259328154}
   - component: {fileID: 4002575663576484392}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7884,7 +7887,7 @@ GameObject:
   - component: {fileID: 4021162019895119630}
   - component: {fileID: 4011382247211138844}
   - component: {fileID: 4002795502940492444}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interior_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7967,7 +7970,7 @@ GameObject:
   - component: {fileID: 4021846731591792428}
   - component: {fileID: 4010825382841917294}
   - component: {fileID: 4002765293982597592}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WipersRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8050,7 +8053,7 @@ GameObject:
   - component: {fileID: 4021250287003236424}
   - component: {fileID: 4011518283280257756}
   - component: {fileID: 4002819242051949660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WipersLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8133,7 +8136,7 @@ GameObject:
   - component: {fileID: 4021487294503974438}
   - component: {fileID: 4010530624930468478}
   - component: {fileID: 4002033040258941794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8216,7 +8219,7 @@ GameObject:
   - component: {fileID: 4022266335583532194}
   - component: {fileID: 4010643605959055080}
   - component: {fileID: 4002395124219760798}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeRearLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8299,7 +8302,7 @@ GameObject:
   - component: {fileID: 4021840088409712714}
   - component: {fileID: 4009909089752315306}
   - component: {fileID: 4003642100721140030}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearRight_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8382,7 +8385,7 @@ GameObject:
   - component: {fileID: 4021282366892468946}
   - component: {fileID: 4010695888310234242}
   - component: {fileID: 4003090286878840212}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheelRearLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8466,7 +8469,7 @@ GameObject:
   - component: {fileID: 4021365710556398130}
   - component: {fileID: 4010086018901353908}
   - component: {fileID: 4002807749028826466}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Windows_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8550,7 +8553,7 @@ GameObject:
   - component: {fileID: 4021570356470037520}
   - component: {fileID: 4010723058383769938}
   - component: {fileID: 4002985886526591582}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RearSideLight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8633,7 +8636,7 @@ GameObject:
   - component: {fileID: 4022011409824284118}
   - component: {fileID: 4010927232158597462}
   - component: {fileID: 4003020067865265042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Windows_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8717,7 +8720,7 @@ GameObject:
   - component: {fileID: 4022055174131102970}
   - component: {fileID: 4009917750899249466}
   - component: {fileID: 4002187790316505130}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainLight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8798,7 +8801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4022020695804294084}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8840,7 +8843,7 @@ GameObject:
   - component: {fileID: 4022202668354793664}
   - component: {fileID: 4010596346228659268}
   - component: {fileID: 4003027961305678692}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WipersLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8923,7 +8926,7 @@ GameObject:
   - component: {fileID: 4021350926546178774}
   - component: {fileID: 4010472476190583782}
   - component: {fileID: 4003055478993366684}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateBackTypeUSA_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9006,7 +9009,7 @@ GameObject:
   - component: {fileID: 4021548454440087492}
   - component: {fileID: 4010589449817584156}
   - component: {fileID: 4002794369849461144}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interior_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9089,7 +9092,7 @@ GameObject:
   - component: {fileID: 4021261153351892666}
   - component: {fileID: 4010011653504675918}
   - component: {fileID: 4003629910358294616}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Paint_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9172,7 +9175,7 @@ GameObject:
   - component: {fileID: 4022256580778418942}
   - component: {fileID: 4010599897461981970}
   - component: {fileID: 4002669446396602236}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrakeFrontRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9255,7 +9258,7 @@ GameObject:
   - component: {fileID: 4021381030034529930}
   - component: {fileID: 4010984693495886106}
   - component: {fileID: 4002848215050129538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateBackTypeEU_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
