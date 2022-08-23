@@ -4,6 +4,7 @@ using UnityEngine.InputSystem.Interactions;
 
 public class StandardControlState : ControlState
 {
+    public Action OnNotepadOpen;
     public Action OnInventoryOpen;
 
     private Camera _playerCamera;

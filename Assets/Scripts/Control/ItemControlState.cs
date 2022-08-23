@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.Interactions;
 public class ItemControlState : StandardControlState
 {
     public Action<IInspectable> InspectEvent;
+    public Action Reading;
 
     private bool _dragItem = false;
 
@@ -46,7 +47,11 @@ public class ItemControlState : StandardControlState
         Input.Player.Use.performed += context =>
         {
             if (context.interaction is PressInteraction)
+            {
                 TakeItem();
+                Read();
+            }
+
         };
     }
 
@@ -55,6 +60,19 @@ public class ItemControlState : StandardControlState
         try
         {
             Player.TakeObject();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(exception);
+        }
+    }
+
+    private void Read()
+    {
+        try
+        {
+            var readText = Player.Vision.InteractiveItem.Readable;
+            readText.Read();
         }
         catch (Exception exception)
         {

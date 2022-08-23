@@ -30,8 +30,7 @@ public class HintUI : MonoBehaviour
         TryShowHint(interactiveItem.Takeable, _takeObjectHintText.gameObject);
         TryShowHint(interactiveItem.Inspectable, _inspectObjectHintText.gameObject);
         TryShowHint(interactiveItem.Portable, _portableObjectHint.gameObject);
-        TryShowHint(interactiveItem.Learn, _learnObjectHintText.gameObject);
-        TryShowHint(interactiveItem.Reading, _readingObjectHintText.gameObject);
+        TryShowHint(interactiveItem.Useable, _readingObjectHintText.gameObject);
 
         if (_inspectObjectHintText.gameObject.activeSelf || _takeObjectHintText.gameObject.activeSelf || _learnObjectHintText.gameObject.activeSelf
             || _readingObjectHintText.gameObject.activeSelf)

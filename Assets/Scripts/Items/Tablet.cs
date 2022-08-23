@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Tablet : InteractiveItem,IUseable
+public class Tablet : InteractiveItem, IUseable
 {
     [SerializeField] private ItemSO _itemData;
     [SerializeField] private Rigidbody _rigidbody;
@@ -11,15 +9,9 @@ public class Tablet : InteractiveItem,IUseable
     [SerializeField] private Light _lightGreen;
     private ITakeable _takeable;
     public override IPortable Portable => null;
-
     public override ITakeable Takeable => _takeable;
-
     public override IInspectable Inspectable => null;
-
-    public override ILearn Learn => null;
-
-    public override IReading Reading => null;
-
+    public override IReadable Readable => null;
     public override IUseable Useable => this;
     public ItemSO ItemData => _itemData;
 
@@ -27,6 +19,7 @@ public class Tablet : InteractiveItem,IUseable
     {
         _takeable = new TakeableItem(gameObject, _rigidbody, _itemData);
     }
+
     public void Use()
     {
         _cameraMain.enabled = !_cameraMain.enabled;

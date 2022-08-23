@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Notepad : MonoBehaviour, IReading
+public class Notepad : MonoBehaviour, IReadable
 {
     [SerializeField] private GameObject _textCanvas;
     [SerializeField] private PlayerControl _playerControl;
@@ -69,5 +69,10 @@ public class Notepad : MonoBehaviour, IReading
     private void OnDisable()
     {
         _userInput.Disable();
+    }
+
+    public void Read()
+    {
+        throw new System.NotImplementedException();
     }
 }

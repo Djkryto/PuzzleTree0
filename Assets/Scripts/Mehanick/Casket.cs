@@ -97,7 +97,6 @@ public class Casket : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player))
         {
-            print("Exit");
             _playerInput.Player.Use.performed -= context => _playerControl.SetCasketControlState(_layer);
             _playerInput.Disable();
         }
