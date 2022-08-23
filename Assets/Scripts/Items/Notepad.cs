@@ -1,78 +1,36 @@
 using UnityEngine;
 
-public class Notepad : MonoBehaviour, IReadable
+public class Notepad : InteractiveItem, IReadable
 {
     [SerializeField] private GameObject _textCanvas;
-    [SerializeField] private PlayerControl _playerControl;
-    [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private bool _isAddUseContext;
     [SerializeField] private AudioSource _soundList;
-    private Camera _camera;
-    private UserInput _userInput;
     private bool _isRead;
+
+    public override IPortable Portable => null;
+    public override ITakeable Takeable => null;
+    public override IInspectable Inspectable => null;
+    public override IReadable Readable => this;
+    public override IUseable Useable => null;
 
     private void Awake()
     {
-        _userInput = new UserInput();
         _soundList = GameObject.Find("SoundList").GetComponent<AudioSource>();
-        if (_playerControl == null)
-            _playerControl = FindObjectOfType<PlayerControl>();
-
-        if (_isAddUseContext)
-        {
-            GameObject[] notes = GameObject.FindGameObjectsWithTag("List");
-            foreach( var note in notes)
-            {
-                _userInput.Player.Use.performed += context => note.GetComponent<Notepad>().CheckNotepad();
-            }
-        }
     }
 
-    private void OnEnable()
+    public void ReadText()
     {
-        _userInput.Enable();
+        ShowText(true);
     }
 
-    private void Start()
+    public void CloseText()
     {
-        _camera = Camera.main;
+        ShowText(false);
     }
 
-    public void CheckNotepad()
+    private void ShowText(bool state)
     {
-        Ray rayCamera = new Ray(_camera.transform.position, _camera.transform.forward);
-
-        if (Physics.Raycast(rayCamera, out RaycastHit hit, 10))
-        {
-            if (hit.collider.TryGetComponent(out Notepad notepad) )
-                if(notepad.enabled)
-                    notepad.UseNotepad();
-        }
-    }
-
-    public void UseNotepad()
-    {
-        _isRead = !_isRead;
-        _textCanvas.SetActive(_isRead);
-        _playerControl.SetControlLockState();
-        _playerControl.ControlState.OnExitState += CloseNotepad;
-        _soundList.Play();
-    }
-
-    private void CloseNotepad()
-    {
-        _isRead = false;
+        _isRead = state;
         _textCanvas.SetActive(_isRead);
         _soundList.Play();
-    }
-
-    private void OnDisable()
-    {
-        _userInput.Disable();
-    }
-
-    public void Read()
-    {
-        throw new System.NotImplementedException();
     }
 }

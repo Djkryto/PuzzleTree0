@@ -1,4 +1,5 @@
 public interface IReadable
 {
-    public void Read();
+    public void ReadText();
+    public void CloseText();
 }

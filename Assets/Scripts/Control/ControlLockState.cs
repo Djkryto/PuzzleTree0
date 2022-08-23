@@ -2,10 +2,10 @@
 {
     public ControlLockState(Player player) : base(player)
     {
-        Input.Player.Escape.performed += context => ControlUnclock();
+        Input.Player.Escape.performed += context => ControlUnlock();
     }
 
-    public void ControlUnclock()
+    public void ControlUnlock()
     {
         OnExitState?.Invoke();
     }

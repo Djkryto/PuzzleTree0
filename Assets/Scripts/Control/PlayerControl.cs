@@ -17,28 +17,12 @@ public class PlayerControl : MonoBehaviour
     public HotbarView HotbarView => _hotbar;
 
     private void Start()
-    {
-        var standardControl = new StandardControlState(_player, _playerCamera, _hotbar);
-        standardControl.OnInventoryOpen += SetInventoryControlState;
-        _controlState = standardControl;
-        _controlState.OnExitState += SetControlLockState;
+    {;
         _player.Vision.Detected += SetItemControlState;
         _player.Vision.Undetected += ResetControl;
-        _controlState.EnableControl();
         _decelerationEnumerator = PlayerStoping();
+        ResetControl();
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void SetCustomState(ControlState controlState)
-    {
-        if(_controlState != controlState)
-        {
-            _controlState.DisableControl();
-            _controlState = controlState;
-            _controlState.EnableControl();
-            _controlState.OnExitState += ResetControl;
-            StartCoroutine(_decelerationEnumerator);
-        }
     }
 
     public void SetControlLockState()
@@ -49,14 +33,16 @@ public class PlayerControl : MonoBehaviour
 
     public void SetItemControlState()
     {
-        if(!(_controlState is ItemControlState))
-        {
-            _controlState.DisableControl();
-            var itemControlState = new ItemControlState(_player, _playerCamera, _hotbar);
-            itemControlState.InspectEvent += SetObjectInspectorState;
-            _controlState = itemControlState;
-            _controlState.EnableControl();
-        }
+        var itemControlState = new ItemControlState(_player, _playerCamera, _hotbar);
+        itemControlState.InspectEvent += SetObjectInspectorState;
+        itemControlState.ReadingText += SetReadableControlState;
+        SetCustomState(itemControlState);
+    }
+
+    public void SetReadableControlState()
+    {
+        _cinemachineInputProvider.enabled = false;
+        SetCustomState(new ReadableControlState(_player));
     }
 
     public void SetCasketControlState(LayerMask controlObjectLayer)
@@ -84,11 +70,23 @@ public class PlayerControl : MonoBehaviour
         SetCustomState(inventoryControlState);
     }
 
+    public void SetCustomState(ControlState controlState)
+    {
+        if (_controlState.GetType() != controlState.GetType())
+        {
+            _controlState.DisableControl();
+            _controlState = controlState;
+            _controlState.EnableControl();
+            _controlState.OnExitState += ResetControl;
+            StartCoroutine(_decelerationEnumerator);
+        }
+    }
+
     public void ResetControl()
     {
         _cinemachineInputProvider.enabled = true;
-        _controlState.DisableControl();
         StopCoroutine(_decelerationEnumerator);
+        _controlState?.DisableControl();
         var standardControl = new StandardControlState(_player, _playerCamera, _hotbar);
         standardControl.OnInventoryOpen += SetInventoryControlState;
         _controlState = standardControl;
