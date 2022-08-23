@@ -502,7 +502,7 @@ MonoBehaviour:
   _itemContainer: {fileID: 3245321868799039629}
   _backgroundContainer: {fileID: 3245321869041990553}
   _draggingParent: {fileID: 3245321870015532988}
-  _backgroundCellTemplate: {fileID: 7697331038749262681, guid: ff68f0bedfcad404d8480cfbdb88a85f,
+  _backgroundCellTemplate: {fileID: 7697331038749262681, guid: 72430747c69f42c47b0a99e381981570,
     type: 3}
   _player: {fileID: 0}
   _hotbarSize: 3

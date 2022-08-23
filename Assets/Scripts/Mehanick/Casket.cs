@@ -15,9 +15,9 @@ public class Casket : MonoBehaviour
     [SerializeField] private Material _materialRed;
     [SerializeField] private Material _materialWhite;
 
-    [SerializeField] private Text _textCodeNotepad;
+    [SerializeField] private ReadableItem _textCodeNotepad;
 
-    [SerializeField] private Notepad _notepad;
+    [SerializeField] private ReadableItem _notepad;
 
     [SerializeField] private LearnObject _learnObject;
 
@@ -39,8 +39,11 @@ public class Casket : MonoBehaviour
         _notepad.enabled = false;
         SetRandomTargetCombination();
 
+        string hintText = "";
         for (int i = 0; i < _targetCombination.Count; i++)
-            _textCodeNotepad.text += _targetCombination[i] + "\n";
+            hintText += _targetCombination[i] + "\n";
+
+        _textCodeNotepad.SetText(hintText);
 
         foreach (var button in _buttons)
         {
