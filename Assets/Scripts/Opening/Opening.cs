@@ -16,24 +16,9 @@ public class Opening : MonoBehaviour
 
     private void Awake()
     {
-        _cinemachineInputProvider.enabled = false;
+        _cinemachineInputProvider.enabled = true;
         _wheelExplosion.OnExplosion += () => { StartCoroutine(ScenarioEnd()); };
         Cursor.visible = false;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(ScreenShowing());
-    }
-
-    private IEnumerator ScreenShowing()
-    {
-        while (_blackScreenImage.color.a > 0f)
-        {
-            ShowingScreenImage(0f);
-            yield return null;
-        }
-        _cinemachineInputProvider.enabled = true;
     }
 
     private void ShowingScreenImage(float aplha)
@@ -44,13 +29,6 @@ public class Opening : MonoBehaviour
         _blackScreenImage.color = newColor;
     }
 
-    private void StartGame()
-    {
-        _carStaticPrefab.transform.position = transform.position;
-        _carStaticPrefab.transform.rotation = transform.rotation;
-        _spawn.SpawnPlayer();
-    }
-
     private IEnumerator ScenarioEnd()
     {
         float timer = 0f;
@@ -59,17 +37,28 @@ public class Opening : MonoBehaviour
             timer += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        StartCoroutine(ScreenHide());
+        StartCoroutine(StartGame());
     }
 
-    private IEnumerator ScreenHide()
+    private IEnumerator StartGame()
     {
-        _cinemachineInputProvider.enabled = false;
         while (_blackScreenImage.color.a < 1f)
         {
             ShowingScreenImage(1f);
             yield return null;
         }
-        Destroy(this);
+        _carStaticPrefab.gameObject.SetActive(true);
+        StartCoroutine(ScreenShowing());
+    }
+
+    private IEnumerator ScreenShowing()
+    {
+        gameObject.SetActive(false);
+        _spawn.SpawnPlayer();
+        while (_blackScreenImage.color.a > 0f)
+        {
+            ShowingScreenImage(0f);
+            yield return null;
+        }
     }
 }

@@ -63,6 +63,10 @@ Material:
     - _DstBlend: 10
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
+    - _FoamAmount: 1
+    - _FoamCutOff: 1
+    - _FoamScale: 100
+    - _FoamSpeed: 1
     - _OpaqueCullMode: 2
     - _RayTracing: 0
     - _ReceivesSSR: 1
@@ -74,7 +78,7 @@ Material:
     - _RefractionStrngth: 2
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
-    - _Smoothness: 1
+    - _Smoothness: 0.786
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 0
@@ -102,9 +106,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _DeepWater: {r: 0.34669802, g: 0.46328962, b: 0.5, a: 0.972549}
+    - _DeepWater: {r: 0.346698, g: 0.46328956, b: 0.5, a: 0.49803922}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _RefractionScale: {r: 1, g: 1, b: 0, a: 0}
     - _ShallowWater: {r: 0.50809896, g: 0.5940058, b: 0.62264144, a: 0.56078434}
   m_BuildTextureStacks: []
