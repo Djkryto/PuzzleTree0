@@ -1,7 +1,6 @@
 using Cinemachine;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Opening : MonoBehaviour
@@ -10,6 +9,9 @@ public class Opening : MonoBehaviour
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     [SerializeField] private WheelExplosion _wheelExplosion;
     [SerializeField] private int _startSceneIndex;
+    [SerializeField] private Spawn _spawn;
+    [SerializeField] private Car _carStaticPrefab;
+    [SerializeField] private GameObject _gameplayUIGroup;
     private float _durationSceneInSeconds = 3f;
 
     private void Awake()
@@ -42,6 +44,13 @@ public class Opening : MonoBehaviour
         _blackScreenImage.color = newColor;
     }
 
+    private void StartGame()
+    {
+        _carStaticPrefab.transform.position = transform.position;
+        _carStaticPrefab.transform.rotation = transform.rotation;
+        _spawn.SpawnPlayer();
+    }
+
     private IEnumerator ScenarioEnd()
     {
         float timer = 0f;
@@ -61,6 +70,6 @@ public class Opening : MonoBehaviour
             ShowingScreenImage(1f);
             yield return null;
         }
-        SceneLoader.SwitchToScene(_startSceneIndex);
+        Destroy(this);
     }
 }
