@@ -63,8 +63,14 @@ public class StandardControlState : ControlState
 
     public void TiltPlayerTorso()
     {
+        var mouseLook = Input.Player.MouseLook.ReadValue<Vector2>();
+        TiltPlayerTorso(mouseLook);
+    }
+
+    public void TiltPlayerTorso(Vector2 mouseLook)
+    {
         var rayCenterCamera = GetRayFromCameraCenter();
-        var mouseMoved = Input.Player.MouseLook.ReadValue<Vector2>() != Vector2.zero;
+        var mouseMoved = mouseLook != Vector2.zero;
         if (mouseMoved)
         {
             Player.LookAt(rayCenterCamera);

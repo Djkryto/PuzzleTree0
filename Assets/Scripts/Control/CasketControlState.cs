@@ -3,6 +3,7 @@
 public class CasketControlState : ControlLockState
 {
     private Camera _camera;
+    private StandardControlState _standardControl;
     private LayerMask _controlObjectLayer;
 
     public CasketControlState(Player player, Camera camera, LayerMask controlObjectLayer) : base(player)
@@ -10,6 +11,9 @@ public class CasketControlState : ControlLockState
         _camera = camera;
         _controlObjectLayer = controlObjectLayer;
         Input.Player.LMB.performed += context => ClickButton();
+        _standardControl = new StandardControlState(player, camera, null);
+        Input.Player.MouseLook.performed += context => Player.Rotate(_camera.transform.eulerAngles.y);
+        Input.Player.MouseLook.performed += context => _standardControl.TiltPlayerTorso(context.ReadValue<Vector2>());
     }
 
     private void ClickButton()
