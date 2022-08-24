@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         itemInWorld.Takeable.DropItem();
         _inventory.TryRemoveItem(itemInWorld);
         _takeSound.Play();
-        DropedItem.Invoke(itemInWorld);
+        DropedItem?.Invoke(itemInWorld);
     }
 
     public void TakeObject()
