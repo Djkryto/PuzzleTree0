@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Action<InteractiveItem> TakedItem;
+    public Action<InteractiveItem> DraggedItem;
+    public Action<InteractiveItem> DropedItem;
+
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private Transform _aimTarget;
     [SerializeField] private Animator _playerAnimator;
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour
         itemInWorld.Takeable.DropItem();
         _inventory.TryRemoveItem(itemInWorld);
         _takeSound.Play();
+        DropedItem?.Invoke(itemInWorld);
     }
 
     public void TakeObject()
@@ -64,6 +69,7 @@ public class Player : MonoBehaviour
                 _currentItemInHand = interactiveItem;
                 _currentItemInHand.gameObject.SetActive(true);
             }
+            TakedItem.Invoke(interactiveItem);
 
             _takeSound.Play();
         }
@@ -105,6 +111,7 @@ public class Player : MonoBehaviour
         {
             var interactiveItem = _playerVision.InteractiveItem;
             interactiveItem.Portable.DropItem();
+            DropedItem.Invoke(interactiveItem);
         }
         catch (Exception exception)
         {

@@ -1,7 +1,6 @@
 using Cinemachine;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Opening : MonoBehaviour
@@ -10,28 +9,16 @@ public class Opening : MonoBehaviour
     [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     [SerializeField] private WheelExplosion _wheelExplosion;
     [SerializeField] private int _startSceneIndex;
+    [SerializeField] private Spawn _spawn;
+    [SerializeField] private Car _carStaticPrefab;
+    [SerializeField] private GameObject _gameplayUIGroup;
     private float _durationSceneInSeconds = 3f;
 
     private void Awake()
     {
-        _cinemachineInputProvider.enabled = false;
+        _cinemachineInputProvider.enabled = true;
         _wheelExplosion.OnExplosion += () => { StartCoroutine(ScenarioEnd()); };
         Cursor.visible = false;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(ScreenShowing());
-    }
-
-    private IEnumerator ScreenShowing()
-    {
-        while (_blackScreenImage.color.a > 0f)
-        {
-            ShowingScreenImage(0f);
-            yield return null;
-        }
-        _cinemachineInputProvider.enabled = true;
     }
 
     private void ShowingScreenImage(float aplha)
@@ -50,17 +37,28 @@ public class Opening : MonoBehaviour
             timer += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        StartCoroutine(ScreenHide());
+        StartCoroutine(StartGame());
     }
 
-    private IEnumerator ScreenHide()
+    private IEnumerator StartGame()
     {
-        _cinemachineInputProvider.enabled = false;
         while (_blackScreenImage.color.a < 1f)
         {
             ShowingScreenImage(1f);
             yield return null;
         }
-        SceneLoader.SwitchToScene(_startSceneIndex);
+        _carStaticPrefab.gameObject.SetActive(true);
+        StartCoroutine(ScreenShowing());
+    }
+
+    private IEnumerator ScreenShowing()
+    {
+        gameObject.SetActive(false);
+        _spawn.SpawnPlayer();
+        while (_blackScreenImage.color.a > 0f)
+        {
+            ShowingScreenImage(0f);
+            yield return null;
+        }
     }
 }

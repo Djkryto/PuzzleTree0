@@ -17,8 +17,7 @@ public class Flashlight : InteractiveItem, IInspectable, IUseable
     public override ITakeable Takeable => _takeable;
     public override IInspectable Inspectable => this;
     public override IUseable Useable => this;
-    public override ILearn Learn => null;
-    public override IReading Reading => null;
+    public override IReadable Readable => null;
 
     private void Awake()
     {

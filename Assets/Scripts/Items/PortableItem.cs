@@ -11,8 +11,7 @@ public class PortableItem : InteractiveItem, IPortable
     public override ITakeable Takeable => null;
     public override IInspectable Inspectable => null;
     public override IUseable Useable => null;
-    public override ILearn Learn => null;
-    public override IReading Reading => null;
+    public override IReadable Readable => null;
     public Transform ItemTransform => null;
 
 

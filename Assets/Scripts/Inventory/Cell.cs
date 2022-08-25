@@ -59,13 +59,13 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_cellImage != default)
+        if (_item != null)
             transform.SetParent(_draggingParent);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (_cellImage != default)
+        if (_item != null)
             transform.position = eventData.position;
     }
 
