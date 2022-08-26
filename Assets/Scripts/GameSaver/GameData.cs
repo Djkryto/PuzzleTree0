@@ -5,10 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class GameData : ScriptableObject
 {
-    public Dictionary<string, IData> Data;
+    public Dictionary<string, IData> Data;  
 
     [SerializeField] private List<ItemReference> ItemReference;
-
     // public void SaveData()
     // {
 

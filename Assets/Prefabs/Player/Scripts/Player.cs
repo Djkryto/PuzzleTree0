@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Inventory _inventory;
     [SerializeField] private int _inventorySize;
     [SerializeField] private Transform _hand;
-    [SerializeField] private AudioSource _takeSound;
+    [SerializeField] private PlayerSound _playerSound;
     private InteractiveItem _currentItemInHand;
     private PlayerMovement _playerMovement;
     private PlayerRotator _playerRotator;
@@ -45,8 +45,10 @@ public class Player : MonoBehaviour
         itemInWorld.transform.SetParent(null);
         itemInWorld.gameObject.SetActive(true);
         itemInWorld.Takeable.DropItem();
+
+        _playerSound.PlayTakeSound();
+
         _inventory.TryRemoveItem(itemInWorld);
-        _takeSound.Play();
         DropedItem?.Invoke(itemInWorld);
     }
 
@@ -64,6 +66,8 @@ public class Player : MonoBehaviour
             itemTransform.rotation = _hand.rotation;
             itemTransform.position = _hand.position;
 
+            _playerSound.PlayTakeSound();
+
             if (_currentItemInHand == null)
             {
                 _currentItemInHand = interactiveItem;
@@ -71,7 +75,6 @@ public class Player : MonoBehaviour
             }
             TakedItem.Invoke(interactiveItem);
 
-            _takeSound.Play();
         }
         catch(Exception exception)
         {

@@ -4,7 +4,9 @@ public class PlayerSound : MonoBehaviour
 {
     [SerializeField] private AudioSource _rightLegSource;
     [SerializeField] private AudioSource _leftLegSource;
+    [SerializeField] private AudioSource _playerSource;
     [SerializeField] private AudioClip _stepSound;
+    [SerializeField] private AudioClip _takeSound;
     private AudioClip _defaultSound;
 
     public void Awake()
@@ -38,5 +40,10 @@ public class PlayerSound : MonoBehaviour
     {
         if (!_leftLegSource.isPlaying)
             _leftLegSource.PlayOneShot(_stepSound);
+    }
+
+    public void PlayTakeSound()
+    {
+        _playerSource.PlayOneShot(_takeSound);
     }
 }
