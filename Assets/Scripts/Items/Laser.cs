@@ -5,17 +5,17 @@ using UnityEngine;
 public class Laser : InteractiveItem, IUseable
 {
     [SerializeField] private ItemSO _itemData;
-    [SerializeField] private GameObject _laserLight;
-    [SerializeField] private Transform _laserSourceTransform;
+    [SerializeField] private Transform _rayStart;
+    [SerializeField] private GameObject _rayVisualization;
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private GameObject _laserLine;
-    [SerializeField] AudioSource _audioSource;
-    [SerializeField] private Crystal[] _crystals;
-    [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private Camera _cameraNight;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private float _laserDistance;
+    private Camera _camera;
+    private IRefracted _hitObject;
     private ITakeable _takeable;
-    private bool _laserIsActive = false;
     private IEnumerator _laserWorking;
+    private bool _laserIsActive = false;
+
     public override IPortable Portable => null;
     public override ITakeable Takeable => _takeable;
     public override IInspectable Inspectable => null;
@@ -27,47 +27,43 @@ public class Laser : InteractiveItem, IUseable
     {
         _takeable = new TakeableItem(gameObject, _rigidbody, _itemData);
         _laserWorking = ActivateLaser();
+        _camera = Camera.main;
     }
 
     public void Use()
     {
         _audioSource.Play();
         _laserIsActive = !_laserIsActive;
-        ActivatePointCrystal();
+        _rayVisualization.SetActive(_laserIsActive);
         if (_laserIsActive)
             StartCoroutine(_laserWorking);
         else
+        {
             StopCoroutine(_laserWorking);
-
-        _laserLight.SetActive(_laserIsActive);
-        _laserLine.SetActive(_laserIsActive);
+            _hitObject?.ClearRefraction();
+        }
     }
 
     private IEnumerator ActivateLaser()
     {
         while(true)
         {
-            Ray ray = new Ray(transform.position, transform.right);
-            RaycastHit hit;
+            Vector3 cameraCenter = new Vector3(_camera.pixelWidth / 2f, _camera.pixelHeight / 2f);
+            
+            Ray ray = _camera.ScreenPointToRay(cameraCenter);
 
-            if (Physics.Raycast(ray, out hit))
+            _hitObject?.ClearRefraction();
+            if (Physics.Raycast(ray, out RaycastHit hit, _laserDistance))
             {
-                _laserLight.transform.position = hit.point;
-                if (_cameraNight.enabled)
+
+                if (hit.collider.TryGetComponent(out _hitObject))
                 {
-                    _lineRenderer.SetPosition(0, transform.position);
-                    _lineRenderer.SetPosition(1, _laserLight.transform.position);
+                    _hitObject.Refract(hit.point, transform.forward);
                 }
             }
             yield return null;
         }
     }
 
-    private void ActivatePointCrystal()
-    {
-        for(int i = 0; i < _crystals.Length; i++)
-        {
-            _crystals[i].Clear();
-        }
-    }
+
 }
