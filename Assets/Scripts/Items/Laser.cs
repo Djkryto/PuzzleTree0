@@ -11,7 +11,7 @@ public class Laser : InteractiveItem, IUseable
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _laserDistance;
     private Camera _camera;
-    private IRefracted _hitObject;
+    private IRefractable _hitObject;
     private ITakeable _takeable;
     private IEnumerator _laserWorking;
     private bool _laserIsActive = false;
@@ -46,21 +46,21 @@ public class Laser : InteractiveItem, IUseable
 
     private IEnumerator ActivateLaser()
     {
+        Vector3 cameraCenter = new Vector3(_camera.pixelWidth / 2f, _camera.pixelHeight / 2f);
         while(true)
         {
-            Vector3 cameraCenter = new Vector3(_camera.pixelWidth / 2f, _camera.pixelHeight / 2f);
-            
             Ray ray = _camera.ScreenPointToRay(cameraCenter);
-
             _hitObject?.ClearRefraction();
-            if (Physics.Raycast(ray, out RaycastHit hit, _laserDistance))
-            {
 
-                if (hit.collider.TryGetComponent(out _hitObject))
-                {
-                    _hitObject.Refract(hit.point, transform.forward);
-                }
+            if (!Physics.Raycast(ray, out RaycastHit hit, _laserDistance))
+            {
+                yield return null;
+                continue;
             }
+
+            if (hit.collider.TryGetComponent(out _hitObject))
+                _hitObject.Refract(hit.point, transform.forward);
+
             yield return null;
         }
     }

@@ -2,33 +2,33 @@
 using System.Linq;
 using UnityEngine;
 
-public class Crystal : MonoBehaviour, IRefracted
+public class Crystal : MonoBehaviour, IRefractable
 {
-    [SerializeField] private List<RayRefraction> _generatedRays;
-    private List<IRefracted> _hitObjects;
+    [SerializeField] private List<LaserRay> _generatedRays;
+    private List<IRefractable> _hitObjects;
 
     private void Awake()
     {
-        _hitObjects = new List<IRefracted>();
+        _hitObjects = new List<IRefractable>();
     }
 
-    public void Refract(Vector3 hitPoint, Vector3 direction)
+    public void Refract(Vector3 hitPoint, Vector3 sourceLaserDirection)
     {
-        var rayLength = hitPoint - direction;
+        var newLaseDirection = hitPoint - sourceLaserDirection;
         foreach(var laserRay in _generatedRays)
         {
             var startPosition = transform.InverseTransformPoint(hitPoint);
-            laserRay.Line.gameObject.SetActive(true);
-            laserRay.Line.SetPosition(0, startPosition);
+            laserRay.RayRenderer.gameObject.SetActive(true);
+            laserRay.RayRenderer.SetPosition(0, startPosition);
 
-            var endPosition = (startPosition - transform.InverseTransformPoint(rayLength)) * laserRay.LineLength;
-            endPosition.x = endPosition.x * Mathf.Cos(laserRay.AngleOfRefraction * Mathf.Deg2Rad) + endPosition.z * Mathf.Sin(laserRay.AngleOfRefraction * Mathf.Deg2Rad);
+            var endPosition = (startPosition - transform.InverseTransformPoint(newLaseDirection)) * laserRay.RayLength;
+            endPosition.x = endPosition.x * Mathf.Cos(laserRay.RayAngle * Mathf.Deg2Rad) + endPosition.z * Mathf.Sin(laserRay.RayAngle * Mathf.Deg2Rad);
             endPosition.y = startPosition.y;
-            endPosition.z = -endPosition.x * Mathf.Sin(laserRay.AngleOfRefraction * Mathf.Deg2Rad) + endPosition.z * Mathf.Cos(laserRay.AngleOfRefraction * Mathf.Deg2Rad);
+            endPosition.z = -endPosition.x * Mathf.Sin(laserRay.RayAngle * Mathf.Deg2Rad) + endPosition.z * Mathf.Cos(laserRay.RayAngle * Mathf.Deg2Rad);
 
-            endPosition = CheckHitOtherCrystal(startPosition, endPosition, laserRay.LineLength);
+            endPosition = CheckHitOtherCrystal(startPosition, endPosition, laserRay.RayLength);
 
-            laserRay.Line.SetPosition(1, endPosition);
+            laserRay.RayRenderer.SetPosition(1, endPosition);
         }
     }
 
@@ -40,7 +40,7 @@ public class Crystal : MonoBehaviour, IRefracted
         if (refractedObjects.Length > 0)
         {
             var hit = refractedObjects.FirstOrDefault(refractedObject => refractedObject.collider.gameObject != this);
-            if (hit.collider != default && hit.transform.TryGetComponent(out IRefracted refractedObj))
+            if (hit.collider != default && hit.transform.TryGetComponent(out IRefractable refractedObj))
             {
                 _hitObjects.Add(refractedObj);
                 endPosition = transform.InverseTransformPoint(hit.point);
@@ -54,11 +54,23 @@ public class Crystal : MonoBehaviour, IRefracted
     {
         foreach (var laserRay in _generatedRays)
         {
-            laserRay.Line.gameObject.SetActive(false);
+            laserRay.RayRenderer.gameObject.SetActive(false);
         }
         foreach (var refractedObject in _hitObjects)
         {
             refractedObject.ClearRefraction();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        foreach(var ray in _generatedRays)
+        {
+            var startPosition = ray.RayRenderer.GetPosition(0);
+            var endPosition = ray.RayRenderer.GetPosition(1);
+            var rayDirection = endPosition - startPosition;
+            Ray newRay = new Ray(transform.position - startPosition, rayDirection.normalized);
+            Gizmos.DrawRay(startPosition, rayDirection);
         }
     }
 }
