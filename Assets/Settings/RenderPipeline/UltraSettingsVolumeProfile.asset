@@ -94,7 +94,7 @@ MonoBehaviour:
     m_Value: 100
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 50
+    m_Value: 40
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   - {fileID: 7502528774814404555}
   - {fileID: 7542669330009093999}
   - {fileID: 1501199423866068322}
-  - {fileID: 5315503232242033309}
+  - {fileID: 5141855407676461926}
   - {fileID: 1932259527246508038}
   - {fileID: 448115243408767295}
   - {fileID: -7089757308646879465}
@@ -239,7 +239,7 @@ MonoBehaviour:
     m_Value: {x: 0.097567454, y: 0.19947876, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.3
   updateMode:
     m_OverrideState: 0
     m_Value: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
     m_Value: {fileID: 8900000, guid: 97259d0c0ea9f491692be825da27978a, type: 3}
   distortionMode:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 2
   flowmap:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -265,7 +265,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value:
       mode: 1
-      customValue: 0
+      customValue: 315
       additiveValue: 0
       multiplyValue: 1
   scrollSpeed:
@@ -404,7 +404,7 @@ MonoBehaviour:
   fogType:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &5315503232242033309
+--- !u!114 &5141855407676461926
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   mode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   meteringMode:
     m_OverrideState: 0
@@ -434,10 +434,10 @@ MonoBehaviour:
     m_Value: 0
   limitMin:
     m_OverrideState: 0
-    m_Value: -10
+    m_Value: -1
   limitMax:
     m_OverrideState: 0
-    m_Value: 10
+    m_Value: 14
   curveMap:
     m_OverrideState: 0
     m_Value:
