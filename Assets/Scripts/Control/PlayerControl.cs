@@ -80,7 +80,8 @@ public class PlayerControl : InputControl
 
     private void EndMovingItem()
     {
-        StopCoroutine(_movingItemProcessEnumerator);
+        if(_movingItemProcessEnumerator != null)
+            StopCoroutine(_movingItemProcessEnumerator);
         _player.DropPortableItem();
         if (!_inventoryView.IsOpen)
             _player.Camera.UnlockCamera();

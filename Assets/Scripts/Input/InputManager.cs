@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
         _inputControls.ForEach(input => input.Disable());
     }
 
-    public void DisableInput<InputType>() where InputType : InputControl
+    public static void DisableInput<InputType>() where InputType : InputControl
     {
         var input = GetInputControl<InputType>();
         if (input == null)
@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
         input.Disable();
     }
 
-    public void EnableInput<InputType>() where InputType : InputControl
+    public static void EnableInput<InputType>() where InputType : InputControl
     {
         var input = GetInputControl<InputType>();
         if (input == null)
@@ -49,8 +49,8 @@ public class InputManager : MonoBehaviour
         input.Enable();
     }
 
-    public InputControl GetInputControl<InputType>() where InputType : InputControl
+    public static InputControl GetInputControl<InputType>() where InputType : InputControl
     {
-        return _inputControls.FirstOrDefault(inputControl => inputControl is InputType);
+        return Instance._inputControls.FirstOrDefault(inputControl => inputControl is InputType);
     }
 }

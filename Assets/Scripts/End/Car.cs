@@ -22,7 +22,7 @@ public class Car : MonoBehaviour
         {
             _disabledObjects.ForEach(obj => obj.SetActive(false));
             _endingAnimator.enabled = true;
-            _playerControl.SetControlLockState();
+            InputManager.DisableInput<PlayerControl>();
         }
     }
 
@@ -36,7 +36,7 @@ public class Car : MonoBehaviour
         if(other.gameObject.TryGetComponent(out Player player))
         {
             var endingControlState = new CarEndingControlState(player, _carLayer, _camera, _playerControl.HotbarView);
-            _playerControl.SetCustomState(endingControlState);
+            //_playerControl.SetCustomState(endingControlState);
         }
 
     }
@@ -50,7 +50,7 @@ public class Car : MonoBehaviour
 
         if (other.gameObject.TryGetComponent(out Player player))
         {
-            _playerControl.ResetControl();
+            InputManager.EnableInput<PlayerControl>();
         }
     }
 }

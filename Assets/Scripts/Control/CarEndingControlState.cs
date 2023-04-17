@@ -18,11 +18,11 @@ public class CarEndingControlState : StandardControlState
         var mouseRay = _playerCamera.ScreenPointToRay(mousePosition);
         if(Physics.Raycast(mouseRay, out RaycastHit hitObject, _layerActivateControl))
         {
-            TryStartEndint(hitObject);
+            TryStartEnding(hitObject);
         }
     }
 
-    private void TryStartEndint(RaycastHit hitObject)
+    private void TryStartEnding(RaycastHit hitObject)
     {
         if(hitObject.transform.TryGetComponent(out Car car))
         {

@@ -92,7 +92,7 @@ public class Casket : MonoBehaviour
         if(other.TryGetComponent(out Player player))
         {
             _playerInput.Enable();
-            _playerInput.Player.Use.performed += context => _playerControl.SetCasketControlState(_layer);
+            //_playerInput.Player.Use.performed += context => _playerControl.SetCasketControlState(_layer);
         }
     }
 
@@ -100,7 +100,7 @@ public class Casket : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player))
         {
-            _playerInput.Player.Use.performed -= context => _playerControl.SetCasketControlState(_layer);
+            //_playerInput.Player.Use.performed -= context => _playerControl.SetCasketControlState(_layer);
             _playerInput.Disable();
         }
     }
