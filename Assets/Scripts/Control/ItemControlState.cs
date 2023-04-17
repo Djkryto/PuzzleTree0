@@ -27,7 +27,7 @@ public class ItemControlState : StandardControlState
         try
         {
             var scrollValue = Input.Player.Scroll.ReadValue<Vector2>();
-            Player.RotateObject(scrollValue.y);
+            //Player.RotateObject(scrollValue.y);
         }
         catch (Exception exception)
         {

@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
     public Action<InteractiveItem> TakedItem;
-    public Action<InteractiveItem> DraggedItem;
+    public Action<IPortable> DraggedPortableItem;
+    public Action<IPortable> DropedPortableItem;
     public Action<InteractiveItem> DropedItem;
 
+    [SerializeField] private PlayerCamera _playerCamera;
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private Transform _aimTarget;
     [SerializeField] private Animator _playerAnimator;
@@ -24,7 +27,9 @@ public class Player : MonoBehaviour
     private PlayerMovement _playerMovement;
     private PlayerRotator _playerRotator;
     private PlayerVision _playerVision;
+    private IPortable _portableItem;
 
+    public PlayerCamera Camera => _playerCamera;
     public PlayerVision Vision => _playerVision;
     public Inventory Inventory => _inventory;
     public InteractiveItem CurrentItemInHand => _currentItemInHand;
@@ -78,20 +83,19 @@ public class Player : MonoBehaviour
         }
         catch(Exception exception)
         {
-           Debug.LogWarning(exception);
+            GameLogger.WriteToLog(exception);
         }
     }
 
-    public void RotateObject(float scrollValue)
+    public void RotateObject(Vector2 rotationVector)
     {
         try
         {
-            var interactiveItem = _playerVision.InteractiveItem;
-            interactiveItem.Portable.Rotate(scrollValue);
+            _portableItem.Rotate(rotationVector);
         }
         catch (Exception exception)
         {
-            Debug.LogWarning(exception);
+            GameLogger.WriteToLog(exception);
         }
     }
 
@@ -99,12 +103,13 @@ public class Player : MonoBehaviour
     {
         try
         {
-            var interactiveItem = _playerVision.InteractiveItem;
-            interactiveItem.Portable.DragItem(_hand);
+            _portableItem = _playerVision.InteractiveItem.Portable;
+            _portableItem.DragItem(_hand);
+            DraggedPortableItem?.Invoke(_portableItem);
         }
         catch(Exception exception)
         {
-            Debug.LogWarning(exception);
+            GameLogger.WriteToLog(exception);
         }
     }
 
@@ -112,13 +117,13 @@ public class Player : MonoBehaviour
     {
         try
         {
-            var interactiveItem = _playerVision.InteractiveItem;
-            interactiveItem.Portable.DropItem();
-            DropedItem.Invoke(interactiveItem);
+            _portableItem.DropItem();
+            _portableItem = null;
+            DropedPortableItem.Invoke(_portableItem);
         }
         catch (Exception exception)
         {
-            Debug.LogWarning(exception);
+            GameLogger.WriteToLog(exception);
         }
     }
 
@@ -135,18 +140,25 @@ public class Player : MonoBehaviour
         catch (Exception exception)
         {
             _currentItemInHand?.gameObject.SetActive(false);
-            Debug.LogWarning(exception);
+            GameLogger.WriteToLog(exception);
         }
     }
 
-    public void LookAt(Ray desiredTargetRay)
+    private void Update()
     {
-        _playerVision.LookAt(desiredTargetRay);
+        var rayCenterCamera = _playerCamera.GetRayFromCenter();
+        ScanObjectInFront(rayCenterCamera);
+        LookAt(rayCenterCamera);
     }
 
     public RaycastHit ScanObjectInFront(Ray rayCenterCamera)
     {
         return _playerVision.ScanObjectInFront(rayCenterCamera);
+    }
+
+    public void LookAt(Ray desiredTargetRay)
+    {
+        _playerVision.LookAt(desiredTargetRay);
     }
 
     public void Rotate(float targetYEulerAngle)

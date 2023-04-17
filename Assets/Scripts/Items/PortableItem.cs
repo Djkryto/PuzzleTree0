@@ -4,7 +4,7 @@ using UnityEngine;
 public class PortableItem : InteractiveItem, IPortable
 {
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private Vector3 _rotateAxis;
+    [SerializeField] private Collider _collider;
     [SerializeField] private float _rotateSpeed;
 
     public override IPortable Portable => this;
@@ -14,16 +14,16 @@ public class PortableItem : InteractiveItem, IPortable
     public override IReadable Readable => null;
     public Transform ItemTransform => null;
 
-
-    public void Rotate(float scrollValue)
+    public void Rotate(Vector2 rotationVector)
     {
-        transform.Rotate(scrollValue * _rotateAxis * _rotateSpeed, Space.World);
+        transform.Rotate(rotationVector * _rotateSpeed * Time.deltaTime);
     }
 
     public Transform DragItem(Transform parent)
     {
         _rigidbody.isKinematic = true;
         transform.SetParent(parent);
+        _collider.enabled = false;
         return transform;
     }
 
@@ -31,6 +31,7 @@ public class PortableItem : InteractiveItem, IPortable
     {
         _rigidbody.isKinematic = false;
         transform.SetParent(null);
+        _collider.enabled = true;
         return transform;
     }
 }

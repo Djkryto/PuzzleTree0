@@ -9,22 +9,23 @@ public class HintUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _learnObjectHintText;
     [SerializeField] private TextMeshProUGUI _readingObjectHintText;
     [SerializeField] private GameObject _portableObjectHint;
+    [SerializeField] private PlayerControl _playerControl;
     [SerializeField] private Player _player;
+    private bool _disableHints;
 
     private void Start()
     {
         _player.Vision.Detected += ShowHint;
         _player.Vision.Undetected += UnshowHint;
-    }
-
-    private void UnshowHint()
-    {
-        _interactiveObjectHint.gameObject.SetActive(false);
-        _portableObjectHint.gameObject.SetActive(false);
+        _playerControl.ItemDragStarted += OnStartPortableHint;
+        _playerControl.ItemDragFinished += OnFinishPortableHint;
     }
 
     private void ShowHint()
     {
+        if (_disableHints)
+            return;
+
         var interactiveItem = _player.Vision.InteractiveItem;
 
         TryShowHint(interactiveItem.Takeable, _takeObjectHintText.gameObject);
@@ -45,5 +46,22 @@ public class HintUI : MonoBehaviour
             hint.SetActive(true);
         else
             hint.SetActive(false);
+    }
+
+    private void UnshowHint()
+    {
+        _interactiveObjectHint.gameObject.SetActive(false);
+        _portableObjectHint.gameObject.SetActive(false);
+    }
+
+    private void OnStartPortableHint()
+    {
+        _disableHints = true;
+        _portableObjectHint.gameObject.SetActive(false);
+    }
+
+    private void OnFinishPortableHint()
+    {
+        _disableHints = false;
     }
 }

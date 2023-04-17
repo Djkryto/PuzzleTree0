@@ -282,7 +282,7 @@
                     "name": "",
                     "id": "9f36947b-4888-4628-8a13-64619309bf1f",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold(duration=0.4,pressPoint=0.2),Press",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "LMB",
@@ -293,7 +293,7 @@
                     "name": "",
                     "id": "d3beab6a-0143-4b12-98cf-81adb34206ff",
                     "path": "<Keyboard>/escape",
-                    "interactions": "",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Escape",
@@ -363,62 +363,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "MousePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Item",
-            "id": "9417057a-c0b0-44ae-83b5-506682eb0e06",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "b51cb42f-37dd-4b5c-9e18-da6ead54c9b3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "8a4f0917-0f6f-4684-b782-2270d14ff375",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Riddle",
-            "id": "2d824508-c73e-4913-82c1-2491c39490fc",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "a6006c04-c57e-454c-841c-94cbba1c3d44",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "a8d1ac26-a2f5-410f-804c-3b04e606be60",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

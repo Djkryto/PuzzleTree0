@@ -1,129 +1,164 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : InputControl
 {
+    public Action ItemDragStarted;
+    public Action ItemDragFinished;
+
     [SerializeField] private Player _player;
     [SerializeField] private Camera _playerCamera;
     [SerializeField] private InventoryView _inventoryView;
     [SerializeField] private ObjectInspector _objectInspector;
     [SerializeField] private HotbarView _hotbar;
-    [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     private ControlState _controlState;
-    private IEnumerator _decelerationEnumerator;
+    private Coroutine _movingItemProcessEnumerator;
 
     public ControlState ControlState => _controlState;
     public HotbarView HotbarView => _hotbar;
 
-    private void Start()
-    {;
-        _player.Vision.Detected += SetItemControlState;
-        _player.Vision.Undetected += ResetControl;
-        _decelerationEnumerator = PlayerStoping();
-        ResetControl();
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void SetControlLockState()
+    public override void Enable()
     {
-        _cinemachineInputProvider.enabled = false;
-        SetCustomState(new ControlLockState(_player));
-    }
-
-    public void SetItemControlState()
-    {
-        var itemControlState = new ItemControlState(_player, _playerCamera, _hotbar);
-        itemControlState.InspectEvent += SetObjectInspectorState;
-        itemControlState.ReadingText += SetReadableControlState;
-        SetCustomState(itemControlState);
-    }
-
-    public void SetReadableControlState()
-    {
-        _cinemachineInputProvider.enabled = false;
-        SetCustomState(new ReadableControlState(_player));
-    }
-
-    public void SetCasketControlState(LayerMask controlObjectLayer)
-    {
-        if (!(_controlState is CasketControlState))
+        _input.Player.One.performed += context => SetItemWithIndexInHand(0);
+        _input.Player.Two.performed += context => SetItemWithIndexInHand(1);
+        _input.Player.Three.performed += context => SetItemWithIndexInHand(2);
+        _input.Player.LMB.started += context => StartMovingItem();
+        _input.Player.LMB.canceled += context => EndMovingItem();
+        _input.Player.LMB.performed += context => UseItemInHand();
+        _input.Player.Inventory.performed += context => OpenOrCloseInventory();
+        _input.Player.Use.performed += context =>
         {
-            _controlState.DisableControl();
-            _controlState = new CasketControlState(_player, _playerCamera, controlObjectLayer);
-            _controlState.EnableControl();
-            _controlState.OnExitState += ResetControl; 
-            StartCoroutine(_decelerationEnumerator);
+            if (context.interaction is PressInteraction)
+                UseOrTakeItem();
+            if (context.interaction is HoldInteraction)
+                InspectItem();
+        };
+    }
+
+    public override void Disable()
+    {
+        _input.Player.One.performed -= context => SetItemWithIndexInHand(0);
+        _input.Player.Two.performed -= context => SetItemWithIndexInHand(1);
+        _input.Player.Three.performed -= context => SetItemWithIndexInHand(2);
+        _input.Player.LMB.started -= context => StartMovingItem();
+        _input.Player.LMB.canceled -= context => EndMovingItem();
+        _input.Player.LMB.performed -= context => UseItemInHand();
+        _input.Player.Inventory.performed -= context => OpenOrCloseInventory();
+        _input.Player.Use.performed -= context =>
+        {
+            if (context.interaction is PressInteraction)
+                UseOrTakeItem();
+            if (context.interaction is HoldInteraction)
+                InspectItem();
+        };
+    }
+
+    private void SetItemWithIndexInHand(int index)
+    {
+        try
+        {
+            Cell cell = _hotbar.CellPool[index];
+            _player.SetItemInHand(cell.ItemInWorld);
+        }
+        catch (Exception exception)
+        {
+            GameLogger.WriteToLog(exception);
         }
     }
 
-    public void SetObjectInspectorState(IInspectable item)
+    private void StartMovingItem()
     {
-        var inspectorControlState = new ObjectInspectorControlState(_player, _objectInspector);
-        SetCustomState(inspectorControlState);
+        if (_inventoryView.IsOpen)
+            return;
+        _movingItemProcessEnumerator = StartCoroutine(MovingItemProcess());
+        _player.DragItem();
+        ItemDragStarted?.Invoke();
     }
 
-    public void SetInventoryControlState()
+    private void EndMovingItem()
     {
-        _cinemachineInputProvider.enabled = false;
-        var inventoryControlState = new InventoryControlState(_player, _inventoryView);
-        SetCustomState(inventoryControlState);
+        StopCoroutine(_movingItemProcessEnumerator);
+        _player.DropPortableItem();
+        if (!_inventoryView.IsOpen)
+            _player.Camera.UnlockCamera();
+        ItemDragFinished?.Invoke();
     }
 
-    public void SetCustomState(ControlState controlState)
+    private IEnumerator MovingItemProcess()
     {
-        if (_controlState.GetType() != controlState.GetType())
+        while(true)
         {
-            _controlState.DisableControl();
-            _controlState = controlState;
-            _controlState.EnableControl();
-            _controlState.OnExitState += ResetControl;
-            StartCoroutine(_decelerationEnumerator);
+            var rmbPressed = _input.Player.RMB.IsPressed();
+            if (rmbPressed)
+            {
+                var mouseVector = _input.Player.MouseLook.ReadValue<Vector2>();
+                var rotationVector = new Vector3(mouseVector.y, -mouseVector.x, 0f);
+                _player.RotateObject(rotationVector);
+                _player.Camera.LockCamera();
+            }
+            else if(!_inventoryView.IsOpen)
+            {
+                _player.Camera.UnlockCamera();
+            }
+            yield return null;
         }
     }
 
-    public void ResetControl()
+    private void UseItemInHand()
     {
-        _cinemachineInputProvider.enabled = true;
-        StopCoroutine(_decelerationEnumerator);
-        _controlState?.DisableControl();
-        var standardControl = new StandardControlState(_player, _playerCamera, _hotbar);
-        standardControl.OnInventoryOpen += SetInventoryControlState;
-        _controlState = standardControl;
-        _controlState.EnableControl();
-        _controlState.OnExitState += SetControlLockState;
+        try
+        {
+            _player.CurrentItemInHand.Useable.Use();
+        }
+        catch (Exception exception)
+        {
+            GameLogger.WriteToLog(exception);
+        }
     }
 
-    private void Update()
+    public void OpenOrCloseInventory()
     {
-        if (_controlState is StandardControlState)
-        {
-            var standartControl = _controlState as StandardControlState;
-            standartControl.TiltPlayerTorso();
-        }
+        if (_inventoryView.IsOpen)
+            _inventoryView.Close();
+        else
+            _inventoryView.Open();
+    }
+
+    private void UseOrTakeItem()
+    {
+        _player.TakeObject();
+    }
+
+    private void InspectItem()
+    {
+
     }
 
     private void FixedUpdate()
     {
-        if(_controlState is StandardControlState)
-        {
-            var standartControl = _controlState as StandardControlState;
-            standartControl.PlayerMove();
-            standartControl.ScanObjectInFront();
-        }
+        PlayerMove();
     }
 
-    private void OnDisable()
+    public void PlayerMove()
     {
-        _controlState.DisableControl();
-    }
-
-    private IEnumerator PlayerStoping()
-    {
-        while (!(_controlState is StandardControlState))
+        _player.Rotate(_playerCamera.transform.eulerAngles.y);
+        var movementVector = _input.Player.Move.ReadValue<Vector2>();
+        if(movementVector == Vector2.zero)
         {
             _player.Decceleration();
-            yield return null;
+            return;
+        }
+
+        if (_input.Player.Run.IsPressed())
+        {
+            _player.Run(movementVector);
+        }
+        else
+        {
+            _player.Walk(movementVector);
         }
     }
 }
