@@ -49,7 +49,7 @@ public class PlayerControl : InputControl
     {
         try
         {
-            var number = int.Parse(context.control.name);
+            var number = int.Parse(context.control.name) - 1;
             SetItemWithIndexInHand(number);
         }
         catch (Exception exception)
