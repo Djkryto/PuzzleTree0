@@ -16,9 +16,9 @@ public class StandardControlState : ControlState
         _hotbar = hotbar;
         Input.Player.Escape.performed += context => OpenMenu();
         Input.Player.Inventory.performed += context => OpenInventory();
-        Input.Player.One.performed += context => SetItemInHead(0);
-        Input.Player.Two.performed += context => SetItemInHead(1);
-        Input.Player.Three.performed += context => SetItemInHead(2);
+        //Input.Player.One.performed += context => SetItemInHead(0);
+        //Input.Player.Two.performed += context => SetItemInHead(1);
+        //Input.Player.Three.performed += context => SetItemInHead(2);
         Input.Player.LMB.performed += context =>
         {
             if (context.interaction is PressInteraction)

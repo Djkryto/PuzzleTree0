@@ -87,33 +87,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "One",
-                    "type": "Button",
-                    "id": "8ba35d3a-8473-412f-9d0c-75d690e35b37",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Two",
-                    "type": "Button",
-                    "id": "cfb46125-604e-4c40-b039-1202b3e0521d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Three",
-                    "type": "Button",
-                    "id": "6d4438e9-f408-4560-b262-6d6f39307409",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MousePosition",
                     "type": "Value",
                     "id": "53eec0dd-8f81-496f-9a91-344e3a81510a",
@@ -121,6 +94,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Console",
+                    "type": "Button",
+                    "id": "a049a867-4d0d-4159-b45a-e5498a9bc90b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemSwitch",
+                    "type": "Button",
+                    "id": "51c90edf-493e-4cce-a222-e862507eec7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -324,45 +315,56 @@
                 },
                 {
                     "name": "",
-                    "id": "bbcd03de-7976-4ab0-b19c-9a2bad02dd1d",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "One",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "29f2f3f2-f3d0-4b0b-89d1-764e3ed17654",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "Two",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "45e83ff0-3796-48a9-9119-702423d7f57c",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "Three",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5bfa1117-3324-4ed0-b347-b5a379cf7129",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb71f914-4203-4ca4-bf31-607716b80968",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Console",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae55c306-b3b3-4fbe-a064-69c4369fba95",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68585021-02f1-4573-822d-6fee20b023af",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a2219a6-a8df-4666-b7f3-1b1b1604c913",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

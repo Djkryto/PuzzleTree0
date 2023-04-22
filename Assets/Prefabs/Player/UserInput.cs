@@ -109,33 +109,6 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""One"",
-                    ""type"": ""Button"",
-                    ""id"": ""8ba35d3a-8473-412f-9d0c-75d690e35b37"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Two"",
-                    ""type"": ""Button"",
-                    ""id"": ""cfb46125-604e-4c40-b039-1202b3e0521d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Three"",
-                    ""type"": ""Button"",
-                    ""id"": ""6d4438e9-f408-4560-b262-6d6f39307409"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""MousePosition"",
                     ""type"": ""Value"",
                     ""id"": ""53eec0dd-8f81-496f-9a91-344e3a81510a"",
@@ -143,6 +116,24 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Console"",
+                    ""type"": ""Button"",
+                    ""id"": ""a049a867-4d0d-4159-b45a-e5498a9bc90b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""51c90edf-493e-4cce-a222-e862507eec7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -346,45 +337,56 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bbcd03de-7976-4ab0-b19c-9a2bad02dd1d"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""29f2f3f2-f3d0-4b0b-89d1-764e3ed17654"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""45e83ff0-3796-48a9-9119-702423d7f57c"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Three"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5bfa1117-3324-4ed0-b347-b5a379cf7129"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb71f914-4203-4ca4-bf31-607716b80968"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Console"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae55c306-b3b3-4fbe-a064-69c4369fba95"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68585021-02f1-4573-822d-6fee20b023af"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a2219a6-a8df-4666-b7f3-1b1b1604c913"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -426,10 +428,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         m_Player_LMB = m_Player.FindAction("LMB", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
-        m_Player_One = m_Player.FindAction("One", throwIfNotFound: true);
-        m_Player_Two = m_Player.FindAction("Two", throwIfNotFound: true);
-        m_Player_Three = m_Player.FindAction("Three", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
+        m_Player_Console = m_Player.FindAction("Console", throwIfNotFound: true);
+        m_Player_ItemSwitch = m_Player.FindAction("ItemSwitch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -498,10 +499,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LMB;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_Inventory;
-    private readonly InputAction m_Player_One;
-    private readonly InputAction m_Player_Two;
-    private readonly InputAction m_Player_Three;
     private readonly InputAction m_Player_MousePosition;
+    private readonly InputAction m_Player_Console;
+    private readonly InputAction m_Player_ItemSwitch;
     public struct PlayerActions
     {
         private @UserInput m_Wrapper;
@@ -515,10 +515,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         public InputAction @LMB => m_Wrapper.m_Player_LMB;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
-        public InputAction @One => m_Wrapper.m_Player_One;
-        public InputAction @Two => m_Wrapper.m_Player_Two;
-        public InputAction @Three => m_Wrapper.m_Player_Three;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
+        public InputAction @Console => m_Wrapper.m_Player_Console;
+        public InputAction @ItemSwitch => m_Wrapper.m_Player_ItemSwitch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -555,18 +554,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
-                @One.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
-                @One.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
-                @One.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOne;
-                @Two.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
-                @Two.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
-                @Two.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTwo;
-                @Three.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
-                @Three.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
-                @Three.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThree;
                 @MousePosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
+                @Console.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConsole;
+                @Console.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConsole;
+                @Console.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConsole;
+                @ItemSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemSwitch;
+                @ItemSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemSwitch;
+                @ItemSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemSwitch;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -598,18 +594,15 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
-                @One.started += instance.OnOne;
-                @One.performed += instance.OnOne;
-                @One.canceled += instance.OnOne;
-                @Two.started += instance.OnTwo;
-                @Two.performed += instance.OnTwo;
-                @Two.canceled += instance.OnTwo;
-                @Three.started += instance.OnThree;
-                @Three.performed += instance.OnThree;
-                @Three.canceled += instance.OnThree;
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @Console.started += instance.OnConsole;
+                @Console.performed += instance.OnConsole;
+                @Console.canceled += instance.OnConsole;
+                @ItemSwitch.started += instance.OnItemSwitch;
+                @ItemSwitch.performed += instance.OnItemSwitch;
+                @ItemSwitch.canceled += instance.OnItemSwitch;
             }
         }
     }
@@ -634,9 +627,8 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         void OnLMB(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
-        void OnOne(InputAction.CallbackContext context);
-        void OnTwo(InputAction.CallbackContext context);
-        void OnThree(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnConsole(InputAction.CallbackContext context);
+        void OnItemSwitch(InputAction.CallbackContext context);
     }
 }

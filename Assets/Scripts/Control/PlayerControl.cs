@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControl : InputControl
 {
@@ -10,7 +11,7 @@ public class PlayerControl : InputControl
     public Action ItemDragFinished;
 
     [SerializeField] private Player _player;
-    [SerializeField] private Camera _playerCamera;
+    [SerializeField] private PlayerCamera _playerCamera;
     [SerializeField] private InventoryView _inventoryView;
     [SerializeField] private ObjectInspector _objectInspector;
     [SerializeField] private HotbarView _hotbar;
@@ -22,38 +23,39 @@ public class PlayerControl : InputControl
 
     public override void Enable()
     {
-        _input.Player.One.performed += context => SetItemWithIndexInHand(0);
-        _input.Player.Two.performed += context => SetItemWithIndexInHand(1);
-        _input.Player.Three.performed += context => SetItemWithIndexInHand(2);
-        _input.Player.LMB.started += context => StartMovingItem();
-        _input.Player.LMB.canceled += context => EndMovingItem();
-        _input.Player.LMB.performed += context => UseItemInHand();
-        _input.Player.Inventory.performed += context => OpenOrCloseInventory();
-        _input.Player.Use.performed += context =>
-        {
-            if (context.interaction is PressInteraction)
-                UseOrTakeItem();
-            if (context.interaction is HoldInteraction)
-                InspectItem();
-        };
+        _input.Player.ItemSwitch.performed += ItemSwitch;
+        _input.Player.LMB.started += StartMovingItem;
+        _input.Player.LMB.canceled += EndMovingItem;
+        _input.Player.LMB.performed += UseItemInHand;
+        _input.Player.Inventory.performed += OpenOrCloseInventory;
+        _input.Player.Use.performed += Use;
+        gameObject.SetActive(true);
+        _playerCamera.UnlockCamera();
     }
 
     public override void Disable()
     {
-        _input.Player.One.performed -= context => SetItemWithIndexInHand(0);
-        _input.Player.Two.performed -= context => SetItemWithIndexInHand(1);
-        _input.Player.Three.performed -= context => SetItemWithIndexInHand(2);
-        _input.Player.LMB.started -= context => StartMovingItem();
-        _input.Player.LMB.canceled -= context => EndMovingItem();
-        _input.Player.LMB.performed -= context => UseItemInHand();
-        _input.Player.Inventory.performed -= context => OpenOrCloseInventory();
-        _input.Player.Use.performed -= context =>
+        _input.Player.ItemSwitch.performed -= ItemSwitch;
+        _input.Player.LMB.started -= StartMovingItem;
+        _input.Player.LMB.canceled -= EndMovingItem;
+        _input.Player.LMB.performed -= UseItemInHand;
+        _input.Player.Inventory.performed -= OpenOrCloseInventory;
+        _input.Player.Use.performed -= Use;
+        gameObject.SetActive(false);
+        _playerCamera.LockCamera();
+    }
+
+    private void ItemSwitch(CallbackContext context)
+    {
+        try
         {
-            if (context.interaction is PressInteraction)
-                UseOrTakeItem();
-            if (context.interaction is HoldInteraction)
-                InspectItem();
-        };
+            var number = int.Parse(context.control.name);
+            SetItemWithIndexInHand(number);
+        }
+        catch (Exception exception)
+        {
+            GameLogger.WriteToLog(exception);
+        }
     }
 
     private void SetItemWithIndexInHand(int index)
@@ -69,7 +71,7 @@ public class PlayerControl : InputControl
         }
     }
 
-    private void StartMovingItem()
+    private void StartMovingItem(CallbackContext context)
     {
         if (_inventoryView.IsOpen)
             return;
@@ -78,7 +80,7 @@ public class PlayerControl : InputControl
         ItemDragStarted?.Invoke();
     }
 
-    private void EndMovingItem()
+    private void EndMovingItem(CallbackContext context)
     {
         if(_movingItemProcessEnumerator != null)
             StopCoroutine(_movingItemProcessEnumerator);
@@ -108,7 +110,7 @@ public class PlayerControl : InputControl
         }
     }
 
-    private void UseItemInHand()
+    private void UseItemInHand(CallbackContext context)
     {
         try
         {
@@ -120,12 +122,20 @@ public class PlayerControl : InputControl
         }
     }
 
-    public void OpenOrCloseInventory()
+    public void OpenOrCloseInventory(CallbackContext context)
     {
         if (_inventoryView.IsOpen)
             _inventoryView.Close();
         else
             _inventoryView.Open();
+    }
+
+    private void Use(CallbackContext context)
+    {
+        if (context.interaction is PressInteraction)
+            UseOrTakeItem();
+        if (context.interaction is HoldInteraction)
+            InspectItem();
     }
 
     private void UseOrTakeItem()

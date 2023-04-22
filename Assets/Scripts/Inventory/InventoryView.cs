@@ -14,9 +14,7 @@ public class InventoryView : Window
     private List<Cell> _cellPool;
 
     public Inventory Inventory => _player.Inventory;
-    private bool _isOpen = false;
 
-    public bool IsOpen => _isOpen;
     public int ContainerSize => Inventory.Size;
 
     private void Awake()
